@@ -1,0 +1,170 @@
+<%- include('partials/header') %>
+
+<!-- Shop Header Banner -->
+<section class="page-banner shop-banner">
+  <div class="container">
+    <h1>The Spice Marketplace</h1>
+    <p>Browse our curated selection of whole spices, hand-mixed dry rubs, fresh botanicals, and finishing salts.</p>
+  </div>
+  <div class="banner-overlay"></div>
+</section>
+
+<!-- Shop Catalog Section -->
+<section class="shop-catalog container">
+  
+  <!-- Mobile Filter Toggles -->
+  <div class="mobile-filter-bar">
+    <button id="toggle-sidebar-filters" class="btn btn-secondary"><i class="fa-solid fa-sliders"></i> Filter / Sort</button>
+  </div>
+
+  <div class="catalog-layout">
+    
+    <!-- Left Sidebar: Filters & Search -->
+    <aside class="catalog-sidebar" id="catalog-sidebar">
+      <div class="sidebar-header">
+        <h3>Refine Pantry</h3>
+        <button id="close-sidebar-filters" class="close-filters-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <!-- Text Search Block -->
+      <div class="filter-widget">
+        <h4>Search Catalog</h4>
+        <form action="/products" method="GET" class="sidebar-search-form">
+          <% if (selectedCategory) { %>
+            <input type="hidden" name="category" value="<%= selectedCategory %>">
+          <% } %>
+          <% if (selectedSort) { %>
+            <input type="hidden" name="sort" value="<%= selectedSort %>">
+          <% } %>
+          <div class="search-input-wrapper">
+            <input type="text" name="search" placeholder="Cinnamon, Garlic..." value="<%= searchQuery %>" aria-label="Search">
+            <button type="submit" aria-label="Submit search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+          <% if (searchQuery) { %>
+            <a href="/products?category=<%= selectedCategory %>&sort=<%= selectedSort %>" class="clear-search-link"><i class="fa-solid fa-circle-xmark"></i> Clear Search</a>
+          <% } %>
+        </form>
+      </div>
+      
+      <!-- Category Filter list -->
+      <div class="filter-widget">
+        <h4>Categories</h4>
+        <ul class="filter-category-links">
+          <li>
+            <a href="/products?search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === '' ? 'active' : '' %>">
+              All Items <span class="bullet">&middot;</span>
+            </a>
+          </li>
+          <li>
+            <a href="/products?category=spices&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'spices' ? 'active' : '' %>">
+              Spices <span class="bullet">&middot;</span>
+            </a>
+          </li>
+          <li>
+            <a href="/products?category=herbs&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'herbs' ? 'active' : '' %>">
+              Herbs <span class="bullet">&middot;</span>
+            </a>
+          </li>
+          <li>
+            <a href="/products?category=seasonings&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'seasonings' ? 'active' : '' %>">
+              Blends & Rubs <span class="bullet">&middot;</span>
+            </a>
+          </li>
+          <li>
+            <a href="/products?category=salts&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'salts' ? 'active' : '' %>">
+              Salts & Peppers <span class="bullet">&middot;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Sorting Select widget -->
+      <div class="filter-widget">
+        <h4>Sort By</h4>
+        <div class="select-wrapper">
+          <select id="catalog-sort-select" onchange="location = this.value;">
+            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>" <%= selectedSort === '' ? 'selected' : '' %>>Default (Newest)</option>
+            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>&sort=price-asc" <%= selectedSort === 'price-asc' ? 'selected' : '' %>>Price: Low to High</option>
+            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>&sort=price-desc" <%= selectedSort === 'price-desc' ? 'selected' : '' %>>Price: High to Low</option>
+            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>&sort=name-asc" <%= selectedSort === 'name-asc' ? 'selected' : '' %>>Alphabetical (A-Z)</option>
+            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>&sort=name-desc" <%= selectedSort === 'name-desc' ? 'selected' : '' %>>Alphabetical (Z-A)</option>
+          </select>
+        </div>
+      </div>
+      
+    </aside>
+    
+    <!-- Right Grid: Products -->
+    <div class="catalog-content">
+      
+      <!-- Catalog Status bar -->
+      <div class="catalog-status-bar">
+        <span class="product-count-display">Showing <strong><%= products.length %></strong> Spices</span>
+        
+        <!-- Active filter bubbles -->
+        <div class="active-filters">
+          <% if (selectedCategory) { %>
+            <span class="filter-bubble"><%= selectedCategory %> <a href="/products?search=<%= searchQuery %>&sort=<%= selectedSort %>"><i class="fa-solid fa-xmark"></i></a></span>
+          <% } %>
+          <% if (searchQuery) { %>
+            <span class="filter-bubble">"<%= searchQuery %>" <a href="/products?category=<%= selectedCategory %>&sort=<%= selectedSort %>"><i class="fa-solid fa-xmark"></i></a></span>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- Product Cards Grid -->
+      <div class="products-grid">
+        <% if (products && products.length > 0) { %>
+          <% products.forEach(product => { %>
+            <div class="product-card">
+              <div class="product-card-image">
+                <a href="/products/<%= product.slug %>">
+                  <img src="<%= product.imageUrl %>" alt="<%= product.name %>" loading="lazy">
+                </a>
+                <% if (product.stockStatus === 'low-stock') { %>
+                  <span class="badge badge-warning">Low Stock</span>
+                <% } else if (product.stockStatus === 'out-of-stock') { %>
+                  <span class="badge badge-danger">Out of Stock</span>
+                <% } %>
+                <span class="product-category-tag"><%= product.category %></span>
+              </div>
+              
+              <div class="product-card-info">
+                <h3><a href="/products/<%= product.slug %>"><%= product.name %></a></h3>
+                <p class="product-excerpt"><%= product.description.substring(0, 85) %>...</p>
+                
+                <div class="product-card-footer">
+                  <span class="product-price">$<%= product.price.toFixed(2) %></span>
+                  
+                  <% if (product.stockStatus !== 'out-of-stock') { %>
+                    <button class="btn-add-to-cart add-to-cart-btn" 
+                            data-id="<%= product._id %>"
+                            data-name="<%= product.name %>"
+                            data-price="<%= product.price %>"
+                            data-image="<%= product.imageUrl %>"
+                            data-size="<%= product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'Standard' %>">
+                      <i class="fa-solid fa-cart-plus"></i> Add
+                    </button>
+                  <% } else { %>
+                    <button class="btn-add-to-cart btn-disabled" disabled>Sold Out</button>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="no-results-card">
+            <i class="fa-solid fa-ban"></i>
+            <h3>No Products Found</h3>
+            <p>We couldn't find any products matching your filters or search query. Try broadening your keywords or changing categories.</p>
+            <a href="/products" class="btn btn-primary">Reset All Filters</a>
+          </div>
+        <% } %>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<%- include('partials/footer') %>

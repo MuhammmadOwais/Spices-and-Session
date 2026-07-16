@@ -1,0 +1,69 @@
+<%- include('../partials/header') %>
+
+<section class="admin-crud-section container">
+  
+  <div class="admin-header-row">
+    <div>
+      <a href="/admin" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+      <h1>Culinary Journal Articles</h1>
+      <p>Write recipes, blending instructions, storage guidelines, and botanical features.</p>
+    </div>
+    <div>
+      <a href="/admin/blogs/new" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Write Blog Post</a>
+    </div>
+  </div>
+
+  <div class="crud-table-wrapper">
+    <% if (blogs && blogs.length > 0) { %>
+      <table class="crud-data-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Article Title</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Read Time</th>
+            <th>Published Date</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% blogs.forEach(blog => { %>
+            <tr>
+              <td>
+                <img src="<%= blog.imageUrl %>" alt="<%= blog.title %>" class="table-thumbnail-img">
+              </td>
+              <td>
+                <strong><%= blog.title %></strong>
+                <span class="table-small-text block-display"><%= blog.subtitle.substring(0, 50) %>...</span>
+              </td>
+              <td><%= blog.category %></td>
+              <td><%= blog.author %></td>
+              <td><%= blog.readTime %> mins</td>
+              <td>
+                <%= new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %>
+              </td>
+              <td class="text-right table-actions-cell">
+                <a href="/admin/blogs/<%= blog._id %>/edit" class="btn-action btn-edit-icon" title="Edit Article"><i class="fa-solid fa-pen-to-square"></i></a>
+                
+                <form action="/admin/blogs/<%= blog._id %>/delete" method="POST" class="inline-form" onsubmit="return confirm('Are you sure you want to permanently delete this blog post? This action is irreversible.');">
+                  <button type="submit" class="btn-action btn-delete-icon" title="Delete Article"><i class="fa-solid fa-trash-can"></i></button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="empty-crud-state text-center">
+        <i class="fa-solid fa-feather"></i>
+        <h3>No Articles Found</h3>
+        <p>Start writing cooking guidelines, blending recipes, or storage tricks for your audience.</p>
+        <a href="/admin/blogs/new" class="btn btn-primary">Create Your First Blog Post</a>
+      </div>
+    <% } %>
+  </div>
+
+</section>
+
+<%- include('../partials/footer') %>

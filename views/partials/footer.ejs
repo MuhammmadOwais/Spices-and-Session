@@ -1,0 +1,81 @@
+  </main> <!-- End of page-main-content -->
+
+  <!-- Main Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <!-- Column 1: Brand Info -->
+      <div class="footer-col brand-info-col">
+        <a href="/" class="brand-logo footer-logo">
+          <span class="logo-serif">Artisan</span>
+          <span class="logo-sans">Spice Co.</span>
+        </a>
+        <p class="brand-bio">
+          Sourcing the world's finest spices, herbs, seasonings, and salts. Freshly ground in small batches and packed in the USA to elevate your home culinary creations.
+        </p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col links-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/products">All Products</a></li>
+          <li><a href="/products?category=spices">Ground & Whole Spices</a></li>
+          <li><a href="/products?category=seasonings">Seasoning Blends</a></li>
+          <li><a href="/products?category=herbs">Botanical Herbs</a></li>
+          <li><a href="/products?category=salts">Artisanal Salts</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Resources & Support -->
+      <div class="footer-col links-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about">Our Story</a></li>
+          <li><a href="/blogs">Culinary Journal</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms-conditions">Terms & Conditions</a></li>
+          <li><a href="/admin/login">Admin Dashboard</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Newsletter -->
+      <div class="footer-col newsletter-col">
+        <h4>Join The Pantry</h4>
+        <p>Subscribe to receive cooking tips, fresh recipes, and early access to limited edition spice blends.</p>
+        <form class="newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Artisan Spice Co.!'); this.reset();">
+          <div class="form-input-group">
+            <input type="email" placeholder="Your email address" required aria-label="Email address">
+            <button type="submit" class="btn btn-accent" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="bottom-container">
+        <p>&copy; <%= new Date().getFullYear() %> Artisan Spice Co. All rights reserved. Made for passionate home cooks.</p>
+        <div class="payment-badges">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-amex"></i>
+          <i class="fa-brands fa-cc-discover"></i>
+          <i class="fa-brands fa-cc-apple-pay"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Assets -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

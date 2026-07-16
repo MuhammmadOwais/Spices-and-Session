@@ -1,0 +1,65 @@
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '1.1.1.1']);
+
+const express = require('express');
+const session = require('express-session');
+const path = require('path');
+const fs = require('fs');
+require('dotenv').config();
+
+const shopRoutes = require('./routes/shopRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+
+const app = express();
+
+// Ensure upload and assets directories exist
+const uploadDir = path.join(__dirname, 'public', 'uploads');
+const cssDir = path.join(__dirname, 'public', 'css');
+const jsDir = path.join(__dirname, 'public', 'js');
+const imagesDir = path.join(__dirname, 'public', 'images');
+
+[uploadDir, cssDir, jsDir, imagesDir].forEach(dir => {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+});
+
+// View Engine Setup
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'supersecretspicehavenkey',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 day
+}));
+
+// Setup Global variables for template rendering
+app.use((req, res, next) => {
+  res.locals.isAdminUser = req.session.isAdmin || false;
+  res.locals.path = req.path;
+  next();
+});
+
+// Routes
+app.use('/', shopRoutes);
+app.use('/admin', adminRoutes);
+
+// Custom 404 handler
+app.use((req, res) => {
+  res.status(404).render('404', {
+    title: 'Page Not Found | Artisan Spice Co.',
+    path: req.path
+  });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Artisan Spice Co. Frontend Server running at http://localhost:${PORT}`);
+});

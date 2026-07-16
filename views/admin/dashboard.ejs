@@ -1,0 +1,52 @@
+<%- include('../partials/header') %>
+
+<section class="admin-dashboard-section container">
+  
+  <div class="admin-header-row">
+    <div>
+      <h1>Control Center</h1>
+      <p>Welcome back, Administrator. Select an option to update inventory or manage articles.</p>
+    </div>
+    <div class="admin-action-quick">
+      <a href="/admin/logout" class="btn btn-outline-dark"><i class="fa-solid fa-right-from-bracket"></i> Logout Portal</a>
+    </div>
+  </div>
+  
+  <div class="dashboard-stats-grid">
+    
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fa-solid fa-mortar-pestle"></i></div>
+      <div class="stat-info">
+        <h3><%= productCount %></h3>
+        <p>Active Spices</p>
+      </div>
+      <div class="stat-action-link">
+        <a href="/admin/products">Manage Inventory <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fa-solid fa-feather-pointed"></i></div>
+      <div class="stat-info">
+        <h3><%= blogCount %></h3>
+        <p>Published Articles</p>
+      </div>
+      <div class="stat-action-link">
+        <a href="/admin/blogs">Manage Journal <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dashboard-quick-actions-panel">
+    <h2>Frequent Tasks</h2>
+    <div class="actions-buttons-row">
+      <a href="/admin/products/new" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add New Product</a>
+      <a href="/admin/blogs/new" class="btn btn-secondary"><i class="fa-solid fa-pen-nib"></i> Write Blog Post</a>
+      <a href="/" target="_blank" class="btn btn-outline-dark"><i class="fa-solid fa-globe"></i> View Public Website</a>
+    </div>
+  </div>
+
+</section>
+
+<%- include('../partials/footer') %>

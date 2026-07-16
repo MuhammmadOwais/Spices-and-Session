@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<section class="admin-login-section container">
+  <div class="login-card">
+    <div class="login-header">
+      <i class="fa-solid fa-lock-open"></i>
+      <h2>Admin Portal</h2>
+      <p>Log in with your administrator credentials to update products and culinary journal posts.</p>
+    </div>
+    
+    <% if (error) { %>
+      <div class="alert alert-danger">
+        <i class="fa-solid fa-circle-exclamation"></i> <%= error %>
+      </div>
+    <% } %>
+    
+    <% if (msg) { %>
+      <div class="alert alert-info">
+        <i class="fa-solid fa-circle-info"></i> <%= msg %>
+      </div>
+    <% } %>
+
+    <form action="/admin/login" method="POST" class="admin-login-form">
+      <div class="form-field">
+        <label for="username">Admin Username</label>
+        <input type="text" id="username" name="username" required placeholder="admin" autocomplete="username">
+      </div>
+      
+      <div class="form-field">
+        <label for="password">Security Password</label>
+        <input type="password" id="password" name="password" required placeholder="••••••••" autocomplete="current-password">
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-large btn-full">
+        Authenticate & Connect
+      </button>
+    </form>
+    
+    <div class="login-footer text-center">
+      <p>Default credentials: <code>admin / spicehaven123</code></p>
+      <a href="/"><i class="fa-solid fa-arrow-left-long"></i> Back to public site</a>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

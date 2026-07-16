@@ -1,0 +1,52 @@
+<%- include('partials/header') %>
+
+<!-- Blog Post Detailed Header -->
+<article class="blog-detail-article">
+  <div class="blog-detail-hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.75)), url('<%= blog.imageUrl %>');">
+    <div class="container hero-container-content">
+      <span class="blog-detail-category"><%= blog.category %></span>
+      <h1><%= blog.title %></h1>
+      <p class="blog-detail-subtitle"><%= blog.subtitle %></p>
+      
+      <div class="blog-detail-meta">
+        <div class="meta-item author-meta">
+          <i class="fa-solid fa-circle-user"></i>
+          <span>By <strong><%= blog.author %></strong></span>
+        </div>
+        <div class="meta-item date-meta">
+          <i class="fa-regular fa-calendar-days"></i>
+          <span><%= new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></span>
+        </div>
+        <div class="meta-item read-meta">
+          <i class="fa-regular fa-clock"></i>
+          <span><%= blog.readTime %> Minute Read</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article Body Content -->
+  <div class="blog-detail-body container">
+    <div class="article-content-wrapper">
+      <div class="rich-text-content">
+        <%- blog.content %>
+      </div>
+      
+      <div class="article-footer-navigation">
+        <hr class="article-divider">
+        <div class="footer-navigation-row">
+          <a href="/blogs" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i> Back to Journal</a>
+          
+          <div class="share-buttons">
+            <span>Share:</span>
+            <a href="#" onclick="event.preventDefault(); alert('Sharing link copied to clipboard!');" aria-label="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" onclick="event.preventDefault(); alert('Sharing link copied to clipboard!');" aria-label="Share on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" onclick="event.preventDefault(); alert('Sharing link copied to clipboard!');" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<%- include('partials/footer') %>

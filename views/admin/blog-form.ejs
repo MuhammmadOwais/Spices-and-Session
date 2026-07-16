@@ -1,0 +1,96 @@
+<%- include('../partials/header') %>
+
+<section class="admin-form-section container">
+  
+  <div class="admin-header-row">
+    <div>
+      <a href="/admin/blogs" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Articles List</a>
+      <h1><%= isEdit ? 'Edit Blog Post' : 'Create Blog Post' %></h1>
+      <p>Draft recipes, blending tips, and guides. You can write structured HTML directly in the body content container.</p>
+    </div>
+  </div>
+
+  <div class="form-card-wrapper">
+    <form action="<%= isEdit ? '/admin/blogs/' + blog._id : '/admin/blogs' %>" 
+          method="POST" 
+          enctype="multipart/form-data" 
+          class="crud-form">
+          
+      <!-- Title -->
+      <div class="form-field">
+        <label for="title">Article Title *</label>
+        <input type="text" id="title" name="title" required value="<%= blog.title || '' %>" placeholder="e.g. Master the Art of Toasting Cumin Seeds">
+      </div>
+
+      <!-- Subtitle -->
+      <div class="form-field">
+        <label for="subtitle">Subtitle / Snippet *</label>
+        <input type="text" id="subtitle" name="subtitle" required value="<%= blog.subtitle || '' %>" placeholder="A short, catchy summary that displays on lists and banners.">
+      </div>
+
+      <div class="form-grid-3">
+        <!-- Author -->
+        <div class="form-field">
+          <label for="author">Author Name</label>
+          <input type="text" id="author" name="author" value="<%= blog.author || 'Artisan Spice Staff' %>" placeholder="e.g. Chef Marcus Vance">
+        </div>
+        
+        <!-- Category -->
+        <div class="form-field">
+          <label for="category">Article Category</label>
+          <input type="text" id="category" name="category" value="<%= blog.category || 'Recipes & Guides' %>" placeholder="e.g. Guides & Tips, Recipes">
+        </div>
+
+        <!-- Read Time -->
+        <div class="form-field">
+          <label for="readTime">Read Time (minutes)</label>
+          <input type="number" id="readTime" name="readTime" min="1" value="<%= blog.readTime || 5 %>" placeholder="e.g. 5">
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="form-field">
+        <label for="content">Article Body Content (HTML Supported) *</label>
+        <textarea id="content" name="content" rows="12" required placeholder="Write your full story here. You can use standard <p>, <h3>, <ul>, and <ol> tags for structure..."><%= blog.content || '' %></textarea>
+      </div>
+
+      <!-- Images Block -->
+      <div class="form-image-section">
+        <h3>Article Banner Image</h3>
+        <p class="field-hint">Upload a local banner file or paste a high-quality web URL. If both are provided, the file upload takes priority.</p>
+        
+        <div class="form-grid-2">
+          <!-- File upload -->
+          <div class="form-field">
+            <label for="imageFile">Upload Banner File</label>
+            <div class="file-upload-input-wrapper">
+              <input type="file" id="imageFile" name="imageFile" accept="image/*">
+            </div>
+          </div>
+          
+          <!-- Image URL -->
+          <div class="form-field">
+            <label for="imageUrl">Or, Paste Banner URL</label>
+            <input type="url" id="imageUrl" name="imageUrl" value="<%= blog.imageUrl && !blog.imageUrl.startsWith('/uploads/') ? blog.imageUrl : '' %>" placeholder="https://images.unsplash.com/...">
+          </div>
+        </div>
+
+        <% if (isEdit && blog.imageUrl) { %>
+          <div class="form-image-preview">
+            <span class="preview-label">Current Banner:</span>
+            <img src="<%= blog.imageUrl %>" alt="<%= blog.title %>" class="form-img-preview-thumbnail">
+          </div>
+        <% } %>
+      </div>
+
+      <div class="form-actions-row">
+        <button type="submit" class="btn btn-primary btn-large"><%= isEdit ? 'Publish Updates' : 'Publish Article' %></button>
+        <a href="/admin/blogs" class="btn btn-outline-dark btn-large">Cancel</a>
+      </div>
+
+    </form>
+  </div>
+
+</section>
+
+<%- include('../partials/footer') %>

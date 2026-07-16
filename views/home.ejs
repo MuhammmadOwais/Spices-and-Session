@@ -1,0 +1,181 @@
+<%- include('partials/header') %>
+
+<!-- Hero Banner Section -->
+<section class="hero-section">
+  <div class="hero-content">
+    <span class="hero-tagline">100% Raw & Organic Sourcing</span>
+    <h1>Elevate Every Meal With Freshly Ground Spices</h1>
+    <p>We source directly from sustainable heritage farms globally, grinding in small batches weekly to preserve the vital essential oils and deep aromas that define great culinary creations.</p>
+    <div class="hero-actions">
+      <a href="/products" class="btn btn-primary btn-large">Shop All Spices</a>
+      <a href="/blogs" class="btn btn-outline-white btn-large">Explore Recipes</a>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+</section>
+
+<!-- Quick Categories Grid -->
+<section class="home-categories container">
+  <div class="section-header">
+    <h2>Shop by Culinary Class</h2>
+    <p>Hand-selected botanicals grouped by use</p>
+  </div>
+  
+  <div class="categories-grid">
+    <a href="/products?category=spices" class="category-card">
+      <div class="category-image spices-cat"></div>
+      <div class="category-title">
+        <h3>Spices</h3>
+        <span>Whole & Ground</span>
+      </div>
+    </a>
+    
+    <a href="/products?category=seasonings" class="category-card">
+      <div class="category-image blends-cat"></div>
+      <div class="category-title">
+        <h3>Blends & Rubs</h3>
+        <span>Hand-Mixed Flavor</span>
+      </div>
+    </a>
+    
+    <a href="/products?category=herbs" class="category-card">
+      <div class="category-image herbs-cat"></div>
+      <div class="category-title">
+        <h3>Herbs</h3>
+        <span>Fragrant Leaves</span>
+      </div>
+    </a>
+    
+    <a href="/products?category=salts" class="category-card">
+      <div class="category-image salts-cat"></div>
+      <div class="category-title">
+        <h3>Salts & Peppers</h3>
+        <span>Essential Finishers</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="featured-products-section">
+  <div class="container">
+    <div class="section-header flex-header">
+      <div>
+        <h2>Trending In The Kitchen</h2>
+        <p>Our most popular fresh-ground selections, loved by chefs and home cooks alike</p>
+      </div>
+      <a href="/products" class="link-arrow">View All Products <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="products-grid">
+      <% if (featuredProducts && featuredProducts.length > 0) { %>
+        <% featuredProducts.forEach(product => { %>
+          <div class="product-card">
+            <div class="product-card-image">
+              <a href="/products/<%= product.slug %>">
+                <img src="<%= product.imageUrl %>" alt="<%= product.name %>" loading="lazy">
+              </a>
+              <% if (product.stockStatus === 'low-stock') { %>
+                <span class="badge badge-warning">Low Stock</span>
+              <% } else if (product.stockStatus === 'out-of-stock') { %>
+                <span class="badge badge-danger">Out of Stock</span>
+              <% } %>
+              <span class="product-category-tag"><%= product.category %></span>
+            </div>
+            
+            <div class="product-card-info">
+              <h3><a href="/products/<%= product.slug %>"><%= product.name %></a></h3>
+              <p class="product-excerpt"><%= product.description.substring(0, 80) %>...</p>
+              
+              <div class="product-card-footer">
+                <span class="product-price">$<%= product.price.toFixed(2) %></span>
+                
+                <% if (product.stockStatus !== 'out-of-stock') { %>
+                  <button class="btn-add-to-cart add-to-cart-btn" 
+                          data-id="<%= product._id %>"
+                          data-name="<%= product.name %>"
+                          data-price="<%= product.price %>"
+                          data-image="<%= product.imageUrl %>"
+                          data-size="<%= product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'Standard' %>">
+                    <i class="fa-solid fa-cart-plus"></i> Add
+                  </button>
+                <% } else { %>
+                  <button class="btn-add-to-cart btn-disabled" disabled>Sold Out</button>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="no-items">No featured products found. Run the seed script or add items in admin.</p>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- Brand Values / Philosophy -->
+<section class="brand-values">
+  <div class="container">
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>100% Direct Sourcing</h3>
+        <p>We work directly with small agricultural cooperatives globally, ensuring fair compensation and sustainable farming methods.</p>
+      </div>
+      
+      <div class="value-item">
+        <div class="value-icon"><i class="fa-solid fa-mortar-pestle"></i></div>
+        <h3>Small-Batch Freshness</h3>
+        <p>Industrial brands warehouse ground spices for months. We grind in small quantities and ship immediately to secure intense flavor profiles.</p>
+      </div>
+      
+      <div class="value-item">
+        <div class="value-icon"><i class="fa-solid fa-jar"></i></div>
+        <h3>Apothecary Quality Glass</h3>
+        <p>Our premium UV-blocking amber glass jars lock out flavor-destroying light and moisture, preserving the rich oils inside.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Latest From the Blog Journal -->
+<section class="home-blog container">
+  <div class="section-header flex-header">
+    <div>
+      <h2>Stories from the Test Kitchen</h2>
+      <p>Master the craft of spice blending, seasoning techniques, and global recipes</p>
+    </div>
+    <a href="/blogs" class="link-arrow">Read Full Journal <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+  
+  <div class="blog-grid">
+    <% if (latestBlogs && latestBlogs.length > 0) { %>
+      <% latestBlogs.forEach(blog => { %>
+        <article class="blog-card">
+          <div class="blog-card-image">
+            <a href="/blogs/<%= blog.slug %>">
+              <img src="<%= blog.imageUrl %>" alt="<%= blog.title %>" loading="lazy">
+            </a>
+            <span class="blog-category-tag"><%= blog.category %></span>
+          </div>
+          
+          <div class="blog-card-content">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> <%= new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
+              <span><i class="fa-regular fa-clock"></i> <%= blog.readTime %> Min Read</span>
+            </div>
+            
+            <h3><a href="/blogs/<%= blog.slug %>"><%= blog.title %></a></h3>
+            <p><%= blog.subtitle %></p>
+            
+            <a href="/blogs/<%= blog.slug %>" class="blog-read-more">Read Article <i class="fa-solid fa-chevron-right"></i></a>
+          </div>
+        </article>
+      <% }) %>
+    <% } else { %>
+      <p class="no-items">No blog posts found. Seed the database or publish from the admin panel.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,129 @@
+<%- include('../partials/header') %>
+
+<section class="admin-form-section container">
+  
+  <div class="admin-header-row">
+    <div>
+      <a href="/admin/products" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Inventory List</a>
+      <h1><%= isEdit ? 'Edit Product' : 'Add New Product' %></h1>
+      <p>Fill out the forms below to publish or update products. Be detailed with tasting notes and ingredients.</p>
+    </div>
+  </div>
+
+  <div class="form-card-wrapper">
+    <form action="<%= isEdit ? '/admin/products/' + product._id : '/admin/products' %>" 
+          method="POST" 
+          enctype="multipart/form-data" 
+          class="crud-form">
+          
+      <div class="form-grid-2">
+        <!-- Name -->
+        <div class="form-field">
+          <label for="name">Product Name *</label>
+          <input type="text" id="name" name="name" required value="<%= product.name || '' %>" placeholder="e.g. Madagascan Bourbon Vanilla Powder">
+        </div>
+        
+        <!-- Price -->
+        <div class="form-field">
+          <label for="price">Price ($ USD) *</label>
+          <input type="number" id="price" name="price" required step="0.01" min="0" value="<%= product.price || '' %>" placeholder="e.g. 12.99">
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <!-- Category -->
+        <div class="form-field">
+          <label for="category">Product Category *</label>
+          <div class="select-wrapper">
+            <select id="category" name="category" required>
+              <option value="" disabled <%= !product.category ? 'selected' : '' %>>Choose Category</option>
+              <option value="spices" <%= product.category === 'spices' ? 'selected' : '' %>>Spices (Whole/Ground)</option>
+              <option value="herbs" <%= product.category === 'herbs' ? 'selected' : '' %>>Herbs (Fragrant Botanical)</option>
+              <option value="seasonings" <%= product.category === 'seasonings' ? 'selected' : '' %>>Seasoning Blends & Rubs</option>
+              <option value="salts" <%= product.category === 'salts' ? 'selected' : '' %>>Salts & Finishing Peppers</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Stock Status -->
+        <div class="form-field">
+          <label for="stockStatus">Stock Status *</label>
+          <div class="select-wrapper">
+            <select id="stockStatus" name="stockStatus" required>
+              <option value="in-stock" <%= product.stockStatus === 'in-stock' ? 'selected' : '' %>>In Stock</option>
+              <option value="low-stock" <%= product.stockStatus === 'low-stock' ? 'selected' : '' %>>Low Stock</option>
+              <option value="out-of-stock" <%= product.stockStatus === 'out-of-stock' ? 'selected' : '' %>>Out of Stock / Sold Out</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-field">
+        <label for="description">Product Description *</label>
+        <textarea id="description" name="description" rows="5" required placeholder="Describe the aroma, flavor notes, culinary applications, and history..."><%= product.description || '' %></textarea>
+      </div>
+
+      <!-- Ingredients & Sizes -->
+      <div class="form-grid-2">
+        <div class="form-field">
+          <label for="ingredients">Ingredients (Comma Separated)</label>
+          <input type="text" id="ingredients" name="ingredients" value="<%= product.ingredients || '' %>" placeholder="e.g. Black Peppercorns, Garlic, Salt">
+        </div>
+        
+        <div class="form-field">
+          <label for="sizes">Packaging Sizes (Comma Separated)</label>
+          <input type="text" id="sizes" name="sizes" value="<%= product.sizes ? product.sizes.join(', ') : '2 oz Jar, 4 oz Flatpack, 1 lb Bulk' %>" placeholder="e.g. 2 oz Jar, 4 oz Flatpack">
+          <span class="field-hint">Specify options. Default: 2 oz Jar, 4 oz Flatpack, 1 lb Bulk</span>
+        </div>
+      </div>
+
+      <!-- Images Block -->
+      <div class="form-image-section">
+        <h3>Product Imagery</h3>
+        <p class="field-hint">Upload a local image or paste a high-quality web image URL. If both are provided, the uploaded image takes priority.</p>
+        
+        <div class="form-grid-2">
+          <!-- File upload -->
+          <div class="form-field">
+            <label for="imageFile">Upload Local Image file</label>
+            <div class="file-upload-input-wrapper">
+              <input type="file" id="imageFile" name="imageFile" accept="image/*">
+            </div>
+          </div>
+          
+          <!-- Image URL -->
+          <div class="form-field">
+            <label for="imageUrl">Or, Paste Image URL</label>
+            <input type="url" id="imageUrl" name="imageUrl" value="<%= product.imageUrl && !product.imageUrl.startsWith('/uploads/') ? product.imageUrl : '' %>" placeholder="https://images.unsplash.com/...">
+          </div>
+        </div>
+
+        <% if (isEdit && product.imageUrl) { %>
+          <div class="form-image-preview">
+            <span class="preview-label">Current Image:</span>
+            <img src="<%= product.imageUrl %>" alt="<%= product.name %>" class="form-img-preview-thumbnail">
+          </div>
+        <% } %>
+      </div>
+
+      <!-- Featured checkbox -->
+      <div class="form-field-checkbox">
+        <label class="checkbox-container">
+          <input type="checkbox" id="isFeatured" name="isFeatured" <%= product.isFeatured ? 'checked' : '' %>>
+          <span class="checkmark"></span>
+          <span class="checkbox-label-text">Feature this product on the Homepage Grid</span>
+        </label>
+      </div>
+
+      <div class="form-actions-row">
+        <button type="submit" class="btn btn-primary btn-large"><%= isEdit ? 'Update Product' : 'Create Product' %></button>
+        <a href="/admin/products" class="btn btn-outline-dark btn-large">Cancel</a>
+      </div>
+
+    </form>
+  </div>
+
+</section>
+
+<%- include('../partials/footer') %>

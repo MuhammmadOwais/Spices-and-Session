@@ -1,0 +1,77 @@
+<%- include('partials/header') %>
+
+<!-- Blog Page Banner -->
+<section class="page-banner blog-banner">
+  <div class="container">
+    <h1>The Culinary Journal</h1>
+    <p>Step-by-step recipe blending guides, storage tips, and history behind your favorite spices.</p>
+  </div>
+  <div class="banner-overlay"></div>
+</section>
+
+<!-- Blog Posts Catalog -->
+<section class="blog-catalog container">
+  
+  <div class="blog-masonry-grid">
+    <% if (blogs && blogs.length > 0) { %>
+      <% blogs.forEach((blog, idx) => { %>
+        <!-- If it's the first post, render it as a highlighted, full-width feature card -->
+        <% if (idx === 0) { %>
+          <article class="blog-featured-card">
+            <div class="featured-card-image">
+              <a href="/blogs/<%= blog.slug %>">
+                <img src="<%= blog.imageUrl %>" alt="<%= blog.title %>">
+              </a>
+              <span class="blog-category-tag"><%= blog.category %></span>
+            </div>
+            
+            <div class="featured-card-content">
+              <div class="blog-meta">
+                <span><i class="fa-regular fa-calendar"></i> <%= new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></span>
+                <span><i class="fa-regular fa-clock"></i> <%= blog.readTime %> Min Read</span>
+              </div>
+              
+              <h2><a href="/blogs/<%= blog.slug %>"><%= blog.title %></a></h2>
+              <p class="featured-card-excerpt"><%= blog.subtitle %></p>
+              <div class="author-block">
+                <i class="fa-solid fa-signature"></i> Written by <strong><%= blog.author %></strong>
+              </div>
+              <a href="/blogs/<%= blog.slug %>" class="btn btn-primary">Read Feature Article</a>
+            </div>
+          </article>
+        <% } else { %>
+          <!-- Standard blog grids -->
+          <article class="blog-card">
+            <div class="blog-card-image">
+              <a href="/blogs/<%= blog.slug %>">
+                <img src="<%= blog.imageUrl %>" alt="<%= blog.title %>" loading="lazy">
+              </a>
+              <span class="blog-category-tag"><%= blog.category %></span>
+            </div>
+            
+            <div class="blog-card-content">
+              <div class="blog-meta">
+                <span><i class="fa-regular fa-calendar"></i> <%= new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
+                <span><i class="fa-regular fa-clock"></i> <%= blog.readTime %> Min Read</span>
+              </div>
+              
+              <h3><a href="/blogs/<%= blog.slug %>"><%= blog.title %></a></h3>
+              <p><%= blog.subtitle %></p>
+              
+              <a href="/blogs/<%= blog.slug %>" class="blog-read-more">Read Article <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </article>
+        <% } %>
+      <% }) %>
+    <% } else { %>
+      <div class="no-results-card full-width">
+        <i class="fa-solid fa-feather"></i>
+        <h3>No Articles Found</h3>
+        <p>Our kitchen journal is currently quiet. Please check back soon or add posts via the admin panel.</p>
+        <a href="/" class="btn btn-primary">Go to Homepage</a>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

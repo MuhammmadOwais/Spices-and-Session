@@ -1,0 +1,71 @@
+<%- include('partials/header') %>
+
+<section class="cart-page-section container">
+  <div class="section-header">
+    <h1>Your Pantry Cart</h1>
+    <p>Review your selected spices, select packaging sizes, and prepare for checkout.</p>
+  </div>
+  
+  <div class="cart-page-layout">
+    
+    <!-- Left Column: Items list -->
+    <div class="cart-items-column" id="cart-page-items-container">
+      <!-- Injected dynamically by client-side cart.js -->
+      <div class="empty-cart-state text-center">
+        <i class="fa-solid fa-mortar-pestle"></i>
+        <h3>Your cart is empty</h3>
+        <p>You haven't added any spices to your cart yet. Let's find some flavor!</p>
+        <a href="/products" class="btn btn-primary">Start Shopping</a>
+      </div>
+    </div>
+    
+    <!-- Right Column: Order Summary Card -->
+    <div class="cart-summary-column" id="cart-page-summary-container" style="display: none;">
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        <hr class="summary-divider">
+        
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cart-page-subtotal">$0.00</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Estimated Shipping</span>
+          <span id="cart-page-shipping">FREE</span>
+        </div>
+        
+        <div class="summary-row tax-row">
+          <span>Sales Tax</span>
+          <span>Calculated at checkout</span>
+        </div>
+        
+        <hr class="summary-divider">
+        
+        <div class="summary-row total-row">
+          <span>Estimated Total</span>
+          <strong id="cart-page-total">$0.00</strong>
+        </div>
+        
+        <div class="summary-actions">
+          <a href="/checkout" class="btn btn-primary btn-large btn-full">Proceed to Checkout</a>
+          <a href="/products" class="btn btn-outline-dark btn-full"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
+        </div>
+        
+        <div class="summary-trust-badges">
+          <div class="trust-badge-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Secure SSL Encrypted Checkout</span>
+          </div>
+          <div class="trust-badge-item">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>30-Day Freshness Guarantee</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<%- include('partials/footer') %>

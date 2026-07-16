@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <% if (path.startsWith('/admin')) { %>
+    <!-- Admin Specific Stylesheet -->
+    <link rel="stylesheet" href="/css/admin.css">
+  <% } %>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span>Free US Shipping on Orders Over $45 | Artisanal Batches Ground Weekly</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="main-header">
+    <div class="header-container">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="brand-logo">
+        <span class="logo-serif">Artisan</span>
+        <span class="logo-sans">Spice Co.</span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="desktop-nav">
+        <ul>
+          <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
+          <li><a href="/products" class="<%= path.startsWith('/products') ? 'active' : '' %>">Shop</a></li>
+          <li><a href="/blogs" class="<%= path.startsWith('/blogs') ? 'active' : '' %>">Journal</a></li>
+          <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">Our Story</a></li>
+          
+          <% if (isAdminUser) { %>
+            <li><a href="/admin" class="admin-link-btn">Admin Dashboard</a></li>
+            <li><a href="/admin/logout" class="admin-logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+          <% } else { %>
+            <li><a href="/admin/login" class="admin-login-link">Admin</a></li>
+          <% } %>
+        </ul>
+      </nav>
+
+      <!-- Utility Icons -->
+      <div class="header-utilities">
+        <a href="/products" class="search-trigger" aria-label="Search Spices"><i class="fa-solid fa-magnifying-glass"></i></a>
+        
+        <!-- Cart Toggle Icon -->
+        <button id="cart-drawer-toggle" class="cart-trigger" aria-label="Open Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" id="cart-badge-count">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <div class="brand-logo">
+        <span class="logo-serif">Artisan</span>
+        <span class="logo-sans">Spice Co.</span>
+      </div>
+      <button class="drawer-close" id="mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-content">
+      <nav class="mobile-nav">
+        <ul>
+          <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
+          <li><a href="/products" class="<%= path.startsWith('/products') ? 'active' : '' %>">Shop Spices</a></li>
+          <li><a href="/blogs" class="<%= path.startsWith('/blogs') ? 'active' : '' %>">Culinary Journal</a></li>
+          <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">Our Story</a></li>
+          
+          <% if (isAdminUser) { %>
+            <hr class="mobile-nav-divider">
+            <li><a href="/admin" class="mobile-admin-link">Admin Dashboard</a></li>
+            <li><a href="/admin/logout" class="mobile-admin-logout">Logout</a></li>
+          <% } else { %>
+            <li><a href="/admin/login" class="mobile-admin-link">Portal Login</a></li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Side Drawer -->
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-sidebar-header">
+      <h3>Your Pantry Cart</h3>
+      <button class="cart-sidebar-close" id="cart-sidebar-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <!-- Dynamic Cart Items Container -->
+    <div class="cart-sidebar-items" id="cart-drawer-items">
+      <!-- Injected by client-side cart.js -->
+      <div class="empty-cart-message">
+        <i class="fa-solid fa-mortar-pestle"></i>
+        <p>Your culinary toolkit is empty.</p>
+        <a href="/products" class="btn btn-primary">Browse Spices</a>
+      </div>
+    </div>
+    
+    <!-- Cart Summary Footer -->
+    <div class="cart-sidebar-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-subtotal-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal-amount">$0.00</span>
+      </div>
+      <p class="cart-shipping-note">Taxes and shipping calculated at checkout.</p>
+      <div class="cart-footer-actions">
+        <a href="/cart" class="btn btn-secondary btn-full">View Cart</a>
+        <a href="/checkout" class="btn btn-primary btn-full">Checkout</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Screen Overlay (used for sidebar and mobile drawer) -->
+  <div class="site-overlay" id="site-overlay"></div>
+  
+  <main class="page-main-content">
