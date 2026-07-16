@@ -13,10 +13,6 @@
           <i class="fa-solid fa-circle-user"></i>
           <span>By <strong><%= blog.author %></strong></span>
         </div>
-        <div class="meta-item date-meta">
-          <i class="fa-regular fa-calendar-days"></i>
-          <span><%= new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></span>
-        </div>
         <div class="meta-item read-meta">
           <i class="fa-regular fa-clock"></i>
           <span><%= blog.readTime %> Minute Read</span>

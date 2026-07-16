@@ -1,5 +1,6 @@
 const Product = require('../models/Product');
 const Blog = require('../models/Blog');
+const Recipe = require('../models/Recipe');
 
 exports.getHome = async (req, res) => {
   try {
@@ -155,5 +156,36 @@ exports.apiSearch = async (req, res) => {
   } catch (error) {
     console.error('Live search API error:', error);
     res.status(500).json({ error: 'Server Error' });
+  }
+};
+
+exports.getRecipes = async (req, res) => {
+  try {
+    const recipes = await Recipe.find({});
+    res.render('recipes', {
+      title: 'Culinary Master Recipes | Spicery Co.',
+      path: '/recipes',
+      recipes: recipes
+    });
+  } catch (error) {
+    console.error('Error fetching recipes:', error);
+    res.status(500).send('Server Error');
+  }
+};
+
+exports.getRecipeDetail = async (req, res) => {
+  try {
+    const recipe = await Recipe.findOne({ slug: req.params.slug });
+    if (!recipe) {
+      return res.status(404).send('Recipe Not Found');
+    }
+    res.render('recipe-detail', {
+      title: `${recipe.title} Recipe | Spicery Co.`,
+      path: '/recipes',
+      recipe: recipe
+    });
+  } catch (error) {
+    console.error('Error fetching recipe detail:', error);
+    res.status(500).send('Server Error');
   }
 };

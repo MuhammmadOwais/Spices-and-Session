@@ -13,6 +13,10 @@ router.get('/products/:slug', shopController.getProductDetail);
 router.get('/blogs', shopController.getBlogs);
 router.get('/blogs/:slug', shopController.getBlogDetail);
 
+// Recipe Routes
+router.get('/recipes', shopController.getRecipes);
+router.get('/recipes/:slug', shopController.getRecipeDetail);
+
 // Static Content Routes
 router.get('/about', shopController.getAbout);
 router.get('/privacy-policy', shopController.getPrivacy);

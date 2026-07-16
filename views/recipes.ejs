@@ -1,0 +1,188 @@
+<%- include('partials/header') %>
+
+<!-- Custom modular styling for the Recipes directory page -->
+<style>
+  .recipes-banner {
+    position: relative;
+    padding: 8rem 2rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)), url('https://res.cloudinary.com/dawp1fcci/image/upload/v1784239984/Roasting_sajikn.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    text-align: center;
+  }
+  .recipes-banner h1 {
+    font-family: var(--font-serif);
+    font-size: 3.2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .recipes-banner p {
+    font-size: 1.15rem;
+    color: var(--color-accent-terracotta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .recipes-section {
+    padding: 5rem 0;
+    background-color: var(--color-bg-warm-gray);
+  }
+  .recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .recipe-card {
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--box-shadow-soft);
+    transition: var(--transition-smooth);
+  }
+  .recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-medium);
+  }
+  .recipe-card-img-wrapper {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+  }
+  .recipe-card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+  }
+  .recipe-card:hover .recipe-card-img-wrapper img {
+    transform: scale(1.04);
+  }
+  .recipe-method-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.4rem 0.8rem;
+    border-radius: 3px;
+    z-index: 5;
+  }
+  .recipe-card-body {
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .recipe-card-body h3 {
+    font-family: var(--font-serif);
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .recipe-card-body h3 a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: var(--transition-fast);
+  }
+  .recipe-card-body h3 a:hover {
+    color: var(--color-accent-terracotta);
+  }
+  .recipe-card-body p {
+    font-size: 0.88rem;
+    color: #666666;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+  .recipe-card-meta {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.78rem;
+    color: #888888;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    margin-top: auto;
+  }
+  .recipe-card-meta span i {
+    color: var(--color-accent-terracotta);
+    margin-right: 0.3rem;
+  }
+
+  @media (max-width: 992px) {
+    .recipes-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+  @media (max-width: 600px) {
+    .recipes-grid {
+      grid-template-columns: 1fr;
+    }
+    .recipes-banner h1 {
+      font-size: 2.2rem;
+    }
+  }
+</style>
+
+<!-- Recipe Banner -->
+<section class="recipes-banner">
+  <div class="container">
+    <h1>Kitchen Masterclasses</h1>
+    <p>Step-by-Step Cooking Recipes by Culinary Method</p>
+  </div>
+</section>
+
+<!-- Recipes Grid Directory -->
+<section class="recipes-section">
+  <div class="container">
+    
+    <div class="recipes-grid">
+      <% if (recipes && recipes.length > 0) { %>
+        <% recipes.forEach((recipe) => { %>
+          <article class="recipe-card">
+            <div class="recipe-card-img-wrapper">
+              <a href="/recipes/<%= recipe.slug %>">
+                <img src="<%= recipe.imageUrl %>" alt="<%= recipe.title %>" loading="lazy">
+              </a>
+              <span class="recipe-method-badge"><%= recipe.method %></span>
+            </div>
+            
+            <div class="recipe-card-body">
+              <h3><a href="/recipes/<%= recipe.slug %>"><%= recipe.title %></a></h3>
+              <p><%= recipe.subtitle %></p>
+              
+              <div class="recipe-card-meta">
+                <span><i class="fa-solid fa-gauge-simple-high"></i> <%= recipe.difficulty %></span>
+                <span><i class="fa-solid fa-clock"></i> <%= recipe.prepTime + recipe.cookTime %> Mins</span>
+                <span><i class="fa-solid fa-utensils"></i> <%= recipe.servings %> Servings</span>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      <% } else { %>
+        <div class="no-results-card full-width">
+          <i class="fa-solid fa-fire-burner"></i>
+          <h3>No Recipes Found</h3>
+          <p>Our recipe catalog is quiet. Check back shortly!</p>
+        </div>
+      <% } %>
+    </div>
+
+  </div>
+</section>
+
+<%- include('partials/footer') %>
