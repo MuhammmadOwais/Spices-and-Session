@@ -1,45 +1,306 @@
 <%- include('partials/header') %>
 
-<!-- About Banner -->
-<section class="page-banner about-banner">
-  <div class="container">
-    <h1>Our Sourcing Story</h1>
-    <p>How a search for the perfect smoked paprika led to a global spice collection.</p>
+<!-- Custom bespoke styles for the About Us page -->
+<style>
+  .about-hero-banner {
+    position: relative;
+    padding: 10rem 2rem 8rem;
+    background-image: url('https://res.cloudinary.com/dawp1fcci/image/upload/v1784235734/pexels-axp-photography-500641970-19227962_dxtxnr.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    text-align: center;
+  }
+  .about-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1;
+  }
+  .about-hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .about-hero-banner h1 {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .about-hero-banner p {
+    font-size: 1.3rem;
+    color: var(--color-accent-terracotta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .about-section {
+    padding: 6rem 0;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-grid.reverse {
+    direction: rtl;
+  }
+  .about-grid.reverse .about-text-block {
+    direction: ltr;
+  }
+  .about-text-block h2 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.8rem;
+    line-height: 1.2;
+    color: var(--color-primary);
+  }
+  .about-text-block p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #444444;
+    margin-bottom: 1.5rem;
+  }
+  .about-image-wrapper {
+    position: relative;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    box-shadow: var(--box-shadow-medium);
+  }
+  .about-image-wrapper img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+    transition: var(--transition-smooth);
+  }
+  .about-image-wrapper img:hover {
+    transform: scale(1.02);
+  }
+
+  /* Split Highlight Section */
+  .crisis-bg-section {
+    background-color: var(--color-bg-warm-gray);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Culinary Craft Gallery */
+  .craft-showcase-section {
+    text-align: center;
+  }
+  .craft-showcase-section h2 {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .craft-intro-text {
+    max-width: 700px;
+    margin: 0 auto 4rem;
+    font-size: 1.1rem;
+    color: #555555;
+    line-height: 1.6;
+  }
+  .craft-collage-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .collage-card {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow-soft);
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+  }
+  .collage-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+  }
+  .collage-card-body {
+    padding: 1.2rem;
+    text-align: left;
+  }
+  .collage-card-body h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--color-primary);
+  }
+  .collage-card-body p {
+    font-size: 0.85rem;
+    color: #666666;
+    line-height: 1.4;
+  }
+
+  /* Bottom Collage Section */
+  .brand-gallery-section {
+    background-color: #050505;
+    color: #ffffff;
+  }
+  .brand-gallery-section h2 {
+    font-family: var(--font-serif);
+    color: #ffffff;
+  }
+  .brand-gallery-section p {
+    color: #cccccc;
+  }
+  .gallery-split-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+  .gallery-img-col img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .about-hero-banner h1 {
+      font-size: 2.5rem;
+    }
+    .craft-collage-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .gallery-split-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<!-- About Hero -->
+<section class="about-hero-banner">
+  <div class="about-hero-overlay"></div>
+  <div class="about-hero-container">
+    <h1>About Us</h1>
+    <p>Taste You Can Trust</p>
   </div>
-  <div class="banner-overlay"></div>
 </section>
 
-<!-- About Content -->
-<section class="about-story-section container">
-  <div class="story-grid">
-    <div class="story-text">
-      <h2>Crafting Bold Flavors Since 2020</h2>
+<!-- Section 1: The Modern Food Crisis -->
+<section class="about-section crisis-bg-section">
+  <div class="container about-grid">
+    <div class="about-text-block">
+      <h2>The Crisis on Our Tables</h2>
       <p>
-        Spicery Co. was founded in Seattle, Washington, by a small group of chefs and culinary enthusiasts who were frustrated by the stale, dusty spice offerings in traditional grocery stores. We realized that while American home cooks were investing in premium meats, organic vegetables, and high-end cookware, they were seasoning their meals with ingredients that had sat in warehouses for years, losing their essential oils and flavors.
+        In today's fast-paced world, convenience has hijacked the dining table. Generation after generation is growing up relying heavily on highly processed junk foods, pre-packaged meals, and chemical-laden fast food options. 
       </p>
       <p>
-        We set out to change that by building direct relationships with independent farmers and agricultural cooperatives around the globe. From the volcanic soils of Sumatra for our Korintje Cinnamon, to family farms in Extremadura, Spain for our Smoked Paprika, we select only the highest grade crops.
+        This shift in food intake is having a quiet but devastating effect on our bodies. It robs us of our natural strength, vitality, and physical stamina, leading to early illnesses and long-term health issues. When our daily food is stripped of its nutritional value and replaced with synthetic preservatives, our health suffers.
       </p>
-      
-      <blockquote>
-        "The difference between a good dish and an unforgettable culinary memory lies in the oils of the spice."
-      </blockquote>
-      
-      <h3>Our Triple Promise</h3>
-      <ul>
-        <li><strong>Strict Batch Rotation:</strong> We grind our whole spices in small batches weekly and pack them immediately, guaranteeing unparalleled potency.</li>
-        <li><strong>Zero Fillers:</strong> Our spices are 100% pure. We never add flow agents, silica, artificial colors, or cheap starch extenders.</li>
-        <li><strong>Ethical Partnerships:</strong> By cutting out mid-tier distributors, we pay our growers premium rates that support sustainable regional farming.</li>
-      </ul>
+      <p>
+        At <strong>Spicery Co.</strong>, we recognize this food intake crisis as one of the most pressing health challenges of our time. We believe it is time to break the cycle of processed convenience and return to real cooking.
+      </p>
+    </div>
+    <div class="about-image-wrapper">
+      <img src="https://res.cloudinary.com/dawp1fcci/image/upload/v1784235733/pexels-roman-odintsov-5332489_htsza3.jpg" alt="Dining table with wholesome vegetables">
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Reclaiming the Natural Taste -->
+<section class="about-section">
+  <div class="container about-grid reverse">
+    <div class="about-text-block">
+      <h2>Reclaiming Pure, Natural Taste</h2>
+      <p>
+        Our response to this crisis is simple: a return to nature. We believe the kitchen should be a source of strength, health, and joy, not disease. That is why we commit to sourcing and curating <strong>100% natural, unadulterated spices</strong>. 
+      </p>
+      <p>
+        Our goal is to bring back the original, traditional taste that has been lost in pre-packaged spice mixes. Every spice in our collection is freshly ground in small, controlled batches, preserving the essential aromatic oils and antioxidants that nature intended. 
+      </p>
+      <p>
+        There are no artificial flow agents, no silicone dioxide, no fillers, and no artificial colors in our pantry. We are leading this charge—providing you with clean seasonings to make healthy, wholesome cooking taste spectacular.
+      </p>
+    </div>
+    <div class="about-image-wrapper">
+      <img src="https://res.cloudinary.com/dawp1fcci/image/upload/v1784235731/pexels-seyhmuskino-31717561_lzdzqv.jpg" alt="Rich raw spices close up">
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Expert Culinary Recipes -->
+<section class="about-section craft-showcase-section container">
+  <h2>Real Cooking, Guided by Experts</h2>
+  <p class="craft-intro-text">
+    To help you move away from processed food, we do more than just showcase spices. We provide the culinary knowledge to back it up. Our in-house chefs and culinary experts test and publish detailed, step-by-step recipes in our Aromatic Journal. Every recipe is human-made, tested in a real kitchen, and designed to help you cook wholesome food with expert-level flavor.
+  </p>
+  
+  <div class="craft-collage-grid">
+    <!-- Image 4 -->
+    <div class="collage-card">
+      <img src="https://res.cloudinary.com/dawp1fcci/image/upload/v1784235731/pexels-julia-fuchs-19936537-33966639_qxcnes.jpg" alt="Kitchen cooking details">
+      <div class="collage-card-body">
+        <h4>Tested Kitchens</h4>
+        <p>Recipes cooked and optimized for home stovetops.</p>
+      </div>
     </div>
     
-    <div class="story-imagery">
-      <div class="image-wrapper-bordered">
-        <img src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?q=80&w=600&auto=format&fit=crop" alt="Grinding raw spices in mortar">
+    <!-- Image 6 -->
+    <div class="collage-card">
+      <img src="https://res.cloudinary.com/dawp1fcci/image/upload/v1784235732/pexels-ruslan-rozanov-174297693-11733646_cyx9bi.jpg" alt="Seasoning raw ingredients">
+      <div class="collage-card-body">
+        <h4>Chef Expertise</h4>
+        <p>Pro cooking methods broken down step-by-step.</p>
       </div>
-      <div class="story-stat-badge">
-        <span class="stat-number">100%</span>
-        <span class="stat-desc">Pure & Fresh Ground</span>
+    </div>
+    
+    <!-- Image 7 -->
+    <div class="collage-card">
+      <img src="https://res.cloudinary.com/dawp1fcci/image/upload/v1784235732/pexels-karola-g-4871142_jsbzj0.jpg" alt="Spice table aesthetics">
+      <div class="collage-card-body">
+        <h4>Pure Integrity</h4>
+        <p>100% human-made articles without AI content.</p>
+      </div>
+    </div>
+    
+    <!-- Image 8 -->
+    <div class="collage-card">
+      <img src="https://res.cloudinary.com/dawp1fcci/image/upload/v1784235732/pexels-kostiantyn-35496287_qprzhx.jpg" alt="Fresh botanical details">
+      <div class="collage-card-body">
+        <h4>Healthy Lifestyles</h4>
+        <p>Flavor-first ideas to make processed foods obsolete.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: Brand Gallery Showcase -->
+<section class="about-section brand-gallery-section">
+  <div class="container">
+    <div class="about-text-block">
+      <h2>Sourcing and Preparation</h2>
+      <p>A look at the mortar, pestle, and raw materials that define the Spicery Co. standard.</p>
+    </div>
+    
+    <div class="gallery-split-grid">
+      <!-- Image 1 -->
+      <div class="gallery-img-col">
+        <img src="https://res.cloudinary.com/dawp1fcci/image/upload/v1784235729/pexels-taryn-elliott-5107126_dh7afi.jpg" alt="Pounding spices manually">
+      </div>
+      <!-- Image 2 -->
+      <div class="gallery-img-col">
+        <img src="https://res.cloudinary.com/dawp1fcci/image/upload/v1784235730/pexels-caricatte-6245955_jbyi4j.jpg" alt="Sifting fresh ground powder">
       </div>
     </div>
   </div>

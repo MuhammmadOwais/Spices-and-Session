@@ -138,25 +138,22 @@ exports.getTerms = (req, res) => {
   });
 };
 
-exports.getCart = (req, res) => {
-  res.render('cart', {
-    title: 'Your Cart | Spicery Co.',
-    path: '/cart'
-  });
-};
-
-exports.getCheckout = (req, res) => {
-  res.render('checkout', {
-    title: 'Checkout | Spicery Co.',
-    path: '/checkout'
-  });
-};
-
-exports.postCheckout = (req, res) => {
-  const { name, email, address, city, zip } = req.body;
-  res.render('checkout-success', {
-    title: 'Order Confirmed! | Spicery Co.',
-    path: '/checkout',
-    orderInfo: { name, email, address, city, zip }
-  });
+exports.apiSearch = async (req, res) => {
+  try {
+    const { q } = req.query;
+    if (!q || q.trim() === '') {
+      return res.json([]);
+    }
+    const products = await Product.find({
+      $or: [
+        { name: { $regex: q, $options: 'i' } },
+        { category: { $regex: q, $options: 'i' } },
+        { description: { $regex: q, $options: 'i' } }
+      ]
+    }).limit(6);
+    res.json(products);
+  } catch (error) {
+    console.error('Live search API error:', error);
+    res.status(500).json({ error: 'Server Error' });
+  }
 };

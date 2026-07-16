@@ -18,9 +18,7 @@ router.get('/about', shopController.getAbout);
 router.get('/privacy-policy', shopController.getPrivacy);
 router.get('/terms-conditions', shopController.getTerms);
 
-// Cart & Checkout Simulation Routes
-router.get('/cart', shopController.getCart);
-router.get('/checkout', shopController.getCheckout);
-router.post('/checkout', shopController.postCheckout);
+// Live Search API Endpoint
+router.get('/api/search', shopController.apiSearch);
 
 module.exports = router;

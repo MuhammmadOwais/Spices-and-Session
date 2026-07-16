@@ -46,7 +46,7 @@
           <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
           <li><a href="/products" class="<%= path.startsWith('/products') ? 'active' : '' %>">Shop</a></li>
           <li><a href="/blogs" class="<%= path.startsWith('/blogs') ? 'active' : '' %>">Journal</a></li>
-          <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">Our Story</a></li>
+          <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About Us</a></li>
           
           <% if (isAdminUser) { %>
             <li><a href="/admin" class="admin-link-btn">Admin Dashboard</a></li>
@@ -84,7 +84,7 @@
           <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
           <li><a href="/products" class="<%= path.startsWith('/products') ? 'active' : '' %>">Shop Spices</a></li>
           <li><a href="/blogs" class="<%= path.startsWith('/blogs') ? 'active' : '' %>">Culinary Journal</a></li>
-          <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">Our Story</a></li>
+          <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About Us</a></li>
           
           <% if (isAdminUser) { %>
             <hr class="mobile-nav-divider">
@@ -99,6 +99,20 @@
   </div>
 
 
+  
+  <!-- Live Search Overlay Modal -->
+  <div id="search-overlay" class="search-overlay">
+    <button id="search-overlay-close" class="search-close-btn" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    <div class="search-overlay-content">
+      <div class="search-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-modal-icon"></i>
+        <input type="text" id="search-input-field" placeholder="Search premium spices, herbs, blends..." autocomplete="off">
+      </div>
+      <div id="search-results-container" class="search-results-container">
+        <!-- Results will be injected here dynamically -->
+      </div>
+    </div>
+  </div>
   
   <!-- Screen Overlay (used for sidebar and mobile drawer) -->
   <div class="site-overlay" id="site-overlay"></div>
