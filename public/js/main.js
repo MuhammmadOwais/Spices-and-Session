@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Artisan Spice Co. - Core Web UI Script
+   Spicery Co. - Core Web UI Script
    Handles: Mobile Navigation menus, Filter panel triggers, Scroll animations
    ========================================================================== */
 
@@ -64,5 +64,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  console.log('Artisan Spice Co. UI initialization complete.');
+  console.log('Spicery Co. UI initialization complete.');
 });

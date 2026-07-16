@@ -65,14 +65,14 @@ app.use('/admin', adminRoutes);
 // Custom 404 handler
 app.use((req, res) => {
   res.status(404).render('404', {
-    title: 'Page Not Found | Artisan Spice Co.',
+    title: 'Page Not Found | Spicery Co.',
     path: req.path
   });
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Artisan Spice Co. server running at http://localhost:${PORT}`);
+  console.log(`Spicery Co. server running at http://localhost:${PORT}`);
 });
 
 module.exports = app; // Export app for Vercel serverless integration

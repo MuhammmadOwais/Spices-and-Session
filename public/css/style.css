@@ -1,19 +1,19 @@
 /* ==========================================================================
-   Artisan Spice Co. - Main Stylesheet
-   Design Philosophy: Premium American Artisanal Culinary Brand
-   Color Palette: Warm Terracotta, Sage Green, Deep Charcoal, Soft Cream
+   Spicery Co. - Main Stylesheet
+   Design Philosophy: Premium American Culinary Brand
+   Color Palette: Vibrant Spicy Yellow, Solid Black, Crisp White
    ========================================================================== */
 
 /* --- CSS custom properties / Design Tokens --- */
 :root {
-  --color-primary: #121212;        /* Dark Charcoal */
-  --color-secondary: #2c2520;      /* Muted Warm Charcoal */
-  --color-accent-terracotta: #b85d34; /* Burnt Paprika / Terracotta */
-  --color-accent-terracotta-hover: #9c4c28;
-  --color-accent-sage: #4a6b5d;     /* Herb Sage */
-  --color-bg-cream: #fdfaf6;       /* Warm Natural Paper */
-  --color-bg-warm-gray: #f5f2eb;   /* Light stone */
-  --color-border: #eae3d8;         /* Soft clay borders */
+  --color-primary: #000000;        /* Solid Black */
+  --color-secondary: #1a1a1a;      /* Deep Charcoal Black */
+  --color-accent-terracotta: #ffcc00; /* Vibrant Spicy Yellow / Gold */
+  --color-accent-terracotta-hover: #e6b800; /* Darker Yellow */
+  --color-accent-sage: #2e5a44;     /* Herb Green */
+  --color-bg-cream: #ffffff;       /* Pure White */
+  --color-bg-warm-gray: #f5f5f5;   /* Light Clean Gray */
+  --color-border: #e0e0e0;         /* Soft Gray borders */
   
   --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
@@ -24,9 +24,9 @@
   --border-radius: 4px;
   --border-radius-large: 8px;
   
-  --box-shadow-soft: 0 4px 20px rgba(44, 37, 32, 0.05);
-  --box-shadow-medium: 0 10px 30px rgba(44, 37, 32, 0.1);
-  --box-shadow-hard: 0 15px 35px rgba(18, 18, 18, 0.15);
+  --box-shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --box-shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --box-shadow-hard: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 /* --- Global Reset & Base Styles --- */
@@ -236,24 +236,18 @@ p {
 /* Brand Logo */
 .brand-logo {
   display: flex;
-  flex-direction: column;
-  line-height: 0.95;
+  align-items: center;
 }
 
-.logo-serif {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--color-primary);
+.brand-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  transition: var(--transition-fast);
 }
 
-.logo-sans {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--color-accent-terracotta);
+.brand-logo-img:hover {
+  transform: scale(1.03);
 }
 
 /* Desktop Nav Menu */

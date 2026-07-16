@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Artisan Spice Co. - Client-Side Cart Logic
+   Spicery Co. - Client-Side Cart Logic
    Handles: LocalStorage cart CRUD, Side Drawer UI & Dedicated Cart Page rendering
    ========================================================================== */
 

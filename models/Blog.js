@@ -6,7 +6,7 @@ const blogSchema = new mongoose.Schema({
   slug: { type: String, unique: true },
   subtitle: { type: String },
   content: { type: String, required: true },
-  author: { type: String, default: 'Artisan Spice Staff' },
+  author: { type: String, default: 'Spicery Co. Staff' },
   category: { type: String, default: 'Recipes & Guides' },
   imageUrl: { type: String },
   readTime: { type: Number, default: 5 }, // in minutes

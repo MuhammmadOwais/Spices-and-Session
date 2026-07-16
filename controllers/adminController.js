@@ -9,7 +9,7 @@ exports.getLogin = (req, res) => {
     return res.redirect('/admin');
   }
   res.render('admin/login', {
-    title: 'Admin Login | Artisan Spice Co.',
+    title: 'Admin Login | Spicery Co.',
     error: req.query.error || null,
     msg: req.query.msg || null,
     path: '/admin/login'
@@ -23,7 +23,7 @@ exports.postLogin = async (req, res) => {
     
     if (!admin || !(await admin.comparePassword(password))) {
       return res.render('admin/login', {
-        title: 'Admin Login | Artisan Spice Co.',
+        title: 'Admin Login | Spicery Co.',
         error: 'Invalid username or password',
         msg: null,
         path: '/admin/login'
@@ -53,7 +53,7 @@ exports.getDashboard = async (req, res) => {
     const blogCount = await Blog.countDocuments();
     
     res.render('admin/dashboard', {
-      title: 'Admin Dashboard | Artisan Spice Co.',
+      title: 'Admin Dashboard | Spicery Co.',
       productCount,
       blogCount,
       path: '/admin'
@@ -70,7 +70,7 @@ exports.getProducts = async (req, res) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 });
     res.render('admin/products', {
-      title: 'Manage Products | Artisan Spice Co.',
+      title: 'Manage Products | Spicery Co.',
       products,
       path: '/admin/products'
     });
@@ -82,7 +82,7 @@ exports.getProducts = async (req, res) => {
 
 exports.getNewProduct = (req, res) => {
   res.render('admin/product-form', {
-    title: 'Add New Product | Artisan Spice Co.',
+    title: 'Add New Product | Spicery Co.',
     product: {},
     isEdit: false,
     path: '/admin/products'
@@ -129,7 +129,7 @@ exports.getEditProduct = async (req, res) => {
       return res.status(404).send('Product not found');
     }
     res.render('admin/product-form', {
-      title: `Edit Product - ${product.name} | Artisan Spice Co.`,
+      title: `Edit Product - ${product.name} | Spicery Co.`,
       product,
       isEdit: true,
       path: '/admin/products'
@@ -192,7 +192,7 @@ exports.getBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find().sort({ createdAt: -1 });
     res.render('admin/blogs', {
-      title: 'Manage Blogs | Artisan Spice Co.',
+      title: 'Manage Blogs | Spicery Co.',
       blogs,
       path: '/admin/blogs'
     });
@@ -204,7 +204,7 @@ exports.getBlogs = async (req, res) => {
 
 exports.getNewBlog = (req, res) => {
   res.render('admin/blog-form', {
-    title: 'Create Blog Post | Artisan Spice Co.',
+    title: 'Create Blog Post | Spicery Co.',
     blog: {},
     isEdit: false,
     path: '/admin/blogs'
@@ -224,7 +224,7 @@ exports.postCreateBlog = async (req, res) => {
       title,
       subtitle,
       content,
-      author: author || 'Artisan Spice Staff',
+      author: author || 'Spicery Co. Staff',
       category: category || 'Recipes & Guides',
       imageUrl: finalImageUrl,
       readTime: parseInt(readTime) || 5
@@ -245,7 +245,7 @@ exports.getEditBlog = async (req, res) => {
       return res.status(404).send('Blog post not found');
     }
     res.render('admin/blog-form', {
-      title: `Edit Blog - ${blog.title} | Artisan Spice Co.`,
+      title: `Edit Blog - ${blog.title} | Spicery Co.`,
       blog,
       isEdit: true,
       path: '/admin/blogs'

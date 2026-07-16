@@ -6,7 +6,7 @@ exports.getHome = async (req, res) => {
     const featuredProducts = await Product.find({ isFeatured: true }).limit(4);
     const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(3);
     res.render('home', {
-      title: 'Artisan Spice Co. | Premium Spices & Seasonings',
+      title: 'Spicery Co. | Premium Spices & Seasonings',
       featuredProducts,
       latestBlogs,
       path: '/'
@@ -48,7 +48,7 @@ exports.getProducts = async (req, res) => {
     const products = await Product.find(query).sort(sortObj);
     
     res.render('products', {
-      title: 'Shop Premium Spices | Artisan Spice Co.',
+      title: 'Shop Premium Spices | Spicery Co.',
       products,
       selectedCategory: category || '',
       searchQuery: search || '',
@@ -74,7 +74,7 @@ exports.getProductDetail = async (req, res) => {
     }).limit(4);
 
     res.render('product-detail', {
-      title: `${product.name} | Artisan Spice Co.`,
+      title: `${product.name} | Spicery Co.`,
       product,
       relatedProducts,
       path: '/products'
@@ -89,7 +89,7 @@ exports.getBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find().sort({ createdAt: -1 });
     res.render('blogs', {
-      title: 'Aromatic Journal | Artisan Spice Co.',
+      title: 'Aromatic Journal | Spicery Co.',
       blogs,
       path: '/blogs'
     });
@@ -107,7 +107,7 @@ exports.getBlogDetail = async (req, res) => {
     }
     
     res.render('blog-detail', {
-      title: `${blog.title} | Artisan Spice Co.`,
+      title: `${blog.title} | Spicery Co.`,
       blog,
       path: '/blogs'
     });
@@ -119,35 +119,35 @@ exports.getBlogDetail = async (req, res) => {
 
 exports.getAbout = (req, res) => {
   res.render('about', {
-    title: 'Our Story | Artisan Spice Co.',
+    title: 'Our Story | Spicery Co.',
     path: '/about'
   });
 };
 
 exports.getPrivacy = (req, res) => {
   res.render('privacy-policy', {
-    title: 'Privacy Policy | Artisan Spice Co.',
+    title: 'Privacy Policy | Spicery Co.',
     path: '/privacy-policy'
   });
 };
 
 exports.getTerms = (req, res) => {
   res.render('terms-conditions', {
-    title: 'Terms of Service | Artisan Spice Co.',
+    title: 'Terms of Service | Spicery Co.',
     path: '/terms-conditions'
   });
 };
 
 exports.getCart = (req, res) => {
   res.render('cart', {
-    title: 'Your Cart | Artisan Spice Co.',
+    title: 'Your Cart | Spicery Co.',
     path: '/cart'
   });
 };
 
 exports.getCheckout = (req, res) => {
   res.render('checkout', {
-    title: 'Checkout | Artisan Spice Co.',
+    title: 'Checkout | Spicery Co.',
     path: '/checkout'
   });
 };
@@ -155,7 +155,7 @@ exports.getCheckout = (req, res) => {
 exports.postCheckout = (req, res) => {
   const { name, email, address, city, zip } = req.body;
   res.render('checkout-success', {
-    title: 'Order Confirmed! | Artisan Spice Co.',
+    title: 'Order Confirmed! | Spicery Co.',
     path: '/checkout',
     orderInfo: { name, email, address, city, zip }
   });
