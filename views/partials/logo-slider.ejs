@@ -1,0 +1,28 @@
+<%
+  const partnersLogos = [
+    { id: 1, img: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_75,w_150,c_scale/v1783556410/ChatGPT_Image_Jul_8_2026_04_30_48_PM_lfcsrw.png", url: "https://sellercentral.amazon.com/tsba/provider-details/Account%20Management/a9ae60e9-9c17-438b-ae8f-500812fea693?ref_=sc_spn_blst_bdt-a9ae60e9&localeSelection=en_US&sellFrom=US&sellIn=US" },
+    { id: 2, img: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_75,w_150,c_scale/v1779153414/jd_b64gvi.jpg", url: "https://www.jdphones.co.uk/" },
+    { id: 3, img: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_75,w_150,c_scale/v1779153806/aivisty_logo_y5497n.avif", url: "https://aivisty.com" },
+    { id: 4, img: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_75,w_150,c_scale/v1783355026/Shekhani-1_rlux4q.png", url: "https://shekhanillc.com/" },
+    { id: 5, img: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_75,w_150,c_scale/v1774698237/erainmercantile_b6slzg.webp", url: "https://erainmercantile.com/" },
+    { id: 6, img: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_75,w_150,c_scale/v1779153754/thjcoohq04u8f7qqzp6s_slqtpo.webp", url: "https://rizmercantile.com/" }
+  ];
+
+  // Clone the list to allow infinite marquee scrolling
+  const clonedLogos = [...partnersLogos, ...partnersLogos, ...partnersLogos];
+%>
+
+<div class="logo-slider-container">
+  <div class="logo-slider-header">
+    <span>Trusted Brand Partners</span>
+  </div>
+  <div class="logo-slider-viewport">
+    <div class="logo-slider-track">
+      <% clonedLogos.forEach((logo, index) => { %>
+        <a href="<%= logo.url %>" target="_blank" rel="noreferrer" class="logo-slider-item">
+          <img src="<%= logo.img %>" alt="Trusted Partner Logo" loading="lazy" decoding="async" width="150" height="60">
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<!-- Custom modular styling for the Recipe Details page -->
+<!,  Custom modular styling for the Recipe Details page , >
 <style>
   .recipe-detail-hero {
     position: relative;
@@ -27,7 +27,7 @@
   }
   .recipe-detail-method {
     display: inline-block;
-    background-color: var(--color-accent-terracotta);
+    background-color: var(, color-accent-terracotta);
     color: #000000;
     font-size: 0.72rem;
     font-weight: 700;
@@ -38,7 +38,7 @@
     margin-bottom: 1.5rem;
   }
   .recipe-hero-container h1 {
-    font-family: var(--font-serif);
+    font-family: var(, font-serif);
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
@@ -69,7 +69,7 @@
     color: #e0e0e0;
   }
   .recipe-meta-item i {
-    color: var(--color-accent-terracotta);
+    color: var(, color-accent-terracotta);
     font-size: 1.1rem;
   }
 
@@ -85,18 +85,18 @@
   }
   
   .ingredients-wrapper {
-    background-color: var(--color-bg-warm-gray);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-large);
+    background-color: var(, color-bg-warm-gray);
+    border: 1px solid var(, color-border);
+    border-radius: var(, border-radius-large);
     padding: 2.5rem;
-    box-shadow: var(--box-shadow-soft);
+    box-shadow: var(, box-shadow-soft);
   }
   .ingredients-wrapper h2 {
-    font-family: var(--font-serif);
+    font-family: var(, font-serif);
     font-size: 1.8rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
-    color: var(--color-primary);
+    color: var(, color-primary);
   }
   .ingredients-list {
     list-style: none;
@@ -111,21 +111,21 @@
     align-items: flex-start;
     gap: 0.8rem;
     font-size: 0.95rem;
-    color: var(--color-secondary);
+    color: var(, color-secondary);
     line-height: 1.4;
   }
   .ingredients-list li i {
-    color: var(--color-accent-terracotta);
+    color: var(, color-accent-terracotta);
     margin-top: 0.25rem;
     font-size: 0.85rem;
   }
 
   .instructions-wrapper h2 {
-    font-family: var(--font-serif);
+    font-family: var(, font-serif);
     font-size: 2rem;
     font-weight: 800;
     margin-bottom: 1.8rem;
-    color: var(--color-primary);
+    color: var(, color-primary);
   }
   .instructions-content {
     font-size: 1.05rem;
@@ -144,7 +144,7 @@
   }
 
   .recipe-footer-nav {
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(, color-border);
     padding-top: 2rem;
     margin-top: 4rem;
     display: flex;
@@ -163,7 +163,7 @@
   }
 </style>
 
-<!-- Recipe Detail Hero -->
+<!,  Recipe Detail Hero , >
 <section class="recipe-detail-hero" style="background-image: url('<%= recipe.imageUrl %>');">
   <div class="recipe-hero-container">
     <span class="recipe-detail-method"><%= recipe.method %> Masterclass</span>
@@ -195,11 +195,11 @@
   </div>
 </section>
 
-<!-- Recipe Content Row -->
+<!,  Recipe Content Row , >
 <section class="recipe-detail-content">
   <div class="container recipe-content-grid">
     
-    <!-- Left Column: Ingredients -->
+    <!,  Left Column: Ingredients , >
     <div class="ingredients-wrapper">
       <h2>Ingredients</h2>
       <ul class="ingredients-list">
@@ -212,14 +212,14 @@
       </ul>
     </div>
     
-    <!-- Right Column: Step Instructions -->
+    <!,  Right Column: Step Instructions , >
     <div class="instructions-wrapper">
       <h2>Method Instructions</h2>
       <div class="instructions-content">
         <%- recipe.instructions %>
       </div>
       
-      <!-- Back Button Row -->
+      <!,  Back Button Row , >
       <div class="recipe-footer-nav">
         <a href="/recipes" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Back to Recipes</a>
       </div>
@@ -227,5 +227,7 @@
 
   </div>
 </section>
+
+<%- include('partials/logo-slider') %>
 
 <%- include('partials/footer') %>

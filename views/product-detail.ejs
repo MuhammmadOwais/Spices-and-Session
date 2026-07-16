@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<!-- Breadcrumbs navigation -->
+<!,  Breadcrumbs navigation , >
 <div class="breadcrumbs-nav container">
   <a href="/">Home</a>
   <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
@@ -11,23 +11,23 @@
   <span class="current"><%= product.name %></span>
 </div>
 
-<!-- Product Detail Showcase -->
+<!,  Product Detail Showcase , >
 <section class="product-detail-showcase container">
   <div class="detail-layout">
     
-    <!-- Gallery Column -->
+    <!,  Gallery Column , >
     <div class="detail-gallery">
       <div class="main-image-wrapper">
         <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="product-detail-main-image">
       </div>
     </div>
     
-    <!-- Specs Column -->
+    <!,  Specs Column , >
     <div class="detail-specs">
       <span class="specs-category capitalize-text"><%= product.category %></span>
       <h1><%= product.name %></h1>
       
-      <!-- Price and Status -->
+      <!,  Price and Status , >
       <div class="price-status-row">
         <span class="specs-price" id="specs-display-price" data-base-price="<%= product.price %>">$<%= product.price.toFixed(2) %></span>
         
@@ -42,7 +42,7 @@
       
       <p class="specs-description"><%= product.description %></p>
       
-      <!-- Available Sizes Listing -->
+      <!,  Available Sizes Listing , >
       <% if (product.sizes && product.sizes.length > 0) { %>
         <div class="pantry-sizes-listing">
           <span class="sizes-label">Available Packaging Sizes</span>
@@ -63,7 +63,7 @@
         </div>
       <% } %>
 
-      <!-- Accordion Specifications -->
+      <!,  Accordion Specifications , >
       <div class="product-accordion">
         
         <% if (product.ingredients) { %>
@@ -192,7 +192,7 @@
       name: "Pineapple Powder",
       symbol: "Pi",
       imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784235730/pexels-caricatte-6245955_jbyi4j.jpg",
-      description: "Real sweet and tart pineapple in powder form - adds a tropical layer."
+      description: "Real sweet and tart pineapple in powder form, adds a tropical layer."
     }
   };
 
@@ -226,7 +226,7 @@
   }
 %>
 
-<!-- Deconstructed Flavor Profile -->
+<!,  Deconstructed Flavor Profile , >
 <section class="deconstructed-section container">
   <h2 class="deconstructed-title">Deconstructed Flavor Profile</h2>
   <p class="deconstructed-subtitle">A visual breakdown of the raw materials inside this premium blend</p>
@@ -251,7 +251,7 @@
   </div>
 </section>
 
-<!-- Related Products section -->
+<!,  Related Products section , >
 <section class="related-products-section container">
   <div class="section-header">
     <h2>Complete Your Pantry</h2>

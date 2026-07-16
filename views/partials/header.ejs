@@ -5,42 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
   
-  <!-- Premium Google Fonts -->
+  <!,  Premium Google Fonts , >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome Icons -->
+  <!,  FontAwesome Icons , >
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Main Stylesheet -->
+  <!,  Main Stylesheet , >
   <link rel="stylesheet" href="/css/style.css">
   
-  <!-- Custom Favicon -->
+  <!,  Custom Favicon , >
   <link rel="icon" type="image/png" href="https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784166642/Gemini_Generated_Image_qvj3uyqvj3uyqvj3-removebg-preview_bwdmdg.png">
   
   <% if (path.startsWith('/admin')) { %>
-    <!-- Admin Specific Stylesheet -->
+    <!,  Admin Specific Stylesheet , >
     <link rel="stylesheet" href="/css/admin.css">
   <% } %>
 </head>
 <body>
 
-  <!-- Announcement Bar -->
+  <!,  Announcement Bar , >
   <div class="announcement-bar">
     <span>Trusted by Taste | Original & Authentic Spices</span>
   </div>
 
-  <!-- Header Navigation -->
+  <!,  Header Navigation , >
   <header class="main-header">
     <div class="header-container">
       
-      <!-- Brand Logo -->
+      <!,  Brand Logo , >
       <a href="/" class="brand-logo">
         <img src="https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784224291/Gemini_Generated_Image_hzg0z3hzg0z3hzg0-removebg-preview_kmaz3m.png" alt="Spicery Co." class="brand-logo-img">
       </a>
 
-      <!-- Desktop Nav Menu -->
+      <!,  Desktop Nav Menu , >
       <nav class="desktop-nav">
         <ul>
           <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
@@ -58,11 +58,11 @@
         </ul>
       </nav>
 
-      <!-- Utility Icons -->
+      <!,  Utility Icons , >
       <div class="header-utilities">
         <a href="/products" class="search-trigger" aria-label="Search Spices"><i class="fa-solid fa-magnifying-glass"></i></a>
         
-        <!-- Mobile Menu Toggle Button -->
+        <!,  Mobile Menu Toggle Button , >
         <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Toggle Menu">
           <i class="fa-solid fa-bars"></i>
         </button>
@@ -71,7 +71,7 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
+  <!,  Mobile Drawer Menu , >
   <div class="mobile-drawer" id="mobile-drawer">
     <div class="drawer-header">
       <div class="brand-logo">
@@ -102,7 +102,7 @@
 
 
   
-  <!-- Live Search Overlay Modal -->
+  <!,  Live Search Overlay Modal , >
   <div id="search-overlay" class="search-overlay">
     <button id="search-overlay-close" class="search-close-btn" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
     <div class="search-overlay-content">
@@ -111,12 +111,12 @@
         <input type="text" id="search-input-field" placeholder="Search premium spices, herbs, blends..." autocomplete="off">
       </div>
       <div id="search-results-container" class="search-results-container">
-        <!-- Results will be injected here dynamically -->
+        <!,  Results will be injected here dynamically , >
       </div>
     </div>
   </div>
   
-  <!-- Screen Overlay (used for sidebar and mobile drawer) -->
+  <!,  Screen Overlay (used for sidebar and mobile drawer) , >
   <div class="site-overlay" id="site-overlay"></div>
   
   <main class="page-main-content">

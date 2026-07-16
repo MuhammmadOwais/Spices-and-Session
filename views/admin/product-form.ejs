@@ -17,13 +17,13 @@
           class="crud-form">
           
       <div class="form-grid-2">
-        <!-- Name -->
+        <!,  Name , >
         <div class="form-field">
           <label for="name">Product Name *</label>
           <input type="text" id="name" name="name" required value="<%= product.name || '' %>" placeholder="e.g. Madagascan Bourbon Vanilla Powder">
         </div>
         
-        <!-- Price -->
+        <!,  Price , >
         <div class="form-field">
           <label for="price">Price ($ USD) *</label>
           <input type="number" id="price" name="price" required step="0.01" min="0" value="<%= product.price || '' %>" placeholder="e.g. 12.99">
@@ -31,7 +31,7 @@
       </div>
 
       <div class="form-grid-2">
-        <!-- Category -->
+        <!,  Category , >
         <div class="form-field">
           <label for="category">Product Category *</label>
           <div class="select-wrapper">
@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <!-- Stock Status -->
+        <!,  Stock Status , >
         <div class="form-field">
           <label for="stockStatus">Stock Status *</label>
           <div class="select-wrapper">
@@ -58,13 +58,13 @@
         </div>
       </div>
 
-      <!-- Description -->
+      <!,  Description , >
       <div class="form-field">
         <label for="description">Product Description *</label>
         <textarea id="description" name="description" rows="5" required placeholder="Describe the aroma, flavor notes, culinary applications, and history..."><%= product.description || '' %></textarea>
       </div>
 
-      <!-- Ingredients & Sizes -->
+      <!,  Ingredients & Sizes , >
       <div class="form-grid-2">
         <div class="form-field">
           <label for="ingredients">Ingredients (Comma Separated)</label>
@@ -78,13 +78,13 @@
         </div>
       </div>
 
-      <!-- Images Block -->
+      <!,  Images Block , >
       <div class="form-image-section">
         <h3>Product Imagery</h3>
         <p class="field-hint">Upload a local image or paste a high-quality web image URL. If both are provided, the uploaded image takes priority.</p>
         
         <div class="form-grid-2">
-          <!-- File upload -->
+          <!,  File upload , >
           <div class="form-field">
             <label for="imageFile">Upload Local Image file</label>
             <div class="file-upload-input-wrapper">
@@ -92,7 +92,7 @@
             </div>
           </div>
           
-          <!-- Image URL -->
+          <!,  Image URL , >
           <div class="form-field">
             <label for="imageUrl">Or, Paste Image URL</label>
             <input type="url" id="imageUrl" name="imageUrl" value="<%= product.imageUrl && !product.imageUrl.startsWith('/uploads/') ? product.imageUrl : '' %>" placeholder="https://images.unsplash.com/...">
@@ -107,7 +107,7 @@
         <% } %>
       </div>
 
-      <!-- Featured checkbox -->
+      <!,  Featured checkbox , >
       <div class="form-field-checkbox">
         <label class="checkbox-container">
           <input type="checkbox" id="isFeatured" name="isFeatured" <%= product.isFeatured ? 'checked' : '' %>>

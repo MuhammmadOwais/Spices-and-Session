@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<!-- Blog Page Banner -->
+<!,  Blog Page Banner , >
 <section class="page-banner blog-banner">
   <div class="container">
     <h1>The Culinary Journal</h1>
@@ -9,13 +9,13 @@
   <div class="banner-overlay"></div>
 </section>
 
-<!-- Blog Posts Catalog -->
+<!,  Blog Posts Catalog , >
 <section class="blog-catalog container">
   
   <div class="blog-masonry-grid">
     <% if (blogs && blogs.length > 0) { %>
       <% blogs.forEach((blog, idx) => { %>
-        <!-- If it's the first post, render it as a highlighted, full-width feature card -->
+        <!,  If it's the first post, render it as a highlighted, full-width feature card , >
         <% if (idx === 0) { %>
           <article class="blog-featured-card">
             <div class="featured-card-image">
@@ -39,7 +39,7 @@
             </div>
           </article>
         <% } else { %>
-          <!-- Standard blog grids -->
+          <!,  Standard blog grids , >
           <article class="blog-card">
             <div class="blog-card-image">
               <a href="/blogs/<%= blog.slug %>">

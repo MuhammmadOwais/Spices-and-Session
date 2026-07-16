@@ -16,51 +16,51 @@
           enctype="multipart/form-data" 
           class="crud-form">
           
-      <!-- Title -->
+      <!,  Title , >
       <div class="form-field">
         <label for="title">Article Title *</label>
         <input type="text" id="title" name="title" required value="<%= blog.title || '' %>" placeholder="e.g. Master the Art of Toasting Cumin Seeds">
       </div>
 
-      <!-- Subtitle -->
+      <!,  Subtitle , >
       <div class="form-field">
         <label for="subtitle">Subtitle / Snippet *</label>
         <input type="text" id="subtitle" name="subtitle" required value="<%= blog.subtitle || '' %>" placeholder="A short, catchy summary that displays on lists and banners.">
       </div>
 
       <div class="form-grid-3">
-        <!-- Author -->
+        <!,  Author , >
         <div class="form-field">
           <label for="author">Author Name</label>
           <input type="text" id="author" name="author" value="<%= blog.author || 'Spicery Co. Staff' %>" placeholder="e.g. Chef Marcus Vance">
         </div>
         
-        <!-- Category -->
+        <!,  Category , >
         <div class="form-field">
           <label for="category">Article Category</label>
           <input type="text" id="category" name="category" value="<%= blog.category || 'Recipes & Guides' %>" placeholder="e.g. Guides & Tips, Recipes">
         </div>
 
-        <!-- Read Time -->
+        <!,  Read Time , >
         <div class="form-field">
           <label for="readTime">Read Time (minutes)</label>
           <input type="number" id="readTime" name="readTime" min="1" value="<%= blog.readTime || 5 %>" placeholder="e.g. 5">
         </div>
       </div>
 
-      <!-- Content -->
+      <!,  Content , >
       <div class="form-field">
         <label for="content">Article Body Content (HTML Supported) *</label>
         <textarea id="content" name="content" rows="12" required placeholder="Write your full story here. You can use standard <p>, <h3>, <ul>, and <ol> tags for structure..."><%= blog.content || '' %></textarea>
       </div>
 
-      <!-- Images Block -->
+      <!,  Images Block , >
       <div class="form-image-section">
         <h3>Article Banner Image</h3>
         <p class="field-hint">Upload a local banner file or paste a high-quality web URL. If both are provided, the file upload takes priority.</p>
         
         <div class="form-grid-2">
-          <!-- File upload -->
+          <!,  File upload , >
           <div class="form-field">
             <label for="imageFile">Upload Banner File</label>
             <div class="file-upload-input-wrapper">
@@ -68,7 +68,7 @@
             </div>
           </div>
           
-          <!-- Image URL -->
+          <!,  Image URL , >
           <div class="form-field">
             <label for="imageUrl">Or, Paste Banner URL</label>
             <input type="url" id="imageUrl" name="imageUrl" value="<%= blog.imageUrl && !blog.imageUrl.startsWith('/uploads/') ? blog.imageUrl : '' %>" placeholder="https://images.unsplash.com/...">

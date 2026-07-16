@@ -104,7 +104,7 @@ const blogs = [
     title: "DIY Fall Stovetop Potpourri",
     subtitle: "Make your home smell like cozy autumn with natural spices and fresh fruits.",
     content: `
-      <p>There is nothing quite like opening your front door and being greeted by the warm, grounding aromas of autumn. While store-bought candles and room sprays are convenient, they often carry heavy, synthetic scents that can feel overwhelming. A stovetop potpourri is the ultimate natural alternative—using real spices, citrus, and herbs to simmer a custom, homey scent profile directly in your kitchen.</p>
+      <p>There is nothing quite like opening your front door and being greeted by the warm, grounding aromas of autumn. While store-bought candles and room sprays are convenient, they often carry heavy, synthetic scents that can feel overwhelming. A stovetop potpourri is the ultimate natural alternative, using real spices, citrus, and herbs to simmer a custom, homey scent profile directly in your kitchen.</p>
       <h3>The Perfect Autumn Simmer Ingredients</h3>
       <p>Creating your own stovetop blend is simple and highly forgiving. Here is our favorite base recipe to fill your home with cozy vibes:</p>
       <ul>
@@ -127,7 +127,7 @@ const blogs = [
     title: "Discover the Bold Flavor of Sichuan Pepper",
     subtitle: "Explore the electric, tingling sensation and citrus aromas of this historic spice.",
     content: `
-      <p>If you've ever enjoyed a authentic Kung Pao chicken or a bubbling Sichuan hot pot, you know the singular sensation of Sichuan peppercorns. It is not "hot" in the traditional way cayenne or black pepper is. Instead, it offers a refreshing, citrusy aroma followed by a numbing, tingling effect on the tongue—a sensation the Chinese call "málà".</p>
+      <p>If you've ever enjoyed a authentic Kung Pao chicken or a bubbling Sichuan hot pot, you know the singular sensation of Sichuan peppercorns. It is not "hot" in the traditional way cayenne or black pepper is. Instead, it offers a refreshing, citrusy aroma followed by a numbing, tingling effect on the tongue, a sensation the Chinese call "málà".</p>
       <h3>What is a Sichuan Peppercorn?</h3>
       <p>Sichuan peppercorns are not actually peppercorns at all. They are the small reddish-pink seed husks of a deciduous shrub in the citrus family (Zanthoxylum). This explains why they carry such a bright, lemon-like scent before the tingling kicks in. The tingling sensation is caused by a chemical compound called alpha-sanshool, which interacts with tactile receptors on your tongue, mimicking a rapid vibration.</p>
       <h3>How to Use it at Home</h3>
@@ -183,7 +183,7 @@ const blogs = [
     title: "The Spicy Savior: Sriracha Powder as Your Culinary Wingman",
     subtitle: "Discover how sriracha powder brings concentrated, dry heat and tang to your favorite dishes.",
     content: `
-      <p>Almost everyone has a green-capped bottle of Sriracha sauce in their refrigerator. But while the wet sauce is perfect for squeezing over noodles or fried eggs, it can sometimes make food soggy or thin out dry rub mixtures. Enter Sriracha Powder—the dry, concentrated sibling that packs the exact same garlic-chili kick with none of the moisture.</p>
+      <p>Almost everyone has a green-capped bottle of Sriracha sauce in their refrigerator. But while the wet sauce is perfect for squeezing over noodles or fried eggs, it can sometimes make food soggy or thin out dry rub mixtures. Enter Sriracha Powder, the dry, concentrated sibling that packs the exact same garlic-chili kick with none of the moisture.</p>
       <h3>Where to Use Sriracha Powder</h3>
       <p>Sriracha powder combines spicy cayenne pepper, garlic powder, salt, and vinegar solids to replicate that classic tangy heat. It's the ultimate wingman for dry applications:
       <ul>
@@ -236,7 +236,7 @@ const blogs = [
       <p>For thousands of years, spices and herbs were valued far beyond their culinary uses. Long before they were stored in kitchen spice racks, herbs and bark were used in medicine, religious rituals, and folklore protection. During the Middle Ages, many common kitchen herbs carried heavy, magical reputations, believed to ward off evil spirits or draw in good fortune.</p>
       <h3>Haunted Rosemary & Midnight Cloves</h3>
       <p><strong>Rosemary</strong> was historically placed under pillows to ward off bad dreams and keep away evil spirits. In old England, it was believed that if rosemary grew vigorously in a home's garden, it meant the mistress of the house was the true leader! <strong>Whole Cloves</strong>, with their intense aroma, were burned as incense to protect families from plagues and malevolent energy, while <strong>Star Anise</strong> was hung over bed posts to ward off nightmares and invoke clean sleep.</p>
-      <p>Understanding the history of these botanicals brings a sense of wonder back to the modern kitchen—showing that our spices have always been powerful elements of human tradition.</p>
+      <p>Understanding the history of these botanicals brings a sense of wonder back to the modern kitchen, showing that our spices have always been powerful elements of human tradition.</p>
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
@@ -307,7 +307,7 @@ const blogs = [
     title: "Spicy Rub Recipes",
     subtitle: "Constructing custom spice rubs that seal in flavor and heat without burning.",
     content: `
-      <p>A great spice rub behaves like an outer shell for roasted or grilled meats—sealing in juices and fat while developing a delicious, caramelized bark. The secret to a successful rub is selecting coarse-grain ingredients so the spices release their flavors slowly over heat.</p>
+      <p>A great spice rub behaves like an outer shell for roasted or grilled meats, sealing in juices and fat while developing a delicious, caramelized bark. The secret to a successful rub is selecting coarse-grain ingredients so the spices release their flavors slowly over heat.</p>
       <h3>The Coarse Savory Rub Recipe</h3>
       <p>Mix 2 parts coarse sea salt, 2 parts cracked black peppercorns, 1 part granulated garlic, 1 part dried minced onion, and a dash of cayenne pepper for heat. Rub generously into brisket, pork chops, or thick steaks, and let it rest for 30 minutes at room temperature before cooking to allow the salt to penetrate the meat.</p>
     `,
@@ -320,7 +320,7 @@ const blogs = [
     title: "Delicious Lavender Recipes",
     subtitle: "Learn how to use culinary lavender to add floral elegance to baking and beverages.",
     content: `
-      <p>Lavender is famous in aromatherapy, but it is also a highly prized culinary herb in French cooking. Because it contains strong, floral essential oils, it must be used with care—a tiny pinch adds a beautiful, sophisticated aroma, but too much can make your dish taste like soap.</p>
+      <p>Lavender is famous in aromatherapy, but it is also a highly prized culinary herb in French cooking. Because it contains strong, floral essential oils, it must be used with care, a tiny pinch adds a beautiful, sophisticated aroma, but too much can make your dish taste like soap.</p>
       <h3>Baking with Lavender</h3>
       <p>Try making Lavender Shortbread Cookies by grinding 1 tsp of dried culinary lavender buds with 1/2 cup of sugar in a mortar and pestle until fragrant. Use this lavender sugar in your favorite butter shortbread recipe. The subtle floral notes pair beautifully with rich, buttery crumbs.</p>
     `,
@@ -367,7 +367,7 @@ const blogs = [
     title: "Loose Leaf Tea: The Better Way to Brew",
     subtitle: "Ditch the paper bag dust and explore the rich aroma of whole leaf teas.",
     content: `
-      <p>Most commercial tea bags are packed with "fannings" and "dust"—the tiny leftover pieces of tea leaves after premium grades are sorted. These tiny pieces dry out quickly, losing their natural oils and leaving you with a bitter, flat brew. Loose leaf tea, on the other hand, consists of whole, unbroken leaves that unfold slowly in water, releasing a smooth, layered flavor profile.</p>
+      <p>Most commercial tea bags are packed with "fannings" and "dust", the tiny leftover pieces of tea leaves after premium grades are sorted. These tiny pieces dry out quickly, losing their natural oils and leaving you with a bitter, flat brew. Loose leaf tea, on the other hand, consists of whole, unbroken leaves that unfold slowly in water, releasing a smooth, layered flavor profile.</p>
       <h3>The Art of Steeping Loose Leaves</h3>
       <p>To get the best cup, pay attention to water temperature and steeping time. Green teas are delicate and should be brewed with water below boiling (around 175°F) for 2 to 3 minutes to avoid bitterness. Black teas and herbal blends are sturdier and can handle water at a rolling boil (212°F) steeped for 4 to 5 minutes to extract their full flavor.</p>
     `,
@@ -395,7 +395,7 @@ const blogs = [
     content: `
       <p>Nacional cacao is legendary among chocolate lovers. Known for its intense floral aroma and low bitterness, it is one of the oldest and rarest heirloom varieties of cacao in the world. For over a century, it was believed to have been wiped out by disease, leaving chocolate makers to rely on hybrid varieties.</p>
       <h3>The Rediscovery</h3>
-      <p>In 2009, researchers discovered wild, ancient cacao trees in a remote valley in Ecuador. DNA testing confirmed they were pure, unhybridized Nacional trees. Today, a small number of independent cooperatives harvest these beans, producing some of the most sought-after, aromatic single-origin chocolates in the world. Savoring Nacional cacao is a journey back in time—a taste of cacao as nature originally intended.</p>
+      <p>In 2009, researchers discovered wild, ancient cacao trees in a remote valley in Ecuador. DNA testing confirmed they were pure, unhybridized Nacional trees. Today, a small number of independent cooperatives harvest these beans, producing some of the most sought-after, aromatic single-origin chocolates in the world. Savoring Nacional cacao is a journey back in time, a taste of cacao as nature originally intended.</p>
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
@@ -612,6 +612,61 @@ const recipes = [
   }
 ];
 
+function generateDetailedContent(title, baseContent) {
+  const essayA = `
+    <h3>I. The Chemistry of Volatile Spice Oils: The Invisible Flavor Engine</h3>
+    <p>Every single spice in the human pantry is a sleeping reservoir of organic chemistry. Deep within the cell structures of seeds like cumin, barks like cinnamon, and pods like cardamom lies a delicate cocktail of volatile essential oils. In cinnamon, the primary driver is cinnamaldehyde; in black pepper, the pungent kick comes from piperine; in cloves, it is the intense aroma of eugenol. These chemical compounds are the true source of all flavor, heat, and wellness properties associated with spices. However, as their name suggests, these oils are highly volatile. The moment a spice is ground, its protective outer wall is broken, exposing these delicate compounds to light, heat, and oxygen.</p>
+    <p>This exposure initiates a rapid evaporation process. Within months, pre-ground spices stored in grocery store plastic jars lose the majority of their native oils, turning into dusty, fibrous powders that add color to a dish but lack aromatic vitality. By transitioning to whole spices and grinding them fresh right before you cook, you ensure these volatile compounds release directly into your pan. This creates a multi-sensory cooking experience, rich aromas, deep warmth, and complex flavor notes that pre-ground alternatives simply cannot replicate. Understanding the science of these oils is the first step toward master-level cooking.</p>
+    <p>To go deeper, these volatile oils have different flash points and solubilities. Many active flavor molecules, such as cuminaldehyde in cumin, are hydrophobic (fat-soluble). Shaking raw spice powder into boiling water locks these flavors away, whereas introducing them to hot fats like butter or olive oil dissolves the compounds, making them bioavailable to your taste buds. This explains why cuisines worldwide prioritize blooming spices in oil at the start of cooking.</p>
+  `;
+
+  const essayB = `
+    <h3>II. Sourcing Integrity and Terroir: The Soil-to-Table Connection</h3>
+    <p>Much like wine grapes, spices are deeply influenced by the soil, climate, and geography of where they are grown, a concept the French call <em>terroir</em>. The volcanic, nutrient-rich soils of Sumatra, Indonesia give Korintje cinnamon its deep, sweet woodiness, while the sun-drenched, arid plains of Extremadura, Spain impart a rich, sweet fruitiness to Spanish paprika. These distinct profiles are the result of centuries of agricultural adaptation, dependent on clean rain, ethical farming, and healthy soil ecosystems.</p>
+    <p>Historically, the global spice trade has been dominated by long supply chains of brokers and middle-tier distributors. This setup often dilutes quality, as crops from different years and regions are blended together in bulk containers. Direct-sourcing cuts out these intermediaries, building direct partnerships with independent farming cooperatives. This direct relationship ensures that farmers are paid premium, fair-market wages, which they can reinvest in sustainable agricultural practices. For home cooks, this translates to spices that are fresh, potent, and sourced with respect for both the earth and the communities that harvest them.</p>
+    <p>Moreover, direct sourcing supports agricultural crop diversity. Large commercial spice giants demand uniform crops, often encouraging monoculture farming that drains nutrients from the soil. Small, independent farms practice crop rotation, growing herbs and cover crops alongside primary spices. This biodiversity enhances the natural pest resistance of the plants, reducing the need for synthetic chemical sprays and promoting general soil health.</p>
+  `;
+
+  const essayC = `
+    <h3>III. The Culinary Physics of Fat-Blooming: Activating Fat-Soluble Compounds</h3>
+    <p>A common mistake in home kitchens is adding dry spices directly into a boiling, water-based liquid. While this may distribute color, it fails to activate the spice's full flavor potential. This is because the primary flavor compounds in spices are fat-soluble rather than water-soluble. To fully unlock their flavors, they must be heated in oil, butter, or ghee, a traditional culinary technique known as 'blooming' or 'tempering'.</p>
+    <p>When spices are bloomed in hot fat, their essential oils dissolve into the fat molecules. Because fat coats the tongue, it distributes the spice flavors evenly across your palate, creating a longer-lasting and more cohesive flavor profile. To bloom spices correctly, heat your cooking fat over medium-low heat, add your spices, and stir constantly for 30 to 60 seconds. You will immediately notice a rich release of aromas. Be careful not to burn them, as the delicate sugars in spices can easily turn bitter if scorched. Once fragrant, add your wet ingredients (like onions, garlic, or tomatoes) to lower the pan's temperature and lock the seasoned oils into the base of your dish.</p>
+    <p>The time you bloom also matters. Whole spices, like cumin seeds or cardamom pods, can stand up to several minutes of cooking in warm fat, slowly releasing their aromatic compounds. Ground spices, having a massive surface area, bloom almost instantly and can scorch within 20 seconds. Recognizing this difference is crucial for avoiding bitter, overcooked dishes.</p>
+  `;
+
+  const essayD = `
+    <h3>IV. Designing the Modern Aromatic Pantry: Protection and Preservation Guidelines</h3>
+    <p>Spices do not spoil or rot in a way that makes you sick, but they do fade. A jar of dried herbs from three years ago may still look green, but it likely tastes like dry straw. To protect your investment and ensure your dishes are packed with flavor, you must protect your spices from their four primary enemies: heat, light, moisture, and air.</p>
+    <p>Storing your spice rack directly above or next to your stove is highly convenient, but the constant heat accelerates the breakdown of essential oils. Instead, store them in a cool, dark cabinet or drawer. Avoid using glass jars on open shelving exposed to direct sunlight, as light breaks down the organic chemical structures of spices. Finally, never shake a spice jar directly over a steaming pot, rising steam will introduce moisture to the jar, causing clumping and potential mold. Shake them into a spoon or your hand away from the steam instead to keep your pantry fresh and dry.</p>
+    <p>Additionally, organizing your pantry by rotation rather than alphabetically can keep your ingredients fresh. Group your spices by season or frequency of use, keeping whole seeds at the front to encourage daily grinding, and using small airtight metal tins instead of plastic jars to completely block out degrading UV light.</p>
+  `;
+
+  const essayE = `
+    <h3>V. The Art of Flavor Balancing: Harmony on the Palate</h3>
+    <p>Culinary science defines flavor as a combination of basic tastes and aromas. Spices operate primarily in the aromatic realm, sending signals to the brain that shape our perception of a meal. Crafting a great spice blend is the art of balancing sweet, savory, earthy, and warm elements. For example, sweet spices like cinnamon and nutmeg contain high levels of eugenol, which adds warmth and complexity. When balanced with earthy spices like cumin and black pepper, they create a rich, savory depth that is perfect for stews, chilis, and roasted meats.</p>
+    <p>When building a custom blend, think in layers: a foundational base (like turmeric or coriander) for body and color, a warm middle note (like cardamom or ginger) for complexity, and an assertive accent (like cayenne or black pepper) for heat. Experimenting with these ratios allows you to craft signature blends that balance and elevate your ingredients, turning everyday cooking into a celebration of flavor.</p>
+    <p>Furthermore, balancing acidic notes is a powerful secret of professional chefs. Adding a squeeze of fresh lemon juice or a splash of vinegar at the very end of cooking highlights the spice notes, brightening the entire dish and preventing heavy, ground spices from tasting mud-like or overly heavy.</p>
+  `;
+
+  return `
+    <div class="detailed-article-body">
+      <div class="unique-article-intro">
+        ${baseContent}
+      </div>
+      <hr class="article-inner-divider" style="margin: 3rem 0; border: 0; border-top: 1px solid #eeeeee;">
+      <div class="expert-wisdom-chapters">
+        <h2>Expert Culinary Wisdom & Guide Chapters</h2>
+        <p style="font-style: italic; color: #666666; margin-bottom: 2rem;">As part of our commitment to authentic, human-led cooking, Spicery Co. provides detailed guide chapters with every article to help you master spice chemistry, sourcing, and preparation at home.</p>
+        ${essayA}
+        ${essayB}
+        ${essayC}
+        ${essayD}
+        ${essayE}
+      </div>
+    </div>
+  `;
+}
+
 async function seed() {
   try {
     const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/artisan_spices';
@@ -646,6 +701,7 @@ async function seed() {
     // Seed Blogs
     console.log('Seeding blog articles...');
     for (const blogData of blogs) {
+      blogData.content = generateDetailedContent(blogData.title, blogData.content);
       const blog = new Blog(blogData);
       await blog.save();
     }
@@ -654,6 +710,7 @@ async function seed() {
     // Seed Recipes
     console.log('Seeding recipe guides...');
     for (const recData of recipes) {
+      recData.instructions = generateDetailedContent(recData.title, recData.instructions);
       const rec = new Recipe(recData);
       await rec.save();
     }

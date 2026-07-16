@@ -3095,3 +3095,80 @@ p {
   }
 }
 
+/* --- Infinite Logo Slider --- */
+.logo-slider-container {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-slider-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo-slider-header span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #888888;
+  font-family: var(--font-sans);
+}
+
+.logo-slider-viewport {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.logo-slider-track {
+  display: flex;
+  align-items: center;
+  gap: 4.5rem;
+  width: max-content;
+  animation: infinite-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+.logo-slider-track:hover {
+  animation-play-state: paused;
+}
+
+.logo-slider-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  flex-shrink: 0;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.35s ease;
+}
+
+.logo-slider-item:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.logo-slider-item img {
+  height: 38px;
+  width: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.3333%);
+  }
+}
+
