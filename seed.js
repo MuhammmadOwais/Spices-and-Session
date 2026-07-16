@@ -120,7 +120,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238656/DIY_Fall_Stovetop_Potpourri_ashvf3.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238656/DIY_Fall_Stovetop_Potpourri_ashvf3.jpg",
     readTime: 4
   },
   {
@@ -135,7 +135,7 @@ const blogs = [
     `,
     author: "Chef Marcus Vance",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238656/Discover_the_Bold_Flavor_of_Sichuan_Pepper_ml9nzn.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238656/Discover_the_Bold_Flavor_of_Sichuan_Pepper_ml9nzn.jpg",
     readTime: 5
   },
   {
@@ -157,7 +157,7 @@ const blogs = [
     `,
     author: "Chef Marcus Vance",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238655/Elevate_your_Easter_Ham_Delicious_glaze_Recipes_x9rcmf.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238655/Elevate_your_Easter_Ham_Delicious_glaze_Recipes_x9rcmf.jpg",
     readTime: 5
   },
   {
@@ -176,7 +176,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238659/Chili_Cookoff_Top_Chili_Recipes_to_try_dxwww9.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238659/Chili_Cookoff_Top_Chili_Recipes_to_try_dxwww9.jpg",
     readTime: 6
   },
   {
@@ -194,7 +194,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238655/The_Spicy_Savior_Sriracha_Powder_as_Your_Culinary_Wingman_vsw2ih.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238655/The_Spicy_Savior_Sriracha_Powder_as_Your_Culinary_Wingman_vsw2ih.jpg",
     readTime: 4
   },
   {
@@ -211,7 +211,7 @@ const blogs = [
     `,
     author: "Chef Marcus Vance",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238657/The_Perfect_Blend_Mastering_Meat_and_Spice_Pairing_mggnmo.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238657/The_Perfect_Blend_Mastering_Meat_and_Spice_Pairing_mggnmo.jpg",
     readTime: 6
   },
   {
@@ -226,7 +226,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238654/Unique_Pumpkin_Spice_Recipes_lz0txw.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238654/Unique_Pumpkin_Spice_Recipes_lz0txw.jpg",
     readTime: 4
   },
   {
@@ -240,7 +240,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238661/A_brief_History_of_Spooky_Spices_and_Haunted_Herbs_lziuph.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238661/A_brief_History_of_Spooky_Spices_and_Haunted_Herbs_lziuph.jpg",
     readTime: 5
   },
   {
@@ -253,7 +253,7 @@ const blogs = [
     `,
     author: "Chef Marcus Vance",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238653/Top_Grilling_Recipes_From_Allrecipes_esesjn.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238653/Top_Grilling_Recipes_From_Allrecipes_esesjn.jpg",
     readTime: 5
   },
   {
@@ -274,7 +274,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238652/Ingrdient_Spotlight_Cajun_Blackening_Seasoning_wmfyj1.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238652/Ingrdient_Spotlight_Cajun_Blackening_Seasoning_wmfyj1.jpg",
     readTime: 4
   },
   {
@@ -287,7 +287,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238654/Pickling_Recipes_p72wb0.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238654/Pickling_Recipes_p72wb0.jpg",
     readTime: 4
   },
   {
@@ -300,7 +300,7 @@ const blogs = [
     `,
     author: "Chef Marcus Vance",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238652/Summer_Grilling_Recipes_nmxt0d.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238652/Summer_Grilling_Recipes_nmxt0d.jpg",
     readTime: 4
   },
   {
@@ -313,7 +313,7 @@ const blogs = [
     `,
     author: "Chef Marcus Vance",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238656/Spicy_Rub_Recipes_dzqdj7.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238656/Spicy_Rub_Recipes_dzqdj7.jpg",
     readTime: 4
   },
   {
@@ -326,7 +326,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238649/Deliciious_Lavender_Recipes_ocr9au.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238649/Deliciious_Lavender_Recipes_ocr9au.jpg",
     readTime: 5
   },
   {
@@ -339,7 +339,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238649/The_best_delivered_Egg_Recipes_pwnm4l.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238649/The_best_delivered_Egg_Recipes_pwnm4l.jpg",
     readTime: 4
   },
   {
@@ -360,7 +360,7 @@ const blogs = [
     `,
     author: "Chef Marcus Vance",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238650/How_and_Why_to_grind_your_own_spices_eyofti.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238650/How_and_Why_to_grind_your_own_spices_eyofti.jpg",
     readTime: 5
   },
   {
@@ -373,7 +373,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238649/Loose_Leaf_Tea_The_better_way_to_brew_bci789.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238649/Loose_Leaf_Tea_The_better_way_to_brew_bci789.jpg",
     readTime: 5
   },
   {
@@ -386,7 +386,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238653/Cocoa_Husk_Tea_kjlysl.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238653/Cocoa_Husk_Tea_kjlysl.jpg",
     readTime: 4
   },
   {
@@ -399,7 +399,7 @@ const blogs = [
     `,
     author: "Elena Rostova",
     category: "Culinary Journal",
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784238652/Nacional_Cacao_The_return_of_a_Legend_bw2qhg.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784238652/Nacional_Cacao_The_return_of_a_Legend_bw2qhg.jpg",
     readTime: 5
   }
 ];
@@ -416,7 +416,7 @@ const recipes = [
       <p>While the chickpeas are frying, mix your cumin, smoked paprika, garlic powder, and sea salt in a small bowl.</p>
       <p>Immediately after removing the chickpeas from the air fryer, toss them in the spice mixture while they are hot. The oil will bond the spices to the chickpeas, creating a beautiful flavorful coating.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239996/Air_Fryer_difrb7.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239996/Air_Fryer_difrb7.jpg",
     prepTime: 5,
     cookTime: 15,
     servings: 4,
@@ -434,7 +434,7 @@ const recipes = [
       <p>Shape into a round boule, place in a floured proofing basket, and cold ferment in the refrigerator overnight (12 to 15 hours) to develop a deep sourdough tang.</p>
       <p>Preheat your oven and Dutch oven to 450°F. Score the top of the dough, sprinkle with coarse sea salt, transfer to the hot Dutch oven, and bake covered for 20 minutes. Remove the lid and bake for another 20 minutes until the crust is a deep golden brown.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239983/Baking_nx2rbr.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239983/Baking_nx2rbr.jpg",
     prepTime: 45,
     cookTime: 40,
     servings: 8,
@@ -451,7 +451,7 @@ const recipes = [
       <p>In a small bowl, whisk together the grated garlic, soy sauce, rice vinegar, and chili oil.</p>
       <p>Toss the dried cucumbers in the dressing until fully coated. Transfer to a serving bowl and garnish with toasted sesame seeds. Chill in the refrigerator for 15 minutes before serving cold.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239984/Cold_Prep_glq2zh.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239984/Cold_Prep_glq2zh.jpg",
     prepTime: 25,
     cookTime: 0,
     servings: 4,
@@ -468,7 +468,7 @@ const recipes = [
       <p>Heat 2 inches of vegetable oil in a heavy Dutch oven or deep fryer to 350°F.</p>
       <p>Drop spoonfuls of the battered vegetable mixture into the hot oil. Fry in batches for 4 to 5 minutes, turning occasionally, until they are deep golden-brown and crispy. Drain on paper towels and serve hot with chutney.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239982/Deep_Frying_fxyov4.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239982/Deep_Frying_fxyov4.jpg",
     prepTime: 15,
     cookTime: 15,
     servings: 6,
@@ -486,7 +486,7 @@ const recipes = [
       <p>Scatter the spiced crumble topping evenly over the berries in the baking dish.</p>
       <p>Bake for 35 to 40 minutes, or until the fruit is bubbling at the edges and the crumble topping is a warm golden-brown. Serve warm.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239984/Desserts_tpatxs.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239984/Desserts_tpatxs.jpg",
     prepTime: 10,
     cookTime: 40,
     servings: 6,
@@ -503,7 +503,7 @@ const recipes = [
       <p>Remove the pan from the heat, add the fresh mint leaves and lemon slices, cover, and let steep for 5 minutes.</p>
       <p>Strain the tea into a teapot or mugs and stir in the raw honey. Serve hot, or let it cool and pour over ice for a refreshing summer cooler.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784240073/pexels-kunal-lakhotia-781256899-36268520_cuz1zy.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784240073/pexels-kunal-lakhotia-781256899-36268520_cuz1zy.jpg",
     prepTime: 5,
     cookTime: 10,
     servings: 4,
@@ -519,7 +519,7 @@ const recipes = [
       <p>Arrange the seasoned potatoes in a single layer on a large rimmed baking sheet, cut-side down, to maximize browning.</p>
       <p>Roast for 30 to 35 minutes, tossing them halfway through, until the skins are crispy and golden and the insides are tender.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239984/Roasting_sajikn.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239984/Roasting_sajikn.jpg",
     prepTime: 10,
     cookTime: 35,
     servings: 4,
@@ -535,7 +535,7 @@ const recipes = [
       <p>In a small cup, whisk together the olive oil, fresh lemon juice, ground sumac, salt, and pepper.</p>
       <p>Drizzle the sumac dressing over the salad and toss gently to coat all ingredients. Let it sit at room temperature for 10 minutes before serving to let the flavors blend.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239979/Salad_g8uoly.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239979/Salad_g8uoly.jpg",
     prepTime: 15,
     cookTime: 0,
     servings: 4,
@@ -551,7 +551,7 @@ const recipes = [
       <p>Whisk the ingredients vigorously until a smooth, uniform sauce forms.</p>
       <p>Taste and adjust salt as needed. Cover and refrigerate for at least 30 minutes before serving to allow the garlic and Cajun spices to bloom in the cream.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239978/Sauces_pj79uj.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239978/Sauces_pj79uj.jpg",
     prepTime: 10,
     cookTime: 0,
     servings: 8,
@@ -569,7 +569,7 @@ const recipes = [
       <p>Return the beef and its juices to the Dutch oven. Pour in the beef bone broth, scraping the bottom of the pan to release caramelized bits.</p>
       <p>Bring the pot to a boil, cover tightly, reduce heat to low, and simmer gently for 2 hours until the beef is incredibly tender and the gravy has thickened.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239980/SimmerBraise_avug7d.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239980/SimmerBraise_avug7d.jpg",
     prepTime: 20,
     cookTime: 120,
     servings: 4,
@@ -586,7 +586,7 @@ const recipes = [
       <p>Toss in the broccoli florets and sliced red bell pepper, stir-frying for 4 minutes until they are tender-crisp.</p>
       <p>In a small cup, mix the soy sauce and maple syrup. Return the tofu to the wok, pour the sauce over, and stir-fry for 1 minute until glazed and hot.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239978/Stir_Fry_gbnr7h.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239978/Stir_Fry_gbnr7h.jpg",
     prepTime: 15,
     cookTime: 15,
     servings: 3,
@@ -603,7 +603,7 @@ const recipes = [
       <p>Add the rinsed yellow lentils and pour in the vegetable broth. Bring to a boil, then turn the heat to low, cover, and simmer for 25 to 30 minutes until the lentils are tender and falling apart.</p>
       <p>Stir in the coconut milk, season with salt and pepper to taste, and simmer for another 5 minutes before serving warm with flatbread.</p>
     `,
-    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784239980/Stove_Top_nev4hx.jpg",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239980/Stove_Top_nev4hx.jpg",
     prepTime: 10,
     cookTime: 35,
     servings: 6,

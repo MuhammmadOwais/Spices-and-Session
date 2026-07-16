@@ -10,8 +10,12 @@ require('dotenv').config();
 
 const shopRoutes = require('./routes/shopRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const compression = require('compression');
 
 const app = express();
+
+// Apply response compression middleware for fast assets delivery
+app.use(compression());
 
 // Ensure upload and assets directories exist
 const uploadDir = path.join(__dirname, 'public', 'uploads');
@@ -35,14 +39,16 @@ if (mongoUri) {
   console.log('Skipping direct DB connection: MONGODB_URI not provided.');
 }
 
-// View Engine Setup
+// View Engine Setup & Cache
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.set('view cache', true); // Cache EJS compiled templates in production/staging
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static assets with browser caching headers (7 days cache)
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: '7d' }));
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'supersecretspicehavenkey',
