@@ -1,19 +1,18 @@
-const axios = require('axios');
-const API_URL = process.env.BACKEND_API_URL || 'http://localhost:5000';
+const Product = require('../models/Product');
+const Blog = require('../models/Blog');
 
 exports.getHome = async (req, res) => {
   try {
-    const featuredRes = await axios.get(`${API_URL}/api/products?featured=true&limit=4`);
-    const blogsRes = await axios.get(`${API_URL}/api/blogs?limit=3`);
-    
+    const featuredProducts = await Product.find({ isFeatured: true }).limit(4);
+    const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(3);
     res.render('home', {
       title: 'Artisan Spice Co. | Premium Spices & Seasonings',
-      featuredProducts: featuredRes.data,
-      latestBlogs: blogsRes.data,
+      featuredProducts,
+      latestBlogs,
       path: '/'
     });
   } catch (error) {
-    console.error('Error rendering home page:', error.message);
+    console.error('Error rendering home page:', error);
     res.status(500).send('Server Error');
   }
 };
@@ -21,38 +20,58 @@ exports.getHome = async (req, res) => {
 exports.getProducts = async (req, res) => {
   try {
     const { category, search, sort } = req.query;
+    let query = {};
     
-    const response = await axios.get(`${API_URL}/api/products`, {
-      params: { category, search, sort }
-    });
+    if (category && category !== '') {
+      query.category = category;
+    }
+    
+    if (search && search !== '') {
+      query.$or = [
+        { name: { $regex: search, $options: 'i' } },
+        { description: { $regex: search, $options: 'i' } },
+        { ingredients: { $regex: search, $options: 'i' } }
+      ];
+    }
+
+    let sortObj = { createdAt: -1 }; // default newest
+    if (sort === 'price-asc') {
+      sortObj = { price: 1 };
+    } else if (sort === 'price-desc') {
+      sortObj = { price: -1 };
+    } else if (sort === 'name-asc') {
+      sortObj = { name: 1 };
+    } else if (sort === 'name-desc') {
+      sortObj = { name: -1 };
+    }
+
+    const products = await Product.find(query).sort(sortObj);
     
     res.render('products', {
       title: 'Shop Premium Spices | Artisan Spice Co.',
-      products: response.data,
+      products,
       selectedCategory: category || '',
       searchQuery: search || '',
       selectedSort: sort || '',
       path: '/products'
     });
   } catch (error) {
-    console.error('Error rendering products page:', error.message);
+    console.error('Error rendering products page:', error);
     res.status(500).send('Server Error');
   }
 };
 
 exports.getProductDetail = async (req, res) => {
   try {
-    const productRes = await axios.get(`${API_URL}/api/products/${req.params.slug}`);
-    const product = productRes.data;
+    const product = await Product.findOne({ slug: req.params.slug });
+    if (!product) {
+      return res.status(404).render('404', { title: 'Product Not Found', path: '/products' });
+    }
     
-    const relatedRes = await axios.get(`${API_URL}/api/products`, {
-      params: { category: product.category }
-    });
-    
-    // Filter out current product
-    const relatedProducts = relatedRes.data
-      .filter(p => p._id !== product._id)
-      .slice(0, 4);
+    const relatedProducts = await Product.find({
+      category: product.category,
+      _id: { $ne: product._id }
+    }).limit(4);
 
     res.render('product-detail', {
       title: `${product.name} | Artisan Spice Co.`,
@@ -61,38 +80,40 @@ exports.getProductDetail = async (req, res) => {
       path: '/products'
     });
   } catch (error) {
-    console.error('Error rendering product detail:', error.message);
-    res.status(404).render('404', { title: 'Product Not Found', path: '/products' });
+    console.error('Error rendering product detail:', error);
+    res.status(500).send('Server Error');
   }
 };
 
 exports.getBlogs = async (req, res) => {
   try {
-    const response = await axios.get(`${API_URL}/api/blogs`);
-    
+    const blogs = await Blog.find().sort({ createdAt: -1 });
     res.render('blogs', {
       title: 'Aromatic Journal | Artisan Spice Co.',
-      blogs: response.data,
+      blogs,
       path: '/blogs'
     });
   } catch (error) {
-    console.error('Error rendering blogs page:', error.message);
+    console.error('Error rendering blogs page:', error);
     res.status(500).send('Server Error');
   }
 };
 
 exports.getBlogDetail = async (req, res) => {
   try {
-    const response = await axios.get(`${API_URL}/api/blogs/${req.params.slug}`);
+    const blog = await Blog.findOne({ slug: req.params.slug });
+    if (!blog) {
+      return res.status(404).render('404', { title: 'Blog Post Not Found', path: '/blogs' });
+    }
     
     res.render('blog-detail', {
-      title: `${response.data.title} | Artisan Spice Co.`,
-      blog: response.data,
+      title: `${blog.title} | Artisan Spice Co.`,
+      blog,
       path: '/blogs'
     });
   } catch (error) {
-    console.error('Error rendering blog post detail:', error.message);
-    res.status(404).render('404', { title: 'Blog Post Not Found', path: '/blogs' });
+    console.error('Error rendering blog post detail:', error);
+    res.status(500).send('Server Error');
   }
 };
 
@@ -131,21 +152,11 @@ exports.getCheckout = (req, res) => {
   });
 };
 
-exports.postCheckout = async (req, res) => {
-  try {
-    const { name, email, address, city, zip, cardName, cardNumber } = req.body;
-    
-    const response = await axios.post(`${API_URL}/api/checkout`, {
-      name, email, address, city, zip, cardName, cardNumber
-    });
-    
-    res.render('checkout-success', {
-      title: 'Order Confirmed! | Artisan Spice Co.',
-      path: '/checkout',
-      orderInfo: response.data.order
-    });
-  } catch (error) {
-    console.error('Error during checkout API submit:', error.message);
-    res.status(500).send('Checkout processing failed');
-  }
+exports.postCheckout = (req, res) => {
+  const { name, email, address, city, zip } = req.body;
+  res.render('checkout-success', {
+    title: 'Order Confirmed! | Artisan Spice Co.',
+    path: '/checkout',
+    orderInfo: { name, email, address, city, zip }
+  });
 };

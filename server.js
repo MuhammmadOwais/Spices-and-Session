@@ -2,6 +2,7 @@ const dns = require('dns');
 dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 const express = require('express');
+const mongoose = require('mongoose');
 const session = require('express-session');
 const path = require('path');
 const fs = require('fs');
@@ -23,6 +24,16 @@ const imagesDir = path.join(__dirname, 'public', 'images');
     fs.mkdirSync(dir, { recursive: true });
   }
 });
+
+// Database Connection
+const mongoUri = process.env.MONGODB_URI;
+if (mongoUri) {
+  mongoose.connect(mongoUri)
+    .then(() => console.log('Successfully connected to MongoDB Atlas.'))
+    .catch(err => console.error('MongoDB connection error:', err));
+} else {
+  console.log('Skipping direct DB connection: MONGODB_URI not provided.');
+}
 
 // View Engine Setup
 app.set('view engine', 'ejs');
@@ -61,5 +72,7 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Artisan Spice Co. Frontend Server running at http://localhost:${PORT}`);
+  console.log(`Artisan Spice Co. server running at http://localhost:${PORT}`);
 });
+
+module.exports = app; // Export app for Vercel serverless integration

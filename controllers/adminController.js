@@ -1,5 +1,6 @@
-const axios = require('axios');
-const API_URL = process.env.BACKEND_API_URL || 'http://localhost:5000';
+const Product = require('../models/Product');
+const Blog = require('../models/Blog');
+const Admin = require('../models/Admin');
 
 // --- Auth Operations ---
 
@@ -18,29 +19,22 @@ exports.getLogin = (req, res) => {
 exports.postLogin = async (req, res) => {
   try {
     const { username, password } = req.body;
+    const admin = await Admin.findOne({ username });
     
-    // Validate credentials on Backend
-    const response = await axios.post(`${API_URL}/api/auth/login`, { username, password });
-    
-    if (response.data && response.data.success) {
-      req.session.isAdmin = true;
-      return res.redirect('/admin');
+    if (!admin || !(await admin.comparePassword(password))) {
+      return res.render('admin/login', {
+        title: 'Admin Login | Artisan Spice Co.',
+        error: 'Invalid username or password',
+        msg: null,
+        path: '/admin/login'
+      });
     }
     
-    res.render('admin/login', {
-      title: 'Admin Login | Artisan Spice Co.',
-      error: 'Invalid username or password',
-      msg: null,
-      path: '/admin/login'
-    });
+    req.session.isAdmin = true;
+    res.redirect('/admin');
   } catch (error) {
-    console.error('Admin login call error:', error.message);
-    res.render('admin/login', {
-      title: 'Admin Login | Artisan Spice Co.',
-      error: 'Invalid admin credentials or backend server offline',
-      msg: null,
-      path: '/admin/login'
-    });
+    console.error('Login error:', error);
+    res.status(500).send('Server Error');
   }
 };
 
@@ -55,18 +49,18 @@ exports.logout = (req, res) => {
 
 exports.getDashboard = async (req, res) => {
   try {
-    const productCountRes = await axios.get(`${API_URL}/api/products`);
-    const blogCountRes = await axios.get(`${API_URL}/api/blogs`);
+    const productCount = await Product.countDocuments();
+    const blogCount = await Blog.countDocuments();
     
     res.render('admin/dashboard', {
       title: 'Admin Dashboard | Artisan Spice Co.',
-      productCount: productCountRes.data.length,
-      blogCount: blogCountRes.data.length,
+      productCount,
+      blogCount,
       path: '/admin'
     });
   } catch (error) {
-    console.error('Dashboard api calls error:', error.message);
-    res.status(500).send('Server Error: Backend API might be offline');
+    console.error('Dashboard error:', error);
+    res.status(500).send('Server Error');
   }
 };
 
@@ -74,14 +68,14 @@ exports.getDashboard = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    const response = await axios.get(`${API_URL}/api/products`);
+    const products = await Product.find().sort({ createdAt: -1 });
     res.render('admin/products', {
       title: 'Manage Products | Artisan Spice Co.',
-      products: response.data,
+      products,
       path: '/admin/products'
     });
   } catch (error) {
-    console.error('Admin list products error:', error.message);
+    console.error('Admin get products error:', error);
     res.status(500).send('Server Error');
   }
 };
@@ -104,30 +98,33 @@ exports.postCreateProduct = async (req, res) => {
       finalImageUrl = `/uploads/${req.file.filename}`;
     }
 
-    await axios.post(`${API_URL}/api/products`, {
+    const sizeArray = sizes 
+      ? sizes.split(',').map(s => s.trim()).filter(s => s.length > 0)
+      : ['2 oz Jar', '4 oz Flatpack', '1 lb Bulk'];
+
+    const newProduct = new Product({
       name,
       description,
-      price,
+      price: parseFloat(price),
       category,
-      sizes,
+      sizes: sizeArray,
       imageUrl: finalImageUrl,
       ingredients,
-      isFeatured: isFeatured === 'on' ? 'true' : 'false',
-      stockStatus
+      isFeatured: isFeatured === 'on',
+      stockStatus: stockStatus || 'in-stock'
     });
 
+    await newProduct.save();
     res.redirect('/admin/products');
   } catch (error) {
-    console.error('Create product API post error:', error.message);
-    res.status(500).send('Failed to create product');
+    console.error('Create product error:', error);
+    res.status(500).send('Server Error');
   }
 };
 
 exports.getEditProduct = async (req, res) => {
   try {
-    const response = await axios.get(`${API_URL}/api/products`);
-    // Find the product by checking slug / ID (API returns all products)
-    const product = response.data.find(p => p._id === req.params.id);
+    const product = await Product.findById(req.params.id);
     if (!product) {
       return res.status(404).send('Product not found');
     }
@@ -138,7 +135,7 @@ exports.getEditProduct = async (req, res) => {
       path: '/admin/products'
     });
   } catch (error) {
-    console.error('Edit product form error:', error.message);
+    console.error('Edit product form error:', error);
     res.status(500).send('Server Error');
   }
 };
@@ -146,38 +143,46 @@ exports.getEditProduct = async (req, res) => {
 exports.postUpdateProduct = async (req, res) => {
   try {
     const { name, description, price, category, sizes, imageUrl, ingredients, isFeatured, stockStatus } = req.body;
+    const product = await Product.findById(req.params.id);
     
-    let finalImageUrl = imageUrl;
+    if (!product) {
+      return res.status(404).send('Product not found');
+    }
+
+    let finalImageUrl = imageUrl || product.imageUrl;
     if (req.file) {
       finalImageUrl = `/uploads/${req.file.filename}`;
     }
 
-    await axios.put(`${API_URL}/api/products/${req.params.id}`, {
-      name,
-      description,
-      price,
-      category,
-      sizes,
-      imageUrl: finalImageUrl,
-      ingredients,
-      isFeatured: isFeatured === 'on',
-      stockStatus
-    });
+    const sizeArray = sizes 
+      ? sizes.split(',').map(s => s.trim()).filter(s => s.length > 0)
+      : product.sizes;
 
+    product.name = name;
+    product.description = description;
+    product.price = parseFloat(price);
+    product.category = category;
+    product.sizes = sizeArray;
+    product.imageUrl = finalImageUrl;
+    product.ingredients = ingredients;
+    product.isFeatured = isFeatured === 'on';
+    product.stockStatus = stockStatus;
+
+    await product.save();
     res.redirect('/admin/products');
   } catch (error) {
-    console.error('Update product API call error:', error.message);
-    res.status(500).send('Failed to update product');
+    console.error('Update product error:', error);
+    res.status(500).send('Server Error');
   }
 };
 
 exports.postDeleteProduct = async (req, res) => {
   try {
-    await axios.delete(`${API_URL}/api/products/${req.params.id}`);
+    await Product.findByIdAndDelete(req.params.id);
     res.redirect('/admin/products');
   } catch (error) {
-    console.error('Delete product API error:', error.message);
-    res.status(500).send('Failed to delete product');
+    console.error('Delete product error:', error);
+    res.status(500).send('Server Error');
   }
 };
 
@@ -185,14 +190,14 @@ exports.postDeleteProduct = async (req, res) => {
 
 exports.getBlogs = async (req, res) => {
   try {
-    const response = await axios.get(`${API_URL}/api/blogs`);
+    const blogs = await Blog.find().sort({ createdAt: -1 });
     res.render('admin/blogs', {
       title: 'Manage Blogs | Artisan Spice Co.',
-      blogs: response.data,
+      blogs,
       path: '/admin/blogs'
     });
   } catch (error) {
-    console.error('Admin list blogs error:', error.message);
+    console.error('Admin get blogs error:', error);
     res.status(500).send('Server Error');
   }
 };
@@ -215,27 +220,27 @@ exports.postCreateBlog = async (req, res) => {
       finalImageUrl = `/uploads/${req.file.filename}`;
     }
 
-    await axios.post(`${API_URL}/api/blogs`, {
+    const newBlog = new Blog({
       title,
       subtitle,
       content,
-      author,
-      category,
+      author: author || 'Artisan Spice Staff',
+      category: category || 'Recipes & Guides',
       imageUrl: finalImageUrl,
-      readTime
+      readTime: parseInt(readTime) || 5
     });
 
+    await newBlog.save();
     res.redirect('/admin/blogs');
   } catch (error) {
-    console.error('Create blog API post error:', error.message);
-    res.status(500).send('Failed to publish article');
+    console.error('Create blog error:', error);
+    res.status(500).send('Server Error');
   }
 };
 
 exports.getEditBlog = async (req, res) => {
   try {
-    const response = await axios.get(`${API_URL}/api/blogs`);
-    const blog = response.data.find(b => b._id === req.params.id);
+    const blog = await Blog.findById(req.params.id);
     if (!blog) {
       return res.status(404).send('Blog post not found');
     }
@@ -246,7 +251,7 @@ exports.getEditBlog = async (req, res) => {
       path: '/admin/blogs'
     });
   } catch (error) {
-    console.error('Edit blog form error:', error.message);
+    console.error('Edit blog form error:', error);
     res.status(500).send('Server Error');
   }
 };
@@ -254,35 +259,39 @@ exports.getEditBlog = async (req, res) => {
 exports.postUpdateBlog = async (req, res) => {
   try {
     const { title, subtitle, content, author, category, imageUrl, readTime } = req.body;
+    const blog = await Blog.findById(req.params.id);
     
-    let finalImageUrl = imageUrl;
+    if (!blog) {
+      return res.status(404).send('Blog post not found');
+    }
+
+    let finalImageUrl = imageUrl || blog.imageUrl;
     if (req.file) {
       finalImageUrl = `/uploads/${req.file.filename}`;
     }
 
-    await axios.put(`${API_URL}/api/blogs/${req.params.id}`, {
-      title,
-      subtitle,
-      content,
-      author,
-      category,
-      imageUrl: finalImageUrl,
-      readTime
-    });
+    blog.title = title;
+    blog.subtitle = subtitle;
+    blog.content = content;
+    blog.author = author;
+    blog.category = category;
+    blog.imageUrl = finalImageUrl;
+    blog.readTime = parseInt(readTime) || 5;
 
+    await blog.save();
     res.redirect('/admin/blogs');
   } catch (error) {
-    console.error('Update blog API put error:', error.message);
-    res.status(500).send('Failed to update article');
+    console.error('Update blog error:', error);
+    res.status(500).send('Server Error');
   }
 };
 
 exports.postDeleteBlog = async (req, res) => {
   try {
-    await axios.delete(`${API_URL}/api/blogs/${req.params.id}`);
+    await Blog.findByIdAndDelete(req.params.id);
     res.redirect('/admin/blogs');
   } catch (error) {
-    console.error('Delete blog API error:', error.message);
-    res.status(500).send('Failed to delete blog post');
+    console.error('Delete blog error:', error);
+    res.status(500).send('Server Error');
   }
 };
