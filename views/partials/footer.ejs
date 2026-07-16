@@ -4,45 +4,31 @@
   <footer class="site-footer">
     <div class="footer-container">
       
-      <!-- Column 1: Brand Info -->
+      <!-- Column 1: Brand Logo & Description -->
       <div class="footer-col brand-info-col">
         <a href="/" class="brand-logo footer-logo">
           <img src="https://res.cloudinary.com/dawp1fcci/image/upload/v1784224715/Gemini_Generated_Image_ra2fuvra2fuvra2f-removebg-preview_cerpzn.png" alt="Spicery Co." class="brand-logo-img">
         </a>
         <p class="brand-bio">
-          Sourcing the world's finest spices, herbs, seasonings, and salts. Freshly ground in small batches and packed in the USA to elevate your home culinary creations.
+          Sourcing the world's finest spices, ground in small batches to preserve their native oils.
         </p>
-
       </div>
 
-      <!-- Column 2: Quick Links -->
+      <!-- Column 2: Navigation Pages -->
       <div class="footer-col links-col">
-        <h4>Explore</h4>
+        <h4>Navigation</h4>
         <ul>
-          <li><a href="/products">All Products</a></li>
-          <li><a href="/products?category=spices">Ground & Whole Spices</a></li>
-          <li><a href="/products?category=seasonings">Seasoning Blends</a></li>
-          <li><a href="/products?category=herbs">Botanical Herbs</a></li>
-          <li><a href="/products?category=salts">Artisanal Salts</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 3: Resources & Support -->
-      <div class="footer-col links-col">
-        <h4>Company</h4>
-        <ul>
+          <li><a href="/">Home</a></li>
           <li><a href="/about">About Us</a></li>
           <li><a href="/blogs">Culinary Journal</a></li>
-          <li><a href="/privacy-policy">Privacy Policy</a></li>
-          <li><a href="/terms-conditions">Terms & Conditions</a></li>
-          <li><a href="/admin/login">Admin Dashboard</a></li>
+          <li><a href="/products">Shop Spices</a></li>
         </ul>
       </div>
 
-      <!-- Column 4: Newsletter -->
+      <!-- Column 3: Newsletter (Compact) -->
       <div class="footer-col newsletter-col">
-        <h4>Join The Pantry</h4>
-        <p>Subscribe to receive cooking tips, fresh recipes, and early access to limited edition spice blends.</p>
+        <h4>Stay Updated</h4>
+        <p>Subscribe to receive chef recipes and fresh spice arrivals.</p>
         <form class="newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Spicery Co.!'); this.reset();">
           <div class="form-input-group">
             <input type="email" placeholder="Your email address" required aria-label="Email address">
@@ -56,20 +42,17 @@
     <!-- Bottom Bar -->
     <div class="footer-bottom">
       <div class="bottom-container">
-        <p>&copy; <%= new Date().getFullYear() %> Spicery Co. All rights reserved. Taste you can trust.</p>
-        <div class="payment-badges">
-          <i class="fa-brands fa-cc-visa"></i>
-          <i class="fa-brands fa-cc-mastercard"></i>
-          <i class="fa-brands fa-cc-amex"></i>
-          <i class="fa-brands fa-cc-discover"></i>
-          <i class="fa-brands fa-cc-apple-pay"></i>
+        <p class="copyright-text">&copy; <%= new Date().getFullYear() %> Spicery Co. All rights reserved.</p>
+        <div class="bottom-legal-links">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <span class="separator">|</span>
+          <a href="/terms-conditions">Terms of Service</a>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- Script Assets -->
-  <script src="/js/cart.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>

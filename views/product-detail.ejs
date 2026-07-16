@@ -42,50 +42,17 @@
       
       <p class="specs-description"><%= product.description %></p>
       
-      <!-- Interactive purchase panel -->
-      <% if (product.stockStatus !== 'out-of-stock') { %>
-        <form class="purchase-panel-form" id="product-detail-buy-form" onsubmit="event.preventDefault();">
-          
-          <!-- Size Selector -->
-          <% if (product.sizes && product.sizes.length > 0) { %>
-            <div class="purchase-option-group">
-              <label for="detail-size-select">Select Packaging Size</label>
-              <div class="size-buttons">
-                <% product.sizes.forEach((size, idx) => { %>
-                  <label class="size-button-label">
-                    <input type="radio" name="sizeOption" value="<%= size %>" <%= idx === 0 ? 'checked' : '' %> onchange="adjustPriceBySize('<%= size %>', <%= product.price %>)">
-                    <span class="size-btn-text"><%= size %></span>
-                  </label>
-                <% }) %>
-              </div>
-            </div>
-          <% } %>
-
-          <!-- Quantity Selector -->
-          <div class="purchase-option-group quantity-actions-row">
-            <div class="quantity-picker-wrapper">
-              <label for="detail-quantity-input">Quantity</label>
-              <div class="quantity-input-group">
-                <button type="button" class="qty-btn-minus" onclick="adjustQtyDetail(-1)"><i class="fa-solid fa-minus"></i></button>
-                <input type="number" id="detail-quantity-input" name="quantity" min="1" value="1" readonly>
-                <button type="button" class="qty-btn-plus" onclick="adjustQtyDetail(1)"><i class="fa-solid fa-plus"></i></button>
-              </div>
-            </div>
-            
-            <!-- Submit Add Button -->
-            <div class="buy-button-wrapper">
-              <button type="button" class="btn btn-primary btn-large btn-full add-detail-to-cart-btn"
-                      data-id="<%= product._id %>"
-                      data-name="<%= product.name %>"
-                      data-price="<%= product.price %>"
-                      data-image="<%= product.imageUrl %>">
-                <i class="fa-solid fa-bag-shopping"></i> Add to Pantry Cart
-              </button>
-            </div>
+      <!-- Available Sizes Listing -->
+      <% if (product.sizes && product.sizes.length > 0) { %>
+        <div class="pantry-sizes-listing">
+          <span class="sizes-label">Available Packaging Sizes</span>
+          <div class="sizes-container">
+            <% product.sizes.forEach((size) => { %>
+              <span class="size-pill"><%= size %></span>
+            <% }) %>
           </div>
-
-        </form>
-      <% } else { %>
+        </div>
+      <% if (product.stockStatus === 'out-of-stock') { %>
         <div class="out-of-stock-alert">
           <h4>Sold Out</h4>
           <p>We are currently grinding a fresh batch of this spice. Enter your email below to get notified when it returns.</p>
@@ -169,37 +136,6 @@
 </section>
 
 <script>
-  // Simple helper script to handle detail price modification based on selected sizes
-  function adjustPriceBySize(sizeName, basePrice) {
-    const priceDisplay = document.getElementById('specs-display-price');
-    const buyBtn = document.querySelector('.add-detail-to-cart-btn');
-    let multiplier = 1.0;
-    
-    // Scale prices mock style
-    if (sizeName.includes('4 oz') || sizeName.includes('5 oz')) {
-      multiplier = 1.8; // bulk sizes
-    } else if (sizeName.includes('8 oz')) {
-      multiplier = 3.2;
-    } else if (sizeName.includes('1 lb') || sizeName.includes('Bulk')) {
-      multiplier = 5.0;
-    }
-    
-    const finalPrice = basePrice * multiplier;
-    priceDisplay.textContent = '$' + finalPrice.toFixed(2);
-    if (buyBtn) {
-      buyBtn.setAttribute('data-price', finalPrice.toFixed(2));
-      buyBtn.setAttribute('data-size', sizeName);
-    }
-  }
-
-  function adjustQtyDetail(amount) {
-    const qtyInput = document.getElementById('detail-quantity-input');
-    let val = parseInt(qtyInput.value) || 1;
-    val += amount;
-    if (val < 1) val = 1;
-    qtyInput.value = val;
-  }
-
   function toggleAccordion(button) {
     const item = button.parentElement;
     item.classList.toggle('active');

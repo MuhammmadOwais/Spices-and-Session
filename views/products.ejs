@@ -135,19 +135,7 @@
                 
                 <div class="product-card-footer">
                   <span class="product-price">$<%= product.price.toFixed(2) %></span>
-                  
-                  <% if (product.stockStatus !== 'out-of-stock') { %>
-                    <button class="btn-add-to-cart add-to-cart-btn" 
-                            data-id="<%= product._id %>"
-                            data-name="<%= product.name %>"
-                            data-price="<%= product.price %>"
-                            data-image="<%= product.imageUrl %>"
-                            data-size="<%= product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'Standard' %>">
-                      <i class="fa-solid fa-cart-plus"></i> Add
-                    </button>
-                  <% } else { %>
-                    <button class="btn-add-to-cart btn-disabled" disabled>Sold Out</button>
-                  <% } %>
+                  <a href="/products/<%= product.slug %>" class="btn btn-secondary">Details</a>
                 </div>
               </div>
             </div>
