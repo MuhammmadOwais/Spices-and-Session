@@ -2686,7 +2686,8 @@ p {
   position: fixed;
   top: 0;
   left: 0;
-  width: 280px;
+  width: 75vw;
+  max-width: 380px;
   height: 100vh;
   background-color: var(--color-bg-cream);
   z-index: 1002;

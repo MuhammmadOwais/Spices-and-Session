@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="/css/style.css?v=1.0.6">
+  <link rel="stylesheet" href="/css/style.css?v=1.0.8">
   
   <!,  Custom Favicon , >
   <link rel="icon" type="image/png" href="https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784166642/Gemini_Generated_Image_qvj3uyqvj3uyqvj3-removebg-preview_bwdmdg.png">
@@ -127,7 +127,7 @@
     </div>
   </header>
 
-  <!,  Mobile Drawer Menu , >
+  <!-- Mobile Drawer Menu -->
   <div class="mobile-drawer" id="mobile-drawer">
     <div class="drawer-header">
       <div class="brand-logo">
@@ -136,15 +136,9 @@
       <button class="drawer-close" id="mobile-drawer-close"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="drawer-content">
-      <!-- Mobile Drawer Search Bar -->
-      <div class="mobile-search-box">
-        <div class="header-search-input-wrapper">
-          <i class="fa-solid fa-magnifying-glass header-search-icon"></i>
-          <input type="text" id="mobile-search-input" placeholder="Search spices..." autocomplete="off">
-        </div>
-        <div id="mobile-search-results" class="header-search-results"></div>
-      </div>
-      <nav class="mobile-nav">
+      
+      <!-- 1. Pages Navigation Menu -->
+      <nav class="mobile-nav" style="margin-bottom: 2rem;">
         <ul>
           <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
           <li class="mobile-has-subnav">
@@ -163,24 +157,41 @@
           <li><a href="/recipes" class="<%= path.startsWith('/recipes') ? 'active' : '' %>">Recipes</a></li>
           <li><a href="/blogs" class="<%= path.startsWith('/blogs') ? 'active' : '' %>">Culinary Journal</a></li>
           <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About Us</a></li>
-          <li><a href="/contact" class="<%= path === '/contact' ? 'active' : '' %>">Contact Us</a></li>
-          
-           <hr class="mobile-nav-divider">
-           <% if (userEmail) { %>
-             <li class="mobile-drawer-user-info"><span class="mobile-user-greeting"><i class="fa-solid fa-circle-user"></i> <%= userEmail %></span></li>
-             <li><a href="/logout" class="mobile-admin-logout">Sign Out</a></li>
-           <% } else { %>
-             <li><a href="/login" class="mobile-admin-link">Sign In</a></li>
-             <li><a href="/signup" class="mobile-admin-link">Create Account</a></li>
-           <% } %>
-           
-           <% if (isAdminUser) { %>
-             <hr class="mobile-nav-divider">
-             <li><a href="/admin" class="mobile-admin-link">Admin Dashboard</a></li>
-             <li><a href="/admin/logout" class="mobile-admin-logout">Admin Logout</a></li>
-           <% } %>
         </ul>
       </nav>
+
+      <!-- 2. Search Bar -->
+      <div class="mobile-search-box" style="margin-bottom: 2rem; padding: 0; background: none; border-bottom: none;">
+        <div class="header-search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass header-search-icon"></i>
+          <input type="text" id="mobile-search-input" placeholder="Search spices..." autocomplete="off">
+        </div>
+        <div id="mobile-search-results" class="header-search-results"></div>
+      </div>
+
+      <!-- 3. Contact Page Button -->
+      <div class="mobile-contact-wrapper" style="margin-bottom: 2rem;">
+        <a href="/contact" class="btn btn-secondary <%= path === '/contact' ? 'active' : '' %>" style="display: block; text-align: center; font-weight: 750; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.08em; padding: 0.9rem;">Contact Us</a>
+      </div>
+
+      <!-- 4. Sign In & Sign Up Buttons (One Line) -->
+      <div class="mobile-auth-row" style="display: flex; gap: 1rem; align-items: center; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
+        <% if (userEmail) { %>
+          <span class="mobile-user-greeting" style="font-size: 0.9rem; font-weight: 600; color: var(--color-primary); flex-grow: 1; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><i class="fa-solid fa-circle-user"></i> <%= userEmail.split('@')[0] %></span>
+          <a href="/logout" class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; border: 1px solid var(--color-border); border-radius: var(--border-radius);">Sign Out</a>
+        <% } else { %>
+          <a href="/login" class="btn btn-outline" style="flex: 1; text-align: center; padding: 0.8rem; font-size: 0.82rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid var(--color-primary); border-radius: var(--border-radius); color: var(--color-primary);">Sign In</a>
+          <a href="/signup" class="btn btn-primary" style="flex: 1; text-align: center; padding: 0.8rem; font-size: 0.82rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.05em; border-radius: var(--border-radius); color: #000000;">Join Us</a>
+        <% } %>
+      </div>
+
+      <% if (isAdminUser) { %>
+        <div class="mobile-admin-actions" style="margin-top: 1.5rem; border-top: 1px dashed var(--color-border); padding-top: 1rem;">
+          <a href="/admin" class="mobile-admin-link" style="display: block; margin-bottom: 0.8rem; font-weight: 700; font-size: 0.9rem; color: var(--color-accent-terracotta);">Admin Dashboard</a>
+          <a href="/admin/logout" class="mobile-admin-logout" style="display: block; font-weight: 700; font-size: 0.9rem; color: #cc3333;">Admin Logout</a>
+        </div>
+      <% } %>
+
     </div>
   </div>
 
