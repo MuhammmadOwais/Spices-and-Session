@@ -21,15 +21,15 @@ exports.getHome = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    const { category, search, sort } = req.query;
+    const { category, subcategory, search, sort } = req.query;
     let query = {};
     
     if (category && category !== '') {
-      query.$or = [
-        { mainCategoryGroup: category },
-        { category: category },
-        { subCategory: category }
-      ];
+      query.category = category;
+    }
+    
+    if (subcategory && subcategory !== '') {
+      query.subCategory = subcategory;
     }
     
     if (search && search !== '') {
@@ -57,13 +57,14 @@ exports.getProducts = async (req, res) => {
       title: 'Shop Premium Spices | Spicery Co.',
       products,
       selectedCategory: category || '',
+      selectedSubcategory: subcategory || '',
       searchQuery: search || '',
       selectedSort: sort || '',
       path: '/products'
     });
   } catch (error) {
     console.error('Error rendering products page:', error);
-    res.status(500).send('Server Error');
+    res.status(500).render('404', { title: 'Server Error', path: '/products' });
   }
 };
 

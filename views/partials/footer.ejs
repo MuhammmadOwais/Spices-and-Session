@@ -1,23 +1,43 @@
-  </main> <!,  End of page-main-content , >
+  </main> <!-- End of page-main-content -->
 
-  <!,  Main Footer , >
+  <!-- Main Footer -->
   <footer class="site-footer">
-    <div class="footer-container">
+    <div class="footer-mobile-wrapper">
       
-      <!,  Column 1: Brand Logo & Description , >
-      <div class="footer-col brand-info-col">
-        <a href="/" class="brand-logo footer-logo">
-          <img src="https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784224715/Gemini_Generated_Image_ra2fuvra2fuvra2f-removebg-preview_cerpzn.png" alt="Spicery Co." class="brand-logo-img">
-        </a>
-        <p class="brand-bio">
-          Sourcing the world's finest spices, ground in small batches to preserve their native oils.
-        </p>
+      <!-- Row 1: Logo & Tagline on Left, Contact Details on Right -->
+      <div class="footer-mobile-row-top">
+        <div class="footer-brand-side">
+          <a href="/" class="brand-logo footer-logo">
+            <img src="https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784224715/Gemini_Generated_Image_ra2fuvra2fuvra2f-removebg-preview_cerpzn.png" alt="Spicery Co." class="brand-logo-img">
+          </a>
+          <p class="brand-bio">
+            Sourcing the world's finest spices, ground in small batches to preserve their native oils.
+          </p>
+        </div>
+        
+        <div class="footer-contact-side">
+          <h4>Contact Us</h4>
+          <div class="footer-contact-details">
+            <div class="contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>1908 Thomes Ave STE 12337, Cheyenne, WY 82001, USA</span>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+1 (307) 555-0199</span>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>hello@spiceryco.com</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!,  Column 2: Navigation Pages , >
-      <div class="footer-col links-col">
+      <!-- Row 2: Navigation in Center (divided in 2 columns) -->
+      <div class="footer-mobile-row-nav">
         <h4>Navigation</h4>
-        <ul>
+        <ul class="footer-nav-2col">
           <li><a href="/">Home</a></li>
           <li><a href="/about">About Us</a></li>
           <li><a href="/recipes">Master Recipes</a></li>
@@ -27,8 +47,8 @@
         </ul>
       </div>
 
-      <!,  Column 3: Newsletter (Compact) , >
-      <div class="footer-col newsletter-col">
+      <!-- Row 3: Newsletter -->
+      <div class="footer-mobile-row-newsletter">
         <h4>Stay Updated</h4>
         <p>Subscribe to receive chef recipes and fresh spice arrivals.</p>
         <form class="newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Spicery Co.!'); this.reset();">
@@ -39,11 +59,10 @@
         </form>
       </div>
 
-    </div>
+      <!-- Row 4: Divider and copyright info -->
+      <hr class="footer-mobile-divider">
 
-    <!,  Bottom Bar , >
-    <div class="footer-bottom">
-      <div class="bottom-container">
+      <div class="footer-mobile-row-bottom">
         <p class="copyright-text">&copy; <%= new Date().getFullYear() %> Spicery Co. All rights reserved.</p>
         <div class="bottom-legal-links">
           <a href="/privacy-policy">Privacy Policy</a>
@@ -51,10 +70,11 @@
           <a href="/terms-conditions">Terms of Service</a>
         </div>
       </div>
+
     </div>
   </footer>
 
-  <!,  Script Assets , >
+  <!-- Script Assets -->
   <script src="/js/main.js?v=1.0.3"></script>
 </body>
 </html>
