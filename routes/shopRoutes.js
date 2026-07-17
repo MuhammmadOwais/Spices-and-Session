@@ -19,6 +19,7 @@ router.get('/recipes/:slug', shopController.getRecipeDetail);
 
 // Static Content Routes
 router.get('/about', shopController.getAbout);
+router.get('/contact', shopController.getContact);
 router.get('/privacy-policy', shopController.getPrivacy);
 router.get('/terms-conditions', shopController.getTerms);
 

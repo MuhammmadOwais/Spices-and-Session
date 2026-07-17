@@ -1,0 +1,340 @@
+<%- include('partials/header') %>
+
+<style>
+  .contact-banner {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 6rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-banner h1 {
+    font-size: 3.5rem;
+    font-weight: 850;
+    margin-bottom: 0.8rem;
+    color: #ffffff;
+    font-family: var(--font-serif);
+  }
+  .contact-banner p {
+    font-size: 1.1rem;
+    color: var(--color-accent-terracotta);
+    font-style: italic;
+    margin-bottom: 0;
+  }
+  .contact-banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-accent-terracotta) 0%, var(--color-accent-terracotta-hover) 100%);
+  }
+
+  .contact-grid-section {
+    padding: 5rem 0;
+    background-color: var(--color-bg-warm-gray);
+  }
+
+  .contact-info-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.8rem;
+    margin-bottom: 4rem;
+  }
+
+  .info-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-large);
+    padding: 2.2rem 1.8rem;
+    text-align: center;
+    box-shadow: var(--box-shadow-soft);
+    transition: var(--transition-smooth);
+  }
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-medium);
+  }
+  .info-card-icon {
+    font-size: 2rem;
+    color: var(--color-accent-terracotta);
+    margin-bottom: 1.2rem;
+  }
+  .info-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: 0.8rem;
+    font-family: var(--font-sans);
+  }
+  .info-card p {
+    font-size: 0.9rem;
+    color: #666666;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .contact-main-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3.5rem;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-large);
+    padding: 3.5rem;
+    box-shadow: var(--box-shadow-medium);
+  }
+
+  .contact-form-col h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    font-family: var(--font-serif);
+  }
+  .contact-form-col p.form-desc {
+    color: #666666;
+    font-size: 0.95rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .form-row-double {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-form-group {
+    margin-bottom: 1.5rem;
+  }
+  .contact-form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: 0.6rem;
+  }
+  .contact-form-group input,
+  .contact-form-group textarea {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    outline: none;
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    transition: var(--transition-fast);
+    background-color: var(--color-bg-warm-gray);
+  }
+  .contact-form-group input:focus,
+  .contact-form-group textarea:focus {
+    border-color: var(--color-accent-terracotta);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+  }
+
+  .contact-submit-btn {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-weight: 750;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    border-radius: var(--border-radius);
+    transition: var(--transition-smooth);
+  }
+  .contact-submit-btn:hover {
+    background-color: var(--color-accent-terracotta);
+    color: #000000;
+    transform: translateY(-2px);
+  }
+
+  .contact-showcase-col {
+    background-color: var(--color-bg-warm-gray);
+    border-radius: var(--border-radius-large);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px dashed var(--color-border);
+  }
+  .showcase-badge {
+    align-self: flex-start;
+    background-color: var(--color-accent-terracotta);
+    color: #000000;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.8rem;
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
+  }
+  .contact-showcase-col h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    font-family: var(--font-serif);
+  }
+  .contact-showcase-col p {
+    font-size: 0.95rem;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+  }
+  .contact-showcase-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .feature-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .feature-row i {
+    color: var(--color-accent-terracotta);
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+  }
+  .feature-row h4 {
+    font-size: 0.95rem;
+    font-weight: 750;
+    margin-bottom: 0.2rem;
+    font-family: var(--font-sans);
+  }
+  .feature-row p {
+    font-size: 0.85rem;
+    color: #777777;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .contact-info-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .contact-main-layout {
+      grid-template-columns: 1fr;
+      padding: 2.5rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .contact-info-cards {
+      grid-template-columns: 1fr;
+    }
+    .form-row-double {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+</style>
+
+<section class="contact-banner">
+  <div class="container">
+    <h1>Connect With Us</h1>
+    <p>We are always eager to assist with spice blends, culinary ideas, or custom pantry queries</p>
+  </div>
+</section>
+
+<section class="contact-grid-section">
+  <div class="container">
+    
+    <!-- Quick Contact Details Cards -->
+    <div class="contact-info-cards">
+      
+      <div class="info-card">
+        <i class="fa-solid fa-map-location-dot info-card-icon"></i>
+        <h3>Wyoming Vault</h3>
+        <p>1908 Thomes Ave STE 12337<br>Cheyenne, WY 82001, USA</p>
+      </div>
+
+      <div class="info-card">
+        <i class="fa-solid fa-phone-volume info-card-icon"></i>
+        <h3>Direct Line</h3>
+        <p>+1 (307) 555-0199<br>Mon-Fri, 9am - 5pm MST</p>
+      </div>
+
+      <div class="info-card">
+        <i class="fa-solid fa-envelope-open-text info-card-icon"></i>
+        <h3>Email Dispatch</h3>
+        <p>hello@spiceryco.com<br>concierge@spiceryco.com</p>
+      </div>
+
+      <div class="info-card">
+        <i class="fa-solid fa-clock info-card-icon"></i>
+        <h3>Pantry Hours</h3>
+        <p>Monday - Friday: 9am - 5pm<br>Closed Saturday & Sunday</p>
+      </div>
+
+    </div>
+
+    <!-- Contact Form & Info Column Grid -->
+    <div class="contact-main-layout">
+      
+      <div class="contact-form-col">
+        <h2>Send a Message</h2>
+        <p class="form-desc">Have a question about raw ingredients, custom grinding, or bulk orders? Fill out the details below and a spice curator will respond shortly.</p>
+        
+        <form action="#" onsubmit="alert('Thank you for reaching out! We will contact you soon.'); return false;">
+          <div class="form-row-double">
+            <div class="contact-form-group">
+              <label for="name-input">Full Name</label>
+              <input type="text" id="name-input" placeholder="Chef Ramsay" required>
+            </div>
+            <div class="contact-form-group">
+              <label for="email-input">Email Address</label>
+              <input type="email" id="email-input" placeholder="ramsay@kitchen.com" required>
+            </div>
+          </div>
+
+          <div class="contact-form-group">
+            <label for="subject-input">Subject</label>
+            <input type="text" id="subject-input" placeholder="Custom Spice Blend Inquiry" required>
+          </div>
+
+          <div class="contact-form-group">
+            <label for="message-textarea">Your Message</label>
+            <textarea id="message-textarea" rows="6" placeholder="Tell us about your recipe, requirements, or thoughts..." required></textarea>
+          </div>
+
+          <button type="submit" class="contact-submit-btn">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-showcase-col">
+        <span class="showcase-badge">Authentic Culinary Standards</span>
+        <h3>Our Wyoming Headquarters</h3>
+        <p>Nestled in historic Cheyenne, WY, our headquarters coordinates international sourcing, culinary research, and recipe development. Although this location serves as our corporate dispatch vault rather than a retail spice counter, we process all mail and catalog customer inquiries through here.</p>
+        
+        <div class="contact-showcase-features">
+          <div class="feature-row">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              <h4>Ethical Sourcing Guarantee</h4>
+              <p>We work exclusively with small organic farms that maintain chemical-free agricultural standards.</p>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <i class="fa-solid fa-cubes-stacked"></i>
+            <div>
+              <h4>Aromatic Vault Processing</h4>
+              <p>Every single spice is processed and packed in airtight, dark containers to seal in maximum oils.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<%- include('partials/footer') %>

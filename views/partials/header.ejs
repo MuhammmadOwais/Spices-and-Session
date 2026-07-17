@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="/css/style.css?v=1.0.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.0.6">
   
   <!,  Custom Favicon , >
   <link rel="icon" type="image/png" href="https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784166642/Gemini_Generated_Image_qvj3uyqvj3uyqvj3-removebg-preview_bwdmdg.png">
@@ -40,23 +40,55 @@
         <img src="https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784224291/Gemini_Generated_Image_hzg0z3hzg0z3hzg0-removebg-preview_kmaz3m.png" alt="Spicery Co." class="brand-logo-img">
       </a>
 
-      <!,  Desktop Nav Menu , >
+      <!-- Desktop Nav Menu -->
       <nav class="desktop-nav">
         <ul>
           <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
-          <li><a href="/products" class="<%= path.startsWith('/products') ? 'active' : '' %>">Shop</a></li>
+          <li class="has-megamenu">
+            <a href="/products" class="<%= path.startsWith('/products') ? 'active' : '' %>">Shop <i class="fa-solid fa-chevron-down nav-chevron" style="font-size: 0.7rem; margin-left: 0.3rem;"></i></a>
+            <div class="megamenu-panel">
+              <div class="megamenu-container">
+                
+                <div class="megamenu-column">
+                  <h3>Spices & Herbs</h3>
+                  <ul>
+                    <li><a href="/products?category=Spices %26 Whole Seeds">Spices & Whole Seeds</a></li>
+                    <li><a href="/products?category=Herbs %26 Seasonings">Herbs & Seasonings</a></li>
+                  </ul>
+                </div>
+                
+                <div class="megamenu-column">
+                  <h3>Salts & Peppers</h3>
+                  <ul>
+                    <li><a href="/products?category=Salts %26 Peppercorns">Salts & Peppercorns</a></li>
+                    <li><a href="/products?category=Dried Chilis %26 Paprika">Dried Chilis & Paprika</a></li>
+                  </ul>
+                </div>
+                
+                <div class="megamenu-column">
+                  <h3>Baking & Sweeteners</h3>
+                  <ul>
+                    <li><a href="/products?category=Baking, Vanilla %26 Sweeteners">Baking, Vanilla & Sweeteners</a></li>
+                  </ul>
+                </div>
+                
+                <div class="megamenu-column">
+                  <h3>Pantry & Teas</h3>
+                  <ul>
+                    <li><a href="/products?category=Dried Vegetables %26 Mushrooms">Dried Vegetables & Mushrooms</a></li>
+                    <li><a href="/products?category=Specialty Powders %26 Flavors">Specialty Powders & Flavors</a></li>
+                    <li><a href="/products?category=Beverages">Beverages</a></li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </li>
           <li><a href="/recipes" class="<%= path.startsWith('/recipes') ? 'active' : '' %>">Recipes</a></li>
           <li><a href="/blogs" class="<%= path.startsWith('/blogs') ? 'active' : '' %>">Journal</a></li>
           <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About Us</a></li>
+          <li><a href="/contact" class="<%= path === '/contact' ? 'active' : '' %>">Contact</a></li>
           
-           <% if (userEmail) { %>
-             <li><span class="user-greeting-nav"><i class="fa-solid fa-circle-user"></i> <%= userEmail.split('@')[0] %></span></li>
-             <li><a href="/logout" class="user-logout-link" title="Sign Out"><i class="fa-solid fa-power-off"></i></a></li>
-           <% } else { %>
-             <li><a href="/login" class="<%= path === '/login' ? 'active' : '' %>">Sign In</a></li>
-             <li><a href="/signup" class="user-signup-btn">Join</a></li>
-           <% } %>
-           
            <% if (isAdminUser) { %>
              <li><a href="/admin" class="admin-link-btn">Admin</a></li>
              <li><a href="/admin/logout" class="admin-logout-btn" title="Admin Logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
@@ -64,13 +96,25 @@
         </ul>
       </nav>
 
-      <!-- Header Search Bar (Desktop) -->
-      <div class="header-search-box">
-        <div class="header-search-input-wrapper">
-          <i class="fa-solid fa-magnifying-glass header-search-icon"></i>
-          <input type="text" id="header-search-input" placeholder="Search spices, recipes..." autocomplete="off">
+      <!-- Header Search Bar & User Actions (Desktop) -->
+      <div class="header-right-group">
+        <div class="header-search-box">
+          <div class="header-search-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass header-search-icon"></i>
+            <input type="text" id="header-search-input" placeholder="Search spices, recipes..." autocomplete="off">
+          </div>
+          <div id="header-search-results" class="header-search-results"></div>
         </div>
-        <div id="header-search-results" class="header-search-results"></div>
+
+        <div class="header-user-actions">
+          <% if (userEmail) { %>
+            <span class="user-greeting-nav"><i class="fa-solid fa-circle-user"></i> <%= userEmail.split('@')[0] %></span>
+            <a href="/logout" class="user-logout-link" title="Sign Out"><i class="fa-solid fa-power-off"></i></a>
+          <% } else { %>
+            <a href="/login" class="nav-signin-link <%= path === '/login' ? 'active' : '' %>">Sign In</a>
+            <a href="/signup" class="user-signup-btn">Join</a>
+          <% } %>
+        </div>
       </div>
 
       <!-- Mobile Toggle Utilities -->
@@ -103,10 +147,23 @@
       <nav class="mobile-nav">
         <ul>
           <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
-          <li><a href="/products" class="<%= path.startsWith('/products') ? 'active' : '' %>">Shop Spices</a></li>
+          <li class="mobile-has-subnav">
+            <a href="/products" class="<%= path.startsWith('/products') ? 'active' : '' %>">Shop Spices <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 0.4rem;"></i></a>
+            <ul class="mobile-subnav" style="padding-left: 1.2rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem;">
+              <li><a href="/products?category=Spices %26 Whole Seeds" style="text-transform: none; font-weight: 500;">Spices & Whole Seeds</a></li>
+              <li><a href="/products?category=Herbs %26 Seasonings" style="text-transform: none; font-weight: 500;">Herbs & Seasonings</a></li>
+              <li><a href="/products?category=Salts %26 Peppercorns" style="text-transform: none; font-weight: 500;">Salts & Peppercorns</a></li>
+              <li><a href="/products?category=Dried Chilis %26 Paprika" style="text-transform: none; font-weight: 500;">Dried Chilis & Paprika</a></li>
+              <li><a href="/products?category=Baking, Vanilla %26 Sweeteners" style="text-transform: none; font-weight: 500;">Baking & Sweeteners</a></li>
+              <li><a href="/products?category=Dried Vegetables %26 Mushrooms" style="text-transform: none; font-weight: 500;">Dried Vegetables & Mushrooms</a></li>
+              <li><a href="/products?category=Specialty Powders %26 Flavors" style="text-transform: none; font-weight: 500;">Specialty Powders & Flavors</a></li>
+              <li><a href="/products?category=Beverages" style="text-transform: none; font-weight: 500;">Beverages / Teas</a></li>
+            </ul>
+          </li>
           <li><a href="/recipes" class="<%= path.startsWith('/recipes') ? 'active' : '' %>">Recipes</a></li>
           <li><a href="/blogs" class="<%= path.startsWith('/blogs') ? 'active' : '' %>">Culinary Journal</a></li>
           <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About Us</a></li>
+          <li><a href="/contact" class="<%= path === '/contact' ? 'active' : '' %>">Contact Us</a></li>
           
            <hr class="mobile-nav-divider">
            <% if (userEmail) { %>

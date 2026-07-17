@@ -25,7 +25,11 @@ exports.getProducts = async (req, res) => {
     let query = {};
     
     if (category && category !== '') {
-      query.category = category;
+      query.$or = [
+        { mainCategoryGroup: category },
+        { category: category },
+        { subCategory: category }
+      ];
     }
     
     if (search && search !== '') {
@@ -339,3 +343,11 @@ exports.postForgotPassword = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+exports.getContact = (req, res) => {
+  res.render('contact', {
+    title: 'Contact Us | Spicery Co.',
+    path: '/contact'
+  });
+};
+
