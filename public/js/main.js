@@ -64,66 +64,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Live Search Overlay Logic ---
-  const searchTrigger = document.querySelector('.search-trigger');
-  const searchOverlay = document.getElementById('search-overlay');
-  const searchClose = document.getElementById('search-overlay-close');
-  const searchInputField = document.getElementById('search-input-field');
-  const searchResultsContainer = document.getElementById('search-results-container');
-  let searchTimeout = null;
+  // --- Live Search Initialization ---
+  function initLiveSearch(inputId, resultsId) {
+    const inputField = document.getElementById(inputId);
+    const resultsContainer = document.getElementById(resultsId);
+    let searchTimeout = null;
 
-  if (searchTrigger && searchOverlay) {
-    searchTrigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      searchOverlay.classList.add('active');
-      setTimeout(() => searchInputField.focus(), 150);
-    });
-  }
+    if (!inputField || !resultsContainer) return;
 
-  if (searchClose && searchOverlay) {
-    searchClose.addEventListener('click', () => {
-      searchOverlay.classList.remove('active');
-      searchInputField.value = '';
-      searchResultsContainer.innerHTML = '';
-    });
-  }
-
-  // Close search overlay on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
-      searchOverlay.classList.remove('active');
-      searchInputField.value = '';
-      searchResultsContainer.innerHTML = '';
-    }
-  });
-
-  if (searchInputField && searchResultsContainer) {
-    searchInputField.addEventListener('input', () => {
+    inputField.addEventListener('input', () => {
       clearTimeout(searchTimeout);
-      const query = searchInputField.value.trim();
+      const query = inputField.value.trim();
 
       if (query.length < 2) {
-        searchResultsContainer.innerHTML = '';
+        resultsContainer.innerHTML = '';
+        resultsContainer.classList.remove('active');
         return;
       }
 
-      searchResultsContainer.innerHTML = '<div class="search-loading"><i class="fa-solid fa-circle-notch fa-spin"></i> Sifting catalog...</div>';
+      resultsContainer.innerHTML = '<div class="search-loading"><i class="fa-solid fa-circle-notch fa-spin"></i> Sifting catalog...</div>';
+      resultsContainer.classList.add('active');
 
       searchTimeout = setTimeout(() => {
         fetch(`/api/search?q=${encodeURIComponent(query)}`)
           .then(res => res.json())
           .then(products => {
             if (products.length === 0) {
-              searchResultsContainer.innerHTML = '<div class="search-no-results">No spices found matching your query.</div>';
+              resultsContainer.innerHTML = '<div class="search-no-results">No spices found.</div>';
               return;
             }
             
             let html = '<ul class="search-results-list">';
             products.forEach(product => {
+              let thumbUrl = product.imageUrl;
+              if (thumbUrl.includes('res.cloudinary.com')) {
+                thumbUrl = thumbUrl.replace('/upload/', '/upload/f_auto,q_70,w_80,c_scale/');
+              }
               html += `
                 <li class="search-result-item">
                   <a href="/products/${product.slug}" class="search-result-link">
-                    <img src="${product.imageUrl}" alt="${product.name}" class="search-result-img">
+                    <img src="${thumbUrl}" alt="${product.name}" class="search-result-img">
                     <div class="search-result-details">
                       <span class="search-result-name">${product.name}</span>
                       <span class="search-result-category">${product.category}</span>
@@ -134,15 +114,27 @@ document.addEventListener('DOMContentLoaded', () => {
               `;
             });
             html += '</ul>';
-            searchResultsContainer.innerHTML = html;
+            resultsContainer.innerHTML = html;
           })
           .catch(err => {
             console.error('Error executing live search:', err);
-            searchResultsContainer.innerHTML = '<div class="search-error">Failed to retrieve results. Please try again.</div>';
+            resultsContainer.innerHTML = '<div class="search-error">Failed to retrieve results.</div>';
           });
       }, 350); // 350ms debounce
     });
+
+    // Close results dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!inputField.contains(e.target) && !resultsContainer.contains(e.target)) {
+        resultsContainer.innerHTML = '';
+        resultsContainer.classList.remove('active');
+      }
+    });
   }
+
+  // Initialize both desktop and mobile drawer search bars
+  initLiveSearch('header-search-input', 'header-search-results');
+  initLiveSearch('mobile-search-input', 'mobile-search-results');
 
   console.log('Spicery Co. UI initialization complete.');
 });
