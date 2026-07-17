@@ -22,6 +22,15 @@ router.get('/about', shopController.getAbout);
 router.get('/privacy-policy', shopController.getPrivacy);
 router.get('/terms-conditions', shopController.getTerms);
 
+// User Authentication Routes
+router.get('/signup', shopController.getSignup);
+router.post('/signup', shopController.postSignup);
+router.get('/login', shopController.getLogin);
+router.post('/login', shopController.postLogin);
+router.get('/logout', shopController.getLogout);
+router.get('/forgot-password', shopController.getForgotPassword);
+router.post('/forgot-password', shopController.postForgotPassword);
+
 // Live Search API Endpoint
 router.get('/api/search', shopController.apiSearch);
 

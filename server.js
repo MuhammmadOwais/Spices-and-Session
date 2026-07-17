@@ -60,6 +60,7 @@ app.use(session({
 // Setup Global variables for template rendering
 app.use((req, res, next) => {
   res.locals.isAdminUser = req.session.isAdmin || false;
+  res.locals.userEmail = req.session.userEmail || null;
   res.locals.path = req.path;
   next();
 });

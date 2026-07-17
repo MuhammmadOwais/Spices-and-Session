@@ -49,12 +49,18 @@
           <li><a href="/blogs" class="<%= path.startsWith('/blogs') ? 'active' : '' %>">Journal</a></li>
           <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About Us</a></li>
           
-          <% if (isAdminUser) { %>
-            <li><a href="/admin" class="admin-link-btn">Admin Dashboard</a></li>
-            <li><a href="/admin/logout" class="admin-logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-          <% } else { %>
-            <li><a href="/admin/login" class="admin-login-link">Admin</a></li>
-          <% } %>
+           <% if (userEmail) { %>
+             <li><span class="user-greeting-nav"><i class="fa-solid fa-circle-user"></i> <%= userEmail.split('@')[0] %></span></li>
+             <li><a href="/logout" class="user-logout-link" title="Sign Out"><i class="fa-solid fa-power-off"></i></a></li>
+           <% } else { %>
+             <li><a href="/login" class="<%= path === '/login' ? 'active' : '' %>">Sign In</a></li>
+             <li><a href="/signup" class="user-signup-btn">Join</a></li>
+           <% } %>
+           
+           <% if (isAdminUser) { %>
+             <li><a href="/admin" class="admin-link-btn">Admin</a></li>
+             <li><a href="/admin/logout" class="admin-logout-btn" title="Admin Logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+           <% } %>
         </ul>
       </nav>
 
@@ -102,13 +108,20 @@
           <li><a href="/blogs" class="<%= path.startsWith('/blogs') ? 'active' : '' %>">Culinary Journal</a></li>
           <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About Us</a></li>
           
-          <% if (isAdminUser) { %>
-            <hr class="mobile-nav-divider">
-            <li><a href="/admin" class="mobile-admin-link">Admin Dashboard</a></li>
-            <li><a href="/admin/logout" class="mobile-admin-logout">Logout</a></li>
-          <% } else { %>
-            <li><a href="/admin/login" class="mobile-admin-link">Portal Login</a></li>
-          <% } %>
+           <hr class="mobile-nav-divider">
+           <% if (userEmail) { %>
+             <li class="mobile-drawer-user-info"><span class="mobile-user-greeting"><i class="fa-solid fa-circle-user"></i> <%= userEmail %></span></li>
+             <li><a href="/logout" class="mobile-admin-logout">Sign Out</a></li>
+           <% } else { %>
+             <li><a href="/login" class="mobile-admin-link">Sign In</a></li>
+             <li><a href="/signup" class="mobile-admin-link">Create Account</a></li>
+           <% } %>
+           
+           <% if (isAdminUser) { %>
+             <hr class="mobile-nav-divider">
+             <li><a href="/admin" class="mobile-admin-link">Admin Dashboard</a></li>
+             <li><a href="/admin/logout" class="mobile-admin-logout">Admin Logout</a></li>
+           <% } %>
         </ul>
       </nav>
     </div>

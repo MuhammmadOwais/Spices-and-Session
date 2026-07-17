@@ -1,6 +1,7 @@
 const Product = require('../models/Product');
 const Blog = require('../models/Blog');
 const Recipe = require('../models/Recipe');
+const User = require('../models/User');
 
 exports.getHome = async (req, res) => {
   try {
@@ -186,6 +187,155 @@ exports.getRecipeDetail = async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching recipe detail:', error);
+    res.status(500).send('Server Error');
+  }
+};
+
+// --- User Authentication Controllers ---
+
+exports.getSignup = (req, res) => {
+  res.render('signup', {
+    title: 'Create Account | Spicery Co.',
+    path: '/signup',
+    error: null
+  });
+};
+
+exports.postSignup = async (req, res) => {
+  try {
+    const { email, password, confirmPassword } = req.body;
+    
+    if (!email || !password) {
+      return res.render('signup', {
+        title: 'Create Account | Spicery Co.',
+        path: '/signup',
+        error: 'Please fill in all fields.'
+      });
+    }
+
+    if (password !== confirmPassword) {
+      return res.render('signup', {
+        title: 'Create Account | Spicery Co.',
+        path: '/signup',
+        error: 'Passwords do not match.'
+      });
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.render('signup', {
+        title: 'Create Account | Spicery Co.',
+        path: '/signup',
+        error: 'An account with this email already exists.'
+      });
+    }
+
+    const newUser = new User({ email, password });
+    await newUser.save();
+
+    req.session.userId = newUser._id;
+    req.session.userEmail = newUser.email;
+    res.redirect('/');
+  } catch (error) {
+    console.error('Signup error:', error);
+    res.status(500).send('Server Error');
+  }
+};
+
+exports.getLogin = (req, res) => {
+  res.render('login', {
+    title: 'Sign In | Spicery Co.',
+    path: '/login',
+    error: null
+  });
+};
+
+exports.postLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    if (!email || !password) {
+      return res.render('login', {
+        title: 'Sign In | Spicery Co.',
+        path: '/login',
+        error: 'Please enter email and password.'
+      });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.render('login', {
+        title: 'Sign In | Spicery Co.',
+        path: '/login',
+        error: 'Invalid email or password.'
+      });
+    }
+
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.render('login', {
+        title: 'Sign In | Spicery Co.',
+        path: '/login',
+        error: 'Invalid email or password.'
+      });
+    }
+
+    req.session.userId = user._id;
+    req.session.userEmail = user.email;
+    res.redirect('/');
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).send('Server Error');
+  }
+};
+
+exports.getLogout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Logout session destroy error:', err);
+    }
+    res.redirect('/');
+  });
+};
+
+exports.getForgotPassword = (req, res) => {
+  res.render('forgot-password', {
+    title: 'Reset Password | Spicery Co.',
+    path: '/login',
+    error: null,
+    success: null
+  });
+};
+
+exports.postForgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.render('forgot-password', {
+        title: 'Reset Password | Spicery Co.',
+        path: '/login',
+        error: 'No user registered with this email address.',
+        success: null
+      });
+    }
+
+    // Generate random temporary password
+    const tempPassword = Math.random().toString(36).slice(-8) + 'Sp!ce';
+    
+    user.password = tempPassword;
+    await user.save();
+
+    console.log(`[MOCK EMAIL SERVICE] To: ${email} -> Subject: Reset Password -> Content: Your temporary Spicery Co. password has been reset to: ${tempPassword}`);
+
+    res.render('forgot-password', {
+      title: 'Reset Password | Spicery Co.',
+      path: '/login',
+      error: null,
+      success: `We have sent a temporary password reset email to ${email}! (Mock demonstration: your password has been reset to: ${tempPassword})`
+    });
+  } catch (error) {
+    console.error('Forgot password error:', error);
     res.status(500).send('Server Error');
   }
 };

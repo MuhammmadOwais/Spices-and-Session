@@ -3178,3 +3178,76 @@ p {
   }
 }
 
+/* --- User Authentication Nav elements --- */
+.user-greeting-nav {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  background-color: var(--color-bg-warm-gray);
+  padding: 0.35rem 0.8rem;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+}
+.user-greeting-nav i {
+  color: var(--color-accent-terracotta);
+}
+
+.user-logout-link {
+  color: #888888 !important;
+  font-size: 0.95rem !important;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.user-logout-link::after {
+  display: none !important;
+}
+.user-logout-link:hover {
+  color: #d9534f !important;
+}
+
+.user-signup-btn {
+  background-color: var(--color-primary);
+  color: #ffffff !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.8rem !important;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease !important;
+}
+.user-signup-btn::after {
+  display: none !important;
+}
+.user-signup-btn:hover {
+  background-color: var(--color-accent-terracotta);
+  color: #000000 !important;
+  transform: translateY(-1px);
+}
+
+.mobile-drawer-user-info {
+  background-color: rgba(255, 204, 0, 0.05);
+  border: 1px dashed rgba(255, 204, 0, 0.2);
+  border-radius: var(--border-radius);
+  margin: 0.5rem 1.5rem 1rem;
+  padding: 0.6rem 1rem;
+}
+.mobile-user-greeting {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.mobile-user-greeting i {
+  color: var(--color-accent-terracotta);
+}
+
+
