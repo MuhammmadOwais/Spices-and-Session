@@ -20,7 +20,7 @@
           <article class="blog-featured-card">
             <div class="featured-card-image">
               <a href="/blogs/<%= blog.slug %>">
-                <img src="<%= blog.imageUrl %>" alt="<%= blog.title %>">
+                <img src="<%= blog.imageUrl.includes('/upload/') ? blog.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_800,h_450,c_fill/') : blog.imageUrl %>" alt="<%= blog.title %>">
               </a>
               <span class="blog-category-tag"><%= blog.category %></span>
             </div>
@@ -43,7 +43,7 @@
           <article class="blog-card">
             <div class="blog-card-image">
               <a href="/blogs/<%= blog.slug %>">
-                <img src="<%= blog.imageUrl %>" alt="<%= blog.title %>" loading="lazy">
+                <img src="<%= blog.imageUrl.includes('/upload/') ? blog.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_450,h_300,c_fill/') : blog.imageUrl %>" alt="<%= blog.title %>" loading="lazy">
               </a>
               <span class="blog-category-tag"><%= blog.category %></span>
             </div>

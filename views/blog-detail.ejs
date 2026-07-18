@@ -2,7 +2,7 @@
 
 <!,  Blog Post Detailed Header , >
 <article class="blog-detail-article">
-  <div class="blog-detail-hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.75)), url('<%= blog.imageUrl %>');">
+  <div class="blog-detail-hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.75)), url('<%= blog.imageUrl.includes('/upload/') ? blog.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_1200,h_550,c_fill/') : blog.imageUrl %>');">
     <div class="container hero-container-content">
       <span class="blog-detail-category"><%= blog.category %></span>
       <h1><%= blog.title %></h1>

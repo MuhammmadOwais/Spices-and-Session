@@ -5,7 +5,7 @@
   .recipes-banner {
     position: relative;
     padding: 8rem 2rem;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)), url('https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto/v1784239984/Roasting_sajikn.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)), url('https://res.cloudinary.com/dawp1fcci/image/upload/f_auto,q_auto,w_1200,h_350,c_fill/v1784239984/Roasting_sajikn.jpg');
     background-size: cover;
     background-position: center;
     color: #ffffff;
@@ -156,7 +156,7 @@
           <article class="recipe-card">
             <div class="recipe-card-img-wrapper">
               <a href="/recipes/<%= recipe.slug %>">
-                <img src="<%= recipe.imageUrl %>" alt="<%= recipe.title %>" loading="lazy">
+                <img src="<%= recipe.imageUrl.includes('/upload/') ? recipe.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_450,h_300,c_fill/') : recipe.imageUrl %>" alt="<%= recipe.title %>" loading="lazy">
               </a>
               <span class="recipe-method-badge"><%= recipe.method %></span>
             </div>

@@ -164,7 +164,7 @@
 </style>
 
 <!,  Recipe Detail Hero , >
-<section class="recipe-detail-hero" style="background-image: url('<%= recipe.imageUrl %>');">
+<section class="recipe-detail-hero" style="background-image: url('<%= recipe.imageUrl.includes('/upload/') ? recipe.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_1200,h_550,c_fill/') : recipe.imageUrl %>');">
   <div class="recipe-hero-container">
     <span class="recipe-detail-method"><%= recipe.method %> Masterclass</span>
     <h1><%= recipe.title %></h1>

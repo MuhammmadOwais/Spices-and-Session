@@ -86,7 +86,7 @@ const subcategories = selectedCategory ? (subcategoryMap[selectedCategory] || []
     <div class="categories-directory-grid">
       <% allCategories.forEach(cat => { %>
         <div class="directory-card">
-          <div class="directory-card-image" style="background-image: url('<%= cat.imageUrl %>');"></div>
+          <div class="directory-card-image" style="background-image: url('<%= cat.imageUrl.includes('/upload/') ? cat.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_400,h_250,c_fill/') : cat.imageUrl %>');"></div>
           <div class="directory-card-overlay"></div>
           <div class="directory-card-content">
             <h3><%= cat.displayName %></h3>
@@ -101,7 +101,7 @@ const subcategories = selectedCategory ? (subcategoryMap[selectedCategory] || []
 <% } else { %>
   <!-- Mode B: Specific Category Page (Show Subcategory Filter & Products) -->
   <% const bannerBg = activeCatObj ? activeCatObj.imageUrl : 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?q=80&w=1200&auto=format&fit=crop'; %>
-  <section class="page-banner shop-banner" style="background-image: linear-gradient(rgba(18, 18, 18, 0.45), rgba(18, 18, 18, 0.7)), url('<%= bannerBg %>');">
+  <section class="page-banner shop-banner" style="background-image: linear-gradient(rgba(18, 18, 18, 0.45), rgba(18, 18, 18, 0.7)), url('<%= bannerBg.includes('/upload/') ? bannerBg.replace('/upload/', '/upload/f_auto,q_auto,w_1200,h_350,c_fill/') : bannerBg %>');">
     <div class="container">
       <h1><%= selectedCategory %></h1>
       <p><%= activeCatObj ? activeCatObj.desc : 'Browse our premium botanical selection.' %></p>
@@ -208,7 +208,7 @@ const subcategories = selectedCategory ? (subcategoryMap[selectedCategory] || []
               <div class="product-card">
                 <div class="product-card-image">
                   <a href="/products/<%= product.slug %>">
-                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>" loading="lazy">
+                    <img src="<%= product.imageUrl.includes('/upload/') ? product.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_400,h_400,c_fill/') : product.imageUrl %>" alt="<%= product.name %>" loading="lazy">
                   </a>
                   <% if (product.stockStatus === 'low-stock') { %>
                     <span class="badge badge-warning">Low Stock</span>

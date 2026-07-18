@@ -18,7 +18,7 @@
     <!,  Gallery Column , >
     <div class="detail-gallery">
       <div class="main-image-wrapper">
-        <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="product-detail-main-image">
+        <img src="<%= product.imageUrl.includes('/upload/') ? product.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_600,h_600,c_fill/') : product.imageUrl %>" alt="<%= product.name %>" id="product-detail-main-image">
       </div>
     </div>
     
@@ -237,7 +237,7 @@
       <% } %>
       <div class="deconstructed-item">
         <div class="deconstructed-img-wrapper">
-          <img src="<%= ing.imageUrl %>" alt="<%= ing.name %>">
+          <img src="<%= ing.imageUrl.includes('/upload/') ? ing.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_200,h_200,c_fill/') : ing.imageUrl %>" alt="<%= ing.name %>">
         </div>
         <hr class="deconstructed-item-divider">
         <div class="deconstructed-item-title-row">
@@ -263,7 +263,7 @@
         <div class="product-card">
           <div class="product-card-image">
             <a href="/products/<%= prod.slug %>">
-              <img src="<%= prod.imageUrl %>" alt="<%= prod.name %>" loading="lazy">
+              <img src="<%= prod.imageUrl.includes('/upload/') ? prod.imageUrl.replace('/upload/', '/upload/f_auto,q_auto,w_400,h_400,c_fill/') : prod.imageUrl %>" alt="<%= prod.name %>" loading="lazy">
             </a>
             <span class="product-category-tag"><%= prod.category %></span>
           </div>
