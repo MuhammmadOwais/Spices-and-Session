@@ -56,6 +56,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Hero Slideshow Cinematic Transitions ---
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  if (heroSlides.length > 0) {
+    let activeSlideIndex = 0;
+    setInterval(() => {
+      heroSlides[activeSlideIndex].classList.remove('active');
+      activeSlideIndex = (activeSlideIndex + 1) % heroSlides.length;
+      heroSlides[activeSlideIndex].classList.add('active');
+    }, 5000);
+  }
+
   // --- Add Micro-animations on card hover ---
   const cards = document.querySelectorAll('.product-card, .blog-card');
   cards.forEach(card => {
