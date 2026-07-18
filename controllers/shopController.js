@@ -6,7 +6,7 @@ const User = require('../models/User');
 exports.getHome = async (req, res) => {
   try {
     const featuredProducts = await Product.find({ isFeatured: true }).limit(4);
-    const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(3);
+    const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(9);
     res.render('home', {
       title: 'Spicery Co. | Premium Spices & Seasonings',
       featuredProducts,
