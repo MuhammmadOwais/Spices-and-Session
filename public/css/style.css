@@ -2872,6 +2872,7 @@ p {
   flex-direction: column;
   transform: translateX(-100%);
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow-y: auto; /* Fallback drawer scroll */
 }
 
 .mobile-drawer.active {
@@ -2884,6 +2885,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0; /* Keep header size fixed */
 }
 
 .drawer-close {
@@ -2892,6 +2894,8 @@ p {
 
 .drawer-content {
   padding: 2rem;
+  overflow-y: auto; /* Enable smooth scrolling inside content */
+  flex-grow: 1;
 }
 
 .mobile-nav ul {
@@ -3580,6 +3584,196 @@ p {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+/* --- Categories Directory Page Layout --- */
+.categories-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.directory-card {
+  position: relative;
+  height: 380px;
+  border-radius: var(--border-radius-large);
+  overflow: hidden;
+  box-shadow: var(--box-shadow-medium);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.2rem;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.directory-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 1;
+}
+
+.directory-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(8, 8, 8, 0.95) 0%, rgba(8, 8, 8, 0.4) 60%, rgba(8, 8, 8, 0.1) 100%);
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+.directory-card-content {
+  position: relative;
+  z-index: 3;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.directory-card-content h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.directory-card-content p {
+  font-size: 0.88rem;
+  color: #d1c7bd;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.directory-link-btn {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--color-accent-terracotta);
+  color: #000000;
+  border-color: var(--color-accent-terracotta);
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+}
+
+.directory-link-btn:hover {
+  background-color: var(--color-accent-terracotta-hover);
+  color: #000000;
+  border-color: var(--color-accent-terracotta-hover);
+  transform: translateX(4px);
+}
+
+.directory-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.directory-card:hover .directory-card-image {
+  transform: scale(1.08);
+}
+
+/* Compact Desktop Navigation for 13 Links - ONLY active on Desktop */
+@media (min-width: 993px) {
+  .header-container {
+    max-width: 96% !important;
+    padding: 0 !important;
+  }
+
+  .desktop-nav {
+    flex-grow: 1;
+    display: flex !important;
+    justify-content: center;
+    margin: 0 1.2rem;
+  }
+
+  .desktop-nav ul {
+    display: flex;
+    flex-wrap: nowrap !important;
+    gap: 0.8rem !important;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .desktop-nav a {
+    font-size: 0.76rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+    padding: 0.2rem 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .header-right-group {
+    display: flex !important;
+    align-items: center;
+    gap: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .header-search-box {
+    width: 220px !important;
+    margin-left: 0 !important;
+  }
+
+  .header-user-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+}
+
+/* Safe overrides on mobile to hide desktop navigation elements */
+@media (max-width: 992px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .header-right-group {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: block !important;
+  }
+  .header-container {
+    max-width: 100% !important;
+    padding: 0 1.5rem !important;
+  }
+  .brand-logo-img {
+    height: 38px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .categories-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .categories-directory-grid {
+    grid-template-columns: 1fr;
+  }
+  .directory-card {
+    height: 320px;
+    padding: 1.8rem;
+  }
 }
 
 

@@ -1,178 +1,250 @@
 <%- include('partials/header') %>
 
-<!,  Shop Header Banner , >
-<section class="page-banner shop-banner">
-  <div class="container">
-    <h1>The Spice Marketplace</h1>
-    <p>Browse our curated selection of whole spices, hand-mixed dry rubs, fresh botanicals, and finishing salts.</p>
-  </div>
-  <div class="banner-overlay"></div>
-</section>
+<%
+const allCategories = [
+  {
+    name: "Spices & Whole Seeds",
+    displayName: "Spices & Whole Seeds",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784250116/pexels-yosiazwan-8614469_qcjuvz.jpg",
+    desc: "Whole seeds, freshly ground blends, premium saffron, aromatic pods, and baking spices."
+  },
+  {
+    name: "Herbs & Seasonings",
+    displayName: "Herbs & Seasonings",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784251813/Herbs_Seasonings_ndtln8.jpg",
+    desc: "Dried and ground botanicals, signature house seasoning mixes, and curry powders."
+  },
+  {
+    name: "Salts & Peppercorns",
+    displayName: "Salts & Peppercorns",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784251809/Salts_Peppercorns_e323an.jpg",
+    desc: "Natural sea salts, smoked finishing salts, spiced salts, and diverse peppercorn varieties."
+  },
+  {
+    name: "Dried Chilis & Paprika",
+    displayName: "Dried Chilis & Paprika",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784251809/Dried_Chilis_Paprika_gm3v1j.jpg",
+    desc: "Whole dried chili peppers, crushed flakes, sweet and hot paprika powders."
+  },
+  {
+    name: "Baking, Vanilla & Sweeteners",
+    displayName: "Baking, Vanilla & Sweeteners",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784251805/Baking_Vanilla_Sweeteners_deoxgl.jpg",
+    desc: "Cinnamon bark, premium vanilla extracts, Nacional cacao, and fruit powders."
+  },
+  {
+    name: "Dried Vegetables & Mushrooms",
+    displayName: "Dried Vegetables & Mushrooms",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784251801/Dried_Vegetables_Mushrooms_hdwesq.jpg",
+    desc: "Garlic, onion, bell pepper flakes, powdered staples, and gourmet dried mushrooms."
+  },
+  {
+    name: "Specialty Powders & Flavors",
+    displayName: "Specialty Powders & Flavors",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784251798/Specialty_Powders_Flavors_d9kbxw.jpg",
+    desc: "Hickory smoke powders, savory barbecue rubs, and Apple Cider vinegar powders."
+  },
+  {
+    name: "Beverages",
+    displayName: "Beverages",
+    imageUrl: "https://res.cloudinary.com/dawp1fcci/image/upload/v1784251799/Beverages_epbjiu.jpg",
+    desc: "Loose leaf green, black, and herbal teas, alongside warming spiced chai blends."
+  }
+];
 
-<!,  Shop Catalog Section , >
-<section class="shop-catalog container">
-  
-  <!,  Mobile Filter Toggles , >
-  <div class="mobile-filter-bar">
-    <button id="toggle-sidebar-filters" class="btn btn-secondary"><i class="fa-solid fa-sliders"></i> Filter / Sort</button>
-  </div>
+const subcategoryMap = {
+  "Spices & Whole Seeds": ["Whole Spices", "Ground Spices", "Indian Spices", "Baking Spices", "Seeds & Berries", "Saffron"],
+  "Herbs & Seasonings": ["Dried Herbs", "Ground Herbs", "Spice & Herb Blends", "Curry Powders"],
+  "Salts & Peppercorns": ["Sea Salt & Grey Salt", "Artisanal & Finishing Salts", "Flavored Salts", "Curing Salt", "Peppercorns"],
+  "Dried Chilis & Paprika": ["Whole Chili Peppers", "Chili Powder & Flakes", "Paprika"],
+  "Baking, Vanilla & Sweeteners": ["Cinnamon", "Vanilla Vault", "Chocolate & Cacao", "Sweeteners & Sugars", "Fruit Powders & Pieces", "Coconut Shreds & Flakes"],
+  "Dried Vegetables & Mushrooms": ["Pantry Staples", "Diced Vegetables & Powders", "Mushrooms"],
+  "Specialty Powders & Flavors": ["Smoke & Sauce Powders", "Vinegar Powders"],
+  "Beverages": ["Loose Leaf Teas"]
+};
 
-  <div class="catalog-layout">
-    
-    <!,  Left Sidebar: Filters & Search , >
-    <aside class="catalog-sidebar" id="catalog-sidebar">
-      <div class="sidebar-header">
-        <h3>Refine Pantry</h3>
-        <button id="close-sidebar-filters" class="close-filters-btn"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      
-      <!,  Text Search Block , >
-      <div class="filter-widget">
-        <h4>Search Catalog</h4>
-        <form action="/products" method="GET" class="sidebar-search-form">
-          <% if (selectedCategory) { %>
-            <input type="hidden" name="category" value="<%= selectedCategory %>">
-          <% } %>
-          <% if (selectedSort) { %>
-            <input type="hidden" name="sort" value="<%= selectedSort %>">
-          <% } %>
-          <div class="search-input-wrapper">
-            <input type="text" name="search" placeholder="Cinnamon, Garlic..." value="<%= searchQuery %>" aria-label="Search">
-            <button type="submit" aria-label="Submit search"><i class="fa-solid fa-magnifying-glass"></i></button>
+const activeCatObj = selectedCategory ? allCategories.find(c => c.name === selectedCategory) : null;
+const subcategories = selectedCategory ? (subcategoryMap[selectedCategory] || []) : [];
+%>
+
+<% if (!selectedCategory) { %>
+  <!-- Mode A: Shop Categories Directory Page (No Category Filter) -->
+  <section class="page-banner shop-banner" style="background-image: linear-gradient(rgba(18, 18, 18, 0.45), rgba(18, 18, 18, 0.7)), url('https://images.unsplash.com/photo-1509358271058-acd22cc93898?q=80&w=1200&auto=format&fit=crop');">
+    <div class="container">
+      <h1>The Spice Marketplace</h1>
+      <p>Explore our architectural catalog of handpicked culinary essentials and exotic botanical blends.</p>
+    </div>
+    <div class="banner-overlay"></div>
+  </section>
+
+  <section class="shop-directory container" style="padding: 5rem 2rem;">
+    <div class="directory-header" style="text-align: center; margin-bottom: 3.5rem;">
+      <h2 style="font-size: 2.2rem; font-family: var(--font-serif); color: var(--color-primary); margin-bottom: 1rem;">Select a Category</h2>
+      <p style="color: #6a6259; max-width: 600px; margin: 0 auto; line-height: 1.6;">Browse our custom groupings to refine your culinary lookup, find specific subcategories, and explore organic seasonings.</p>
+    </div>
+
+    <div class="categories-directory-grid">
+      <% allCategories.forEach(cat => { %>
+        <div class="directory-card">
+          <div class="directory-card-image" style="background-image: url('<%= cat.imageUrl %>');"></div>
+          <div class="directory-card-overlay"></div>
+          <div class="directory-card-content">
+            <h3><%= cat.displayName %></h3>
+            <p><%= cat.desc %></p>
+            <a href="/products?category=<%= encodeURIComponent(cat.name) %>" class="btn btn-accent directory-link-btn">Explore Category <i class="fa-solid fa-arrow-right-long" style="margin-left: 0.5rem;"></i></a>
           </div>
-          <% if (searchQuery) { %>
-            <a href="/products?category=<%= selectedCategory %>&sort=<%= selectedSort %>" class="clear-search-link"><i class="fa-solid fa-circle-xmark"></i> Clear Search</a>
-          <% } %>
-        </form>
-      </div>
-      
-      <!,  Category Filter list , >
-      <div class="filter-widget">
-        <h4>Categories</h4>
-        <ul class="filter-category-links">
-          <li>
-            <a href="/products?search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === '' ? 'active' : '' %>">
-              All Items <span class="bullet">&middot;</span>
-            </a>
-          </li>
-          <li>
-            <a href="/products?category=Spices %26 Whole Seeds&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'Spices & Whole Seeds' ? 'active' : '' %>">
-              Spices & Seeds <span class="bullet">&middot;</span>
-            </a>
-          </li>
-          <li>
-            <a href="/products?category=Herbs %26 Seasonings&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'Herbs & Seasonings' ? 'active' : '' %>">
-              Herbs & Seasonings <span class="bullet">&middot;</span>
-            </a>
-          </li>
-          <li>
-            <a href="/products?category=Salts %26 Peppercorns&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'Salts & Peppercorns' ? 'active' : '' %>">
-              Salts & Peppercorns <span class="bullet">&middot;</span>
-            </a>
-          </li>
-          <li>
-            <a href="/products?category=Dried Chilis %26 Paprika&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'Dried Chilis & Paprika' ? 'active' : '' %>">
-              Chilis & Paprika <span class="bullet">&middot;</span>
-            </a>
-          </li>
-          <li>
-            <a href="/products?category=Baking, Vanilla %26 Sweeteners&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'Baking, Vanilla & Sweeteners' ? 'active' : '' %>">
-              Baking & Sweeteners <span class="bullet">&middot;</span>
-            </a>
-          </li>
-          <li>
-            <a href="/products?category=Dried Vegetables %26 Mushrooms&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'Dried Vegetables & Mushrooms' ? 'active' : '' %>">
-              Dried Veggies <span class="bullet">&middot;</span>
-            </a>
-          </li>
-          <li>
-            <a href="/products?category=Specialty Powders %26 Flavors&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'Specialty Powders & Flavors' ? 'active' : '' %>">
-              Specialty Powders <span class="bullet">&middot;</span>
-            </a>
-          </li>
-          <li>
-            <a href="/products?category=Beverages&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedCategory === 'Beverages' ? 'active' : '' %>">
-              Beverages <span class="bullet">&middot;</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!,  Sorting Select widget , >
-      <div class="filter-widget">
-        <h4>Sort By</h4>
-        <div class="select-wrapper">
-          <select id="catalog-sort-select" onchange="location = this.value;">
-            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>" <%= selectedSort === '' ? 'selected' : '' %>>Default (Newest)</option>
-            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>&sort=price-asc" <%= selectedSort === 'price-asc' ? 'selected' : '' %>>Price: Low to High</option>
-            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>&sort=price-desc" <%= selectedSort === 'price-desc' ? 'selected' : '' %>>Price: High to Low</option>
-            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>&sort=name-asc" <%= selectedSort === 'name-asc' ? 'selected' : '' %>>Alphabetical (A-Z)</option>
-            <option value="/products?category=<%= selectedCategory %>&search=<%= searchQuery %>&sort=name-desc" <%= selectedSort === 'name-desc' ? 'selected' : '' %>>Alphabetical (Z-A)</option>
-          </select>
         </div>
-      </div>
+      <% }) %>
+    </div>
+  </section>
+
+<% } else { %>
+  <!-- Mode B: Specific Category Page (Show Subcategory Filter & Products) -->
+  <% const bannerBg = activeCatObj ? activeCatObj.imageUrl : 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?q=80&w=1200&auto=format&fit=crop'; %>
+  <section class="page-banner shop-banner" style="background-image: linear-gradient(rgba(18, 18, 18, 0.45), rgba(18, 18, 18, 0.7)), url('<%= bannerBg %>');">
+    <div class="container">
+      <h1><%= selectedCategory %></h1>
+      <p><%= activeCatObj ? activeCatObj.desc : 'Browse our premium botanical selection.' %></p>
+    </div>
+    <div class="banner-overlay"></div>
+  </section>
+
+  <section class="shop-catalog container">
+    <!-- Mobile Filter Toggles -->
+    <div class="mobile-filter-bar">
+      <button id="toggle-sidebar-filters" class="btn btn-secondary"><i class="fa-solid fa-sliders"></i> Filter / Sort</button>
+    </div>
+
+    <div class="catalog-layout">
       
-    </aside>
-    
-    <!,  Right Grid: Products , >
-    <div class="catalog-content">
-      
-      <!,  Catalog Status bar , >
-      <div class="catalog-status-bar">
-        <span class="product-count-display">Showing <strong><%= products.length %></strong> Spices</span>
+      <!-- Left Sidebar: Filters & Search -->
+      <aside class="catalog-sidebar" id="catalog-sidebar">
+        <div class="sidebar-header">
+          <h3>Refine Category</h3>
+          <button id="close-sidebar-filters" class="close-filters-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         
-        <!,  Active filter bubbles , >
-        <div class="active-filters">
-          <% if (selectedCategory) { %>
-            <span class="filter-bubble"><%= selectedCategory %> <a href="/products?search=<%= searchQuery %>&sort=<%= selectedSort %>"><i class="fa-solid fa-xmark"></i></a></span>
-          <% } %>
-          <% if (searchQuery) { %>
-            <span class="filter-bubble">"<%= searchQuery %>" <a href="/products?category=<%= selectedCategory %>&sort=<%= selectedSort %>"><i class="fa-solid fa-xmark"></i></a></span>
-          <% } %>
-        </div>
-      </div>
-
-      <!,  Product Cards Grid , >
-      <div class="products-grid">
-        <% if (products && products.length > 0) { %>
-          <% products.forEach(product => { %>
-            <div class="product-card">
-              <div class="product-card-image">
-                <a href="/products/<%= product.slug %>">
-                  <img src="<%= product.imageUrl %>" alt="<%= product.name %>" loading="lazy">
-                </a>
-                <% if (product.stockStatus === 'low-stock') { %>
-                  <span class="badge badge-warning">Low Stock</span>
-                <% } else if (product.stockStatus === 'out-of-stock') { %>
-                  <span class="badge badge-danger">Out of Stock</span>
-                <% } %>
-                <span class="product-category-tag"><%= product.category %></span>
-              </div>
-              
-              <div class="product-card-info">
-                <h3><a href="/products/<%= product.slug %>"><%= product.name %></a></h3>
-                <p class="product-excerpt"><%= product.description.substring(0, 85) %>...</p>
-                
-                <div class="product-card-footer">
-                  <span class="product-price">$<%= product.price.toFixed(2) %></span>
-                  <a href="/products/<%= product.slug %>" class="btn btn-secondary">Details</a>
-                </div>
-              </div>
+        <!-- Text Search Block -->
+        <div class="filter-widget">
+          <h4>Search In Category</h4>
+          <form action="/products" method="GET" class="sidebar-search-form">
+            <input type="hidden" name="category" value="<%= selectedCategory %>">
+            <% if (selectedSubcategory) { %>
+              <input type="hidden" name="subcategory" value="<%= selectedSubcategory %>">
+            <% } %>
+            <% if (selectedSort) { %>
+              <input type="hidden" name="sort" value="<%= selectedSort %>">
+            <% } %>
+            <div class="search-input-wrapper">
+              <input type="text" name="search" placeholder="Cinnamon, Garlic..." value="<%= searchQuery %>" aria-label="Search">
+              <button type="submit" aria-label="Submit search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
-          <% }) %>
-        <% } else { %>
-          <div class="no-results-card">
-            <i class="fa-solid fa-ban"></i>
-            <h3>No Products Found</h3>
-            <p>We couldn't find any products matching your filters or search query. Try broadening your keywords or changing categories.</p>
-            <a href="/products" class="btn btn-primary">Reset All Filters</a>
+            <% if (searchQuery) { %>
+              <a href="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&sort=<%= selectedSort %>" class="clear-search-link"><i class="fa-solid fa-circle-xmark"></i> Clear Search</a>
+            <% } %>
+          </form>
+        </div>
+        
+        <!-- Subcategory Filter List -->
+        <% if (subcategories && subcategories.length > 0) { %>
+          <div class="filter-widget">
+            <h4>Subcategories</h4>
+            <ul class="filter-category-links">
+              <li>
+                <a href="/products?category=<%= encodeURIComponent(selectedCategory) %>&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedSubcategory === '' ? 'active' : '' %>">
+                  All Subcategories <span class="bullet">&middot;</span>
+                </a>
+              </li>
+              <% subcategories.forEach(sub => { %>
+                <li>
+                  <a href="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(sub) %>&search=<%= searchQuery %>&sort=<%= selectedSort %>" class="<%= selectedSubcategory === sub ? 'active' : '' %>">
+                    <%= sub %> <span class="bullet">&middot;</span>
+                  </a>
+                </li>
+              <% }) %>
+            </ul>
           </div>
         <% } %>
+
+        <!-- Sorting Select Widget -->
+        <div class="filter-widget">
+          <h4>Sort By</h4>
+          <div class="select-wrapper">
+            <select id="catalog-sort-select" onchange="location = this.value;">
+              <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>" <%= selectedSort === '' ? 'selected' : '' %>>Default (Newest)</option>
+              <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>&sort=price-asc" <%= selectedSort === 'price-asc' ? 'selected' : '' %>>Price: Low to High</option>
+              <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>&sort=price-desc" <%= selectedSort === 'price-desc' ? 'selected' : '' %>>Price: High to Low</option>
+              <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>&sort=name-asc" <%= selectedSort === 'name-asc' ? 'selected' : '' %>>Alphabetical (A-Z)</option>
+              <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>&sort=name-desc" <%= selectedSort === 'name-desc' ? 'selected' : '' %>>Alphabetical (Z-A)</option>
+            </select>
+          </div>
+        </div>
+        
+      </aside>
+      
+      <!-- Right Grid: Products -->
+      <div class="catalog-content">
+        
+        <!-- Catalog Status Bar -->
+        <div class="catalog-status-bar">
+          <span class="product-count-display">Showing <strong><%= products.length %></strong> Spices</span>
+          
+          <!-- Active filter bubbles -->
+          <div class="active-filters">
+            <% if (selectedCategory) { %>
+              <span class="filter-bubble"><%= selectedCategory %> <a href="/products?search=<%= searchQuery %>&sort=<%= selectedSort %>"><i class="fa-solid fa-xmark"></i></a></span>
+            <% } %>
+            <% if (selectedSubcategory) { %>
+              <span class="filter-bubble"><%= selectedSubcategory %> <a href="/products?category=<%= encodeURIComponent(selectedCategory) %>&search=<%= searchQuery %>&sort=<%= selectedSort %>"><i class="fa-solid fa-xmark"></i></a></span>
+            <% } %>
+            <% if (searchQuery) { %>
+              <span class="filter-bubble">"<%= searchQuery %>" <a href="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&sort=<%= selectedSort %>"><i class="fa-solid fa-xmark"></i></a></span>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="products-grid">
+          <% if (products && products.length > 0) { %>
+            <% products.forEach(product => { %>
+              <div class="product-card">
+                <div class="product-card-image">
+                  <a href="/products/<%= product.slug %>">
+                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>" loading="lazy">
+                  </a>
+                  <% if (product.stockStatus === 'low-stock') { %>
+                    <span class="badge badge-warning">Low Stock</span>
+                  <% } else if (product.stockStatus === 'out-of-stock') { %>
+                    <span class="badge badge-danger">Out of Stock</span>
+                  <% } %>
+                  <span class="product-category-tag"><%= product.subCategory %></span>
+                </div>
+                
+                <div class="product-card-info">
+                  <h3><a href="/products/<%= product.slug %>"><%= product.name %></a></h3>
+                  <p class="product-excerpt"><%= product.description.substring(0, 85) %>...</p>
+                  
+                  <div class="product-card-footer">
+                    <span class="product-price">$<%= product.price.toFixed(2) %></span>
+                    <a href="/products/<%= product.slug %>" class="btn btn-secondary">Details</a>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <div class="no-results-card">
+              <i class="fa-solid fa-ban"></i>
+              <h3>No Products Found</h3>
+              <p>We couldn't find any products matching your filters or search query. Try broadening your keywords or changing subcategories.</p>
+              <a href="/products?category=<%= encodeURIComponent(selectedCategory) %>" class="btn btn-primary">Reset Category Filters</a>
+            </div>
+          <% } %>
+        </div>
+
       </div>
 
     </div>
-
-  </div>
-</section>
+  </section>
+<% } %>
 
 <%- include('partials/footer') %>
