@@ -27,10 +27,8 @@
       <span class="specs-category capitalize-text"><%= product.category %></span>
       <h1><%= product.name %></h1>
       
-      <!,  Price and Status , >
+      <!-- Price and Status -->
       <div class="price-status-row">
-        <span class="specs-price" id="specs-display-price" data-base-price="<%= product.price %>">$<%= product.price.toFixed(2) %></span>
-        
         <% if (product.stockStatus === 'in-stock') { %>
           <span class="status-badge instock"><i class="fa-solid fa-circle-check"></i> Freshly Packed (In Stock)</span>
         <% } else if (product.stockStatus === 'low-stock') { %>

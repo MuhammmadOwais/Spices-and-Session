@@ -119,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                       <span class="search-result-name">${product.name}</span>
                       <span class="search-result-category">${product.category}</span>
                     </div>
-                    <span class="search-result-price">$${product.price.toFixed(2)}</span>
                   </a>
                 </li>
               `;

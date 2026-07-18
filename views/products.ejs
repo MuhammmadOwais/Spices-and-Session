@@ -172,8 +172,6 @@ const subcategories = selectedCategory ? (subcategoryMap[selectedCategory] || []
           <div class="select-wrapper">
             <select id="catalog-sort-select" onchange="location = this.value;">
               <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>" <%= selectedSort === '' ? 'selected' : '' %>>Default (Newest)</option>
-              <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>&sort=price-asc" <%= selectedSort === 'price-asc' ? 'selected' : '' %>>Price: Low to High</option>
-              <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>&sort=price-desc" <%= selectedSort === 'price-desc' ? 'selected' : '' %>>Price: High to Low</option>
               <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>&sort=name-asc" <%= selectedSort === 'name-asc' ? 'selected' : '' %>>Alphabetical (A-Z)</option>
               <option value="/products?category=<%= encodeURIComponent(selectedCategory) %>&subcategory=<%= encodeURIComponent(selectedSubcategory) %>&search=<%= searchQuery %>&sort=name-desc" <%= selectedSort === 'name-desc' ? 'selected' : '' %>>Alphabetical (Z-A)</option>
             </select>
@@ -224,9 +222,8 @@ const subcategories = selectedCategory ? (subcategoryMap[selectedCategory] || []
                   <h3><a href="/products/<%= product.slug %>"><%= product.name %></a></h3>
                   <p class="product-excerpt"><%= product.description.substring(0, 85) %>...</p>
                   
-                  <div class="product-card-footer">
-                    <span class="product-price">$<%= product.price.toFixed(2) %></span>
-                    <a href="/products/<%= product.slug %>" class="btn btn-secondary">Details</a>
+                  <div class="product-card-footer" style="display: block; width: 100%;">
+                    <a href="/products/<%= product.slug %>" class="btn btn-secondary" style="display: block; width: 100%; text-align: center;">Details</a>
                   </div>
                 </div>
               </div>
