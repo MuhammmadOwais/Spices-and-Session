@@ -226,12 +226,68 @@
     }
   }
   @media (max-width: 768px) {
-    .contact-info-cards {
-      grid-template-columns: 1fr;
+    .contact-showcase-col {
+      display: none !important; /* Hide Wyoming Headquarters column on mobile */
+    }
+    .contact-main-layout {
+      grid-template-columns: 1fr !important;
+      padding: 2.2rem 1.8rem !important;
     }
     .form-row-double {
       grid-template-columns: 1fr;
       gap: 0;
+    }
+  }
+  @media (max-width: 576px) {
+    .contact-banner h1 {
+      font-size: 2.5rem !important;
+    }
+    .contact-banner p {
+      font-size: 0.95rem !important;
+    }
+    .contact-banner {
+      padding: 4.5rem 0 !important;
+    }
+    .contact-grid-section {
+      padding: 3rem 0 !important;
+    }
+    .contact-info-cards {
+      grid-template-columns: 1fr !important;
+      gap: 1.2rem !important;
+      margin-bottom: 2.5rem !important;
+    }
+    .info-card {
+      padding: 1.8rem 1.5rem !important;
+      border-radius: var(--border-radius-large) !important;
+    }
+    .info-card-icon {
+      font-size: 1.8rem !important;
+      margin-bottom: 0.8rem !important;
+    }
+    .info-card h3 {
+      font-size: 1rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    .info-card p {
+      font-size: 0.85rem !important;
+      line-height: 1.5 !important;
+    }
+    .contact-main-layout {
+      padding: 1.8rem 1.2rem !important;
+      border-radius: var(--border-radius) !important;
+    }
+    .contact-form-col h2 {
+      font-size: 1.8rem !important;
+      margin-bottom: 0.6rem !important;
+    }
+    .contact-form-col p.form-desc {
+      font-size: 0.88rem !important;
+      margin-bottom: 1.6rem !important;
+    }
+    .contact-submit-btn {
+      width: 100% !important;
+      text-align: center !important;
+      padding: 0.9rem 2rem !important;
     }
   }
 </style>
